@@ -49,7 +49,8 @@ sl ipc项目是基于海思hi35xx等系列芯片，针对工业相机等领域�
 
 
 ## 其他
-### 1. [客户端SDK](../l_sdk_doc/README.md)
+### 1. [GitHub仓库](https://github.com/lishaoliang/sl_ipc), [码云镜像](https://gitee.com/lishaoliang/sl_ipc)
+### 2. [客户端SDK](https://github.com/lishaoliang/l_sdk_doc), [客户端SDK(码云镜像)](https://gitee.com/lishaoliang/l_sdk_doc)
 
 
 ## Apache License,Version 2.0
