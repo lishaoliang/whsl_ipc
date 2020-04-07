@@ -28,16 +28,26 @@ sl ipc项目是基于海思hi35xx等系列芯片，针对工业相机等领域�
 ```
 
 ## 二、框架流程
-### 1. [Arm环境文件结构](./doc/opt/opt.md)
-### 2. [Lua脚本文件结构](./doc/src_lua/src_lua.md)
+### 2.1 [Arm环境文件结构](./doc/opt/opt.md)
+### 2.2 [Lua脚本文件结构](./doc/src_lua/src_lua.md)
 
 
 ## 三、网络协议
-### 1. [NSPP私有协议](./doc/net/nspp/nspp.md)
-### 2. [RTSP协议](./doc/net/rtsp/rtsp.md)
-### 3. [HTTP协议](./doc/net/http/http.md)
-### 4. [HTTP-FLV协议](./doc/net/http-flv/http_flv.md)
-### 5. [HTTP-NSPP私有协议](./doc/net/http-nspp/http_nspp.md)
+
+|   码流类型   | 请求路径  |
+|:----------- |:--------- |
+| RTSP主码流      | rtsp://192.168.1.247:80/chnn0/idx0 |
+| RTSP子码流      | rtsp://192.168.1.247:80/chnn0/idx1 |
+| HTTP-FLV主码流  | http://192.168.1.247:80/luaflv/chnn0/idx0 |
+| HTTP-FLV子码流  | http://192.168.1.247:80/luaflv/chnn0/idx1 |
+| HTTP-NSPP主码流 | http://192.168.1.247:80/luanspp/chnn0/idx0 |
+| HTTP-NSPP子码流 | http://192.168.1.247:80/luanspp/chnn0/idx1 |
+
+### 3.1 [NSPP私有协议](./doc/net/nspp/nspp.md)
+### 3.2 [RTSP协议](./doc/net/rtsp/rtsp.md)
+### 3.3 [HTTP协议](./doc/net/http/http.md)
+### 3.4 [HTTP-FLV协议](./doc/net/http-flv/http_flv.md)
+### 3.5 [HTTP-NSPP私有协议](./doc/net/http-nspp/http_nspp.md)
 
 ## 四、本地SDK
 
@@ -46,7 +56,16 @@ sl ipc项目是基于海思hi35xx等系列芯片，针对工业相机等领域�
 
 
 ## 六、Demo模拟软件
+* Windows7, Windows10 命令行环境
+* 相对目录：./l_lua
 
+```
+cd ./l_lua
+.\llua.exe .\ipc\ipc.lua
+```
+
+* 模拟器默认端口: 3456
+* 网页地址: http://127.0.0.1:3456
 
 ## 其他
 ### 1. [GitHub仓库](https://github.com/lishaoliang/sl_ipc), [码云镜像](https://gitee.com/lishaoliang/sl_ipc)
