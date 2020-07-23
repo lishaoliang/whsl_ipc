@@ -1,22 +1,22 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief  net proto error ÍøÂçĞ­Òé´íÎóÂë·¶Î§[0x1000(4096) ~ 0x7FFF(32767)]
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief  net proto error ç½‘ç»œåè®®é”™è¯¯ç èŒƒå›´[0x1000(4096) ~ 0x7FFF(32767)]
+-- @author æç»è‰¯
 --]]
 
 local np_err = {}
 
 np_err.OK = 0
-np_err.CONNECT = 3584	-- ĞÂÁ¬½Ó¼ÓÈë
+np_err.CONNECT = 3584	-- æ–°è¿æ¥åŠ å…¥
 
 
-np_err.B = 4096		-- ´íÎóÂë¿ªÊ¼
-np_err.E = 32767	-- ´íÎóÂë½áÊø
+np_err.B = 4096		-- é”™è¯¯ç å¼€å§‹
+np_err.E = 32767	-- é”™è¯¯ç ç»“æŸ
 
-np_err.UNSUPPORT = np_err.B + 1	-- ²»Ö§³ÖµÄĞ­ÒéÃüÁî
-np_err.NOTFOUND  = np_err.B + 2 -- Î´ÕÒµ½
-np_err.PARAM	 = np_err.B + 3	-- ²ÎÊı´íÎó
-np_err.SAVE		 = np_err.B + 4	-- ±£´æÊı¾İ´íÎó
+np_err.UNSUPPORT = np_err.B + 1	-- ä¸æ”¯æŒçš„åè®®å‘½ä»¤
+np_err.NOTFOUND  = np_err.B + 2 -- æœªæ‰¾åˆ°
+np_err.PARAM	 = np_err.B + 3	-- å‚æ•°é”™è¯¯
+np_err.SAVE		 = np_err.B + 4	-- ä¿å­˜æ•°æ®é”™è¯¯
 
 
 return np_err

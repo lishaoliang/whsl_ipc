@@ -1,9 +1,9 @@
---[[
--- Copyright (c) 2019 ÎäººË´Á¢Èí¼ş, All Rights Reserved
+ï»¿--[[
+-- Copyright (c) 2019 æ­¦æ±‰èˆœç«‹è½¯ä»¶, All Rights Reserved
 -- Created: 2019/11/15
 --
--- @brief	Ä¿±ê²âÊÔÉè±¸ĞÅÏ¢
--- @author	ÀîÉÜÁ¼
+-- @brief	ç›®æ ‡æµ‹è¯•è®¾å¤‡ä¿¡æ¯
+-- @author	æç»è‰¯
 -- @see https://github.com/lishaoliang/l_sdk_doc
 --]]
 
@@ -13,46 +13,46 @@ local l_sys = require("l_sys")
 
 
 -- @name   target.ip
--- @export Ä¿±êIPµØÖ·
+-- @export ç›®æ ‡IPåœ°å€
 --target.ip = '192.168.1.247'
 target.ip = '192.168.3.150'
 
 
 -- @name   target.port
--- @export Ä¿±ê¶Ë¿Ú
+-- @export ç›®æ ‡ç«¯å£
 target.port = 80
 
 
 -- @name   target.protocol
--- @export Ê¹ÓÃµÄĞ­Òé
+-- @export ä½¿ç”¨çš„åè®®
 target.protocol = 'nspp'
-if 'hisi_linux' == l_sys.platform then
-	target.protocol = 'nspp_local'	-- Èç¹ûÊÇÔÚÏà»úÉÏ²âÊÔ, ÔòÊ¹ÓÃ±¾µØĞ­Òé
+if l_sys.simulator then
+	target.protocol = 'nspp_local'	-- å¦‚æœæ˜¯åœ¨ç›¸æœºä¸Šæµ‹è¯•, åˆ™ä½¿ç”¨æœ¬åœ°åè®®
 end
 
 
 -- @name   target.path_local
--- @export ±¾µØunixĞ­ÒéÁ¬½ÓÂ·¾¶
+-- @export æœ¬åœ°unixåè®®è¿æ¥è·¯å¾„
 target.path_local = '/nfsmem/socket.ui'
 
 
 -- @name   target.username
--- @export ÓÃ»§Ãû
+-- @export ç”¨æˆ·å
 target.username = 'admin'
 
 
 -- @name   target.passwd
--- @export ÃÜÂë
+-- @export å¯†ç 
 target.passwd = '123456'
 
 
 -- @name   target.wifi_ssid
--- @export Ïà»ú´¦ÓÚSTAÄ£Ê½ÏÂ,´ıÁ¬½ÓµÄÄ¿±êwifiµÄssidÃû³Æ
+-- @export ç›¸æœºå¤„äºSTAæ¨¡å¼ä¸‹,å¾…è¿æ¥çš„ç›®æ ‡wifiçš„ssidåç§°
 target.wifi_ssid = 'HUAWEI-7NLNPF_5G'
 
 
 -- @name   target.wifi_passwd
--- @export Ïà»ú´¦ÓÚSTAÄ£Ê½ÏÂ,´ıÁ¬½ÓµÄÄ¿±êwifiµÄÃÜÂë
+-- @export ç›¸æœºå¤„äºSTAæ¨¡å¼ä¸‹,å¾…è¿æ¥çš„ç›®æ ‡wifiçš„å¯†ç 
 target.wifi_passwd = 'qwertyuiop1234567890'
 
 

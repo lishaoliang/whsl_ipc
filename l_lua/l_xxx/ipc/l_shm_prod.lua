@@ -1,51 +1,51 @@
---[[
--- Copyright(c) 2020, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2020, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2020/1/7
 --
 -- @file    l_shm_prod.lua
--- @brief   ÄÚÖÃ¿ârequire("l_shm_prod"), ¶à½ø³Ì¹²ÏíÄÚ´æ(Éú²úÕß)
+-- @brief   å†…ç½®åº“require("l_shm_prod"), å¤šè¿›ç¨‹å…±äº«å†…å­˜(ç”Ÿäº§è€…)
 --  \n require("l_tpool")
---  \n ±ØĞëÔÚl_tpool.initÖ®ºó, l_tpool.quitÖ®Ç°
---  \n ÔËĞĞ¹ı³ÌÖĞ, ²»¿É¶¯Ì¬ĞŞ¸Ä
+--  \n å¿…é¡»åœ¨l_tpool.initä¹‹å, l_tpool.quitä¹‹å‰
+--  \n è¿è¡Œè¿‡ç¨‹ä¸­, ä¸å¯åŠ¨æ€ä¿®æ”¹
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2020/1/5 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2020/1/5 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_shm_prod = {}
 
 
--- @brief (½ø³Ì¼ä)×î´ó¹²ÏíÄÚ´æ¸öÊı, ±àºÅ:[1,N]
--- @return [number] ×î´ó¹²ÏíÄÚ´æ¸öÊı
+-- @brief (è¿›ç¨‹é—´)æœ€å¤§å…±äº«å†…å­˜ä¸ªæ•°, ç¼–å·:[1,N]
+-- @return [number] æœ€å¤§å…±äº«å†…å­˜ä¸ªæ•°
 l_shm_prod.max = function ()
 	return 8
 end
 
 
--- @brief (½ø³Ì¼ä)´ò¿ª¹²ÏíÄÚ´æ
--- @param [in] index[number]	ÄÚ´æ±àºÅ:[1,N]
--- @param [in] path[string]	Â·¾¶/Ãû³Æ: ''
--- @param [in] size[number]	ÄÚ´æ´óĞ¡: 4KÕûÊı±¶
--- @return [boolean] ÊÇ·ñ³É¹¦
+-- @brief (è¿›ç¨‹é—´)æ‰“å¼€å…±äº«å†…å­˜
+-- @param [in] index[number]	å†…å­˜ç¼–å·:[1,N]
+-- @param [in] path[string]	è·¯å¾„/åç§°: ''
+-- @param [in] size[number]	å†…å­˜å¤§å°: 4Kæ•´æ•°å€
+-- @return [boolean] æ˜¯å¦æˆåŠŸ
 l_shm_prod.open = function (index, path, size)
 	return true
 	-- return false
 end
 
 
--- @brief (½ø³Ì¼ä)¹Ø±Õ¹²ÏíÄÚ´æ
--- @param [in] index[number]	ÄÚ´æ±àºÅ:[1,N]
--- @return [boolean] ÊÇ·ñ³É¹¦
+-- @brief (è¿›ç¨‹é—´)å…³é—­å…±äº«å†…å­˜
+-- @param [in] index[number]	å†…å­˜ç¼–å·:[1,N]
+-- @return [boolean] æ˜¯å¦æˆåŠŸ
 l_shm_prod.close = function (index)
 	return true
 	-- return false
 end
 
 
--- @brief »ñÈ¡Êı¾İ½ÓÊÕÕß: Êı¾İ´¦Àí»Øµ÷º¯Êı
--- @param [in] index[number]	ÄÚ´æ±àºÅ:[1,N]
--- @return [nil, userdata] Êı¾İ´¦Àí»Øµ÷º¯Êı
+-- @brief è·å–æ•°æ®æ¥æ”¶è€…: æ•°æ®å¤„ç†å›è°ƒå‡½æ•°
+-- @param [in] index[number]	å†…å­˜ç¼–å·:[1,N]
+-- @return [nil, userdata] æ•°æ®å¤„ç†å›è°ƒå‡½æ•°
 l_shm_prod.get_receiver = function (index)
 	return nil
 	-- return void*

@@ -1,4 +1,4 @@
-local string = require("string")
+﻿local string = require("string")
 local cjson = require("cjson")
 
 local l_sys = require("l_sys")

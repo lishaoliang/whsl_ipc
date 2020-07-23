@@ -1,19 +1,19 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_wireless.lua
--- @brief   À©Õ¹ÄÚÖÃ¿â"l_wireless", º¯ÊıËµÃ÷
+-- @brief   æ‰©å±•å†…ç½®åº“"l_wireless", å‡½æ•°è¯´æ˜
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_wireless = {}
 
 
--- @brief »ñÈ¡wifiÔËĞĞÄ£Ê½
+-- @brief è·å–wifiè¿è¡Œæ¨¡å¼
 -- @return [string] "ap", "sta", "other"
 l_wireless.mode_probe = function ()
 	return 'ap'
@@ -21,56 +21,56 @@ l_wireless.mode_probe = function ()
 end
 
 
--- @brief ÇĞ»»µ½"ap"Ä£Ê½(×÷ÎªwifiÈÈµã)
+-- @brief åˆ‡æ¢åˆ°"ap"æ¨¡å¼(ä½œä¸ºwifiçƒ­ç‚¹)
 l_wireless.mode_switch2ap = function ()
 
 end
 
 
--- @brief ÔÚapÄ£Ê½,»ñÈ¡Á¬½ÓµÄÖÕ¶ËÊıÄ¿
--- @return [number] Á¬½ÓÉÏµÄÖÕ¶ËÊıÄ¿
+-- @brief åœ¨apæ¨¡å¼,è·å–è¿æ¥çš„ç»ˆç«¯æ•°ç›®
+-- @return [number] è¿æ¥ä¸Šçš„ç»ˆç«¯æ•°ç›®
 l_wireless.ap_connected_count = function()
 	return 0
 end
 
 
--- @brief ³õ´ÎÆô¶¯°´ 'sta'Ä£Ê½
+-- @brief åˆæ¬¡å¯åŠ¨æŒ‰ 'sta'æ¨¡å¼
 l_wireless.boot_mode_sta = function ()
 
 end
 
 
--- @brief ÇĞ»»µ½"sta"Ä£Ê½(×÷ÎªÖÕ¶Ë)
+-- @brief åˆ‡æ¢åˆ°"sta"æ¨¡å¼(ä½œä¸ºç»ˆç«¯)
 l_wireless.mode_switch2sta =  function ()
 
 end
 
 
--- @brief ÔÚapÄ£Ê½,»ñÈ¡Á¬½ÓµÄÖÕ¶ËÊıÄ¿
+-- @brief åœ¨apæ¨¡å¼,è·å–è¿æ¥çš„ç»ˆç«¯æ•°ç›®
 -- @return [number][string]
 -- @note
---  \n 0 ÎŞÁ¬½Ó
---  \n 1 ÒÑÁ¬½Ó, ÔİÎŞssid
---  \n 2 ÒÑÁ¬½Ó, È¡µÃÁËssid
+--  \n 0 æ— è¿æ¥
+--  \n 1 å·²è¿æ¥, æš‚æ— ssid
+--  \n 2 å·²è¿æ¥, å–å¾—äº†ssid
 l_wireless.sta_get_linkstatus = function ()
 	return 0, 'ssid'
 end
 
 
--- @brief ÔÚstaÄ£Ê½ÏÂ, scan¹¦ÄÜ³õÊ¼»¯
+-- @brief åœ¨staæ¨¡å¼ä¸‹, scanåŠŸèƒ½åˆå§‹åŒ–
 l_wireless.sta_wpa_cli_start = function ()
 
 end
 
 
--- @brief ÔÚstaÄ£Ê½ÏÂ, scan¹¦ÄÜ·´³õÊ¼»¯
+-- @brief åœ¨staæ¨¡å¼ä¸‹, scanåŠŸèƒ½ååˆå§‹åŒ–
 l_wireless.sta_wpa_cli_cleanup = function ()
 
 end
 
 
--- @brief ÔÚstaÄ£Ê½ÏÂ, É¨ÃèÈÈµã
--- @return [table] ÈÈµãÊı×é
+-- @brief åœ¨staæ¨¡å¼ä¸‹, æ‰«æçƒ­ç‚¹
+-- @return [table] çƒ­ç‚¹æ•°ç»„
 --  \n {
 --       {ssid="xxx",flags="xxx",signal="xxx", freq="xxx", bssid="xxx"},...
 --  \n }
@@ -79,33 +79,33 @@ l_wireless.sta_get_scan_result = function ()
 end
 
 
--- @brief 'sta'Ä£Ê½Á¬½Óµ½ÈÈµã
+-- @brief 'sta'æ¨¡å¼è¿æ¥åˆ°çƒ­ç‚¹
 -- @param [in] ssid[string]		ssid
--- @param [in] passwd[string]	ÃÜÂë
--- @param [in] flags[string]	Á¬½Ó±ê¼Ç
--- @return [boolean] ³É¹¦,Ê§°Ü
+-- @param [in] passwd[string]	å¯†ç 
+-- @param [in] flags[string]	è¿æ¥æ ‡è®°
+-- @return [boolean] æˆåŠŸ,å¤±è´¥
 l_wireless.sta_connect2ap = function (ssid, passwd, flags)
 	return true
 end
 
 
--- @brief 'sta'Ä£Ê½ÏÂ¿ªÆôdhcpc¿Í»§¶Ë
+-- @brief 'sta'æ¨¡å¼ä¸‹å¼€å¯dhcpcå®¢æˆ·ç«¯
 l_wireless.sta_dhcpc_start = function ()
 
 end
 
 
--- @brief 'sta'Ä£Ê½ÏÂ¹Ø±Õdhcpc¿Í»§¶Ë
+-- @brief 'sta'æ¨¡å¼ä¸‹å…³é—­dhcpcå®¢æˆ·ç«¯
 l_wireless.sta_dhcpc_exit = function ()
 
 end
 
 
--- @brief 'sta'Ä£Ê½ÏÂÉèÖÃipµØÖ·
--- @param [in] name[string]		Íø¿¨Ãû³Æ,ÀıÈç"wlan0"
--- @param [in] ip[string]		ipµØÖ·
--- @param [in] netmask[string]	ÑÚÂë
--- @param [in] gateway[string]	Íø¹Ø
+-- @brief 'sta'æ¨¡å¼ä¸‹è®¾ç½®ipåœ°å€
+-- @param [in] name[string]		ç½‘å¡åç§°,ä¾‹å¦‚"wlan0"
+-- @param [in] ip[string]		ipåœ°å€
+-- @param [in] netmask[string]	æ©ç 
+-- @param [in] gateway[string]	ç½‘å…³
 l_wireless.set_ipaddr = function (name, ip, netmask, gateway)
 
 end

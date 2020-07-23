@@ -1,18 +1,18 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/04
 --
 -- @file    wlan.lua
--- @brief   wlanÍø¿Ú¹ÜÀí
+-- @brief   wlanç½‘å£ç®¡ç†
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/04 0.1 ´´½¨ÎÄ¼ş
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/04 0.1 åˆ›å»ºæ–‡ä»¶
 -- @note
---	\n 169.254.0.0/16 ±¾»úË½ÓĞµØÖ·¶Î
---  \n 169.254.100.123	eth0ÎïÀíÍø¿ÚÄ¬ÈÏµØÖ·
---  \n 169.254.110.123	wlan0ÎŞÏßÍøÂçÄ¬ÈÏµØÖ·
--- @warning Ã»ÓĞ¾¯¸æ
+--	\n 169.254.0.0/16 æœ¬æœºç§æœ‰åœ°å€æ®µ
+--  \n 169.254.100.123	eth0ç‰©ç†ç½‘å£é»˜è®¤åœ°å€
+--  \n 169.254.110.123	wlan0æ— çº¿ç½‘ç»œé»˜è®¤åœ°å€
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local string = require("string")
@@ -46,12 +46,12 @@ wlan.clean = function ()
 	unix.killall('dnsmasq')
 	unix.killall('hostapd')
 	
-	-- wlan Íø¿ÚÏÂÏß
+	-- wlan ç½‘å£ä¸‹çº¿
 	l_sys.sleep(50)	
 	wlan.shell('ifconfig', 'wlan0 down')
 	
-	-- ÖØĞÂ¼ÓÔØÇı¶¯, apÄ£Ê½³õÊ¼»¯Ê±, ĞèÒªÇı¶¯ÊÇ¸É¾»µÄ
-	-- ½«wlan0»¹Ô­Îª: ½ö¼ÓÔØÇı¶¯×´Ì¬
+	-- é‡æ–°åŠ è½½é©±åŠ¨, apæ¨¡å¼åˆå§‹åŒ–æ—¶, éœ€è¦é©±åŠ¨æ˜¯å¹²å‡€çš„
+	-- å°†wlan0è¿˜åŸä¸º: ä»…åŠ è½½é©±åŠ¨çŠ¶æ€
 	l_sys.sleep(10)
 	wlan.shell('rmmod', 'rtl8812au')
 	
@@ -82,7 +82,7 @@ end
 
 
 wlan.sta_reset = function ()
-	-- sta Ä£Ê½ÏÂ, ÖØÖÃwifiÍø¿Ú, ²»¹Ø±Õ
+	-- sta æ¨¡å¼ä¸‹, é‡ç½®wifiç½‘å£, ä¸å…³é—­
 	-- ip addr flush dev wlan0
 
 	unix.kill('udhcpc', 'wlan0')
@@ -110,8 +110,8 @@ wlan.set_sta_ipv4 = function (ip, mask, gateway)
 end
 
 wlan.set_sta_dhcp = function ()
-	-- ÍøÂç»·¾³¶Ô udhcpc µÄÓ°Ïì½Ï´ó
-	-- -b ºóÌ¨ÔËĞĞ, -R ÍË³öÊ±ÊÍ·ÅIP, -T 3Ãë³¬Ê±, -A 6×î¶àµÈ´ı6Ãë
+	-- ç½‘ç»œç¯å¢ƒå¯¹ udhcpc çš„å½±å“è¾ƒå¤§
+	-- -b åå°è¿è¡Œ, -R é€€å‡ºæ—¶é‡Šæ”¾IP, -T 3ç§’è¶…æ—¶, -A 6æœ€å¤šç­‰å¾…6ç§’
 
 	wlan.sta_reset()	
 	

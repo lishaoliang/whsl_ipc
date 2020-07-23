@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş, All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶, All Rights Reserved
 -- Created: 2019/11/25
 --
 -- @file  rtsp_ser.lua
--- @brief RTSP serverĞ­ÒéÁ÷³Ì
--- @author ÀîÉÜÁ¼
+-- @brief RTSP serveråè®®æµç¨‹
+-- @author æç»è‰¯
 -- @note 
---  rtspÖ÷ÂëÁ÷: rtsp://admin:123456@192.168.1.247:80/chnn0/idx0
---  rtsp×ÓÂëÁ÷: rtsp://admin:123456@192.168.1.247:80/chnn0/idx1
---  rtspÄ¬ÈÏ×ÓÂëÁ÷: rtsp://admin:123456@192.168.1.247:80
+--  rtspä¸»ç æµ: rtsp://admin:123456@192.168.1.247:80/chnn0/idx0
+--  rtspå­ç æµ: rtsp://admin:123456@192.168.1.247:80/chnn0/idx1
+--  rtspé»˜è®¤å­ç æµ: rtsp://admin:123456@192.168.1.247:80
 --]]
 
 local l_nsm = require("l_nsm")
@@ -19,9 +19,9 @@ local rtsp_status = require("ipc.nsm.rtsp_status")
 
 local rtsp_ser = {}
 
-local conns = {}	-- ´æ´¢Á¬½ÓµÄsdpĞÅÏ¢
+local conns = {}	-- å­˜å‚¨è¿æ¥çš„sdpä¿¡æ¯
 
--- È¥³ı×Ö·û´®Ê×Î²¿ÕĞĞ
+-- å»é™¤å­—ç¬¦ä¸²é¦–å°¾ç©ºè¡Œ
 local trim = function (s)
 	return (string.gsub(s, '^%s*(.-)%s*$', '%1'))
 end
@@ -55,10 +55,10 @@ local open_stream = function (id, sdp)
 	local idx = sdp['idx']
 
 	if sdp['video'] then
-		-- ¿ªÆôÁ÷
+		-- å¼€å¯æµ
 		l_nsm.open_stream(id, chnn, idx, 0)
 		
-		-- Í¨ÖªÇëÇó¹Ø¼üÖ¡
+		-- é€šçŸ¥è¯·æ±‚å…³é”®å¸§
 		local obj_chnn = {
 			chnn = chnn,
 			idx = idx
@@ -71,9 +71,9 @@ local open_stream = function (id, sdp)
 	end
 
 	if sdp['audio'] then
-		idx = idx + 0x0020	-- ÒôÆµÁ÷ĞòºÅÆ«ÒÆ
+		idx = idx + 0x0020	-- éŸ³é¢‘æµåºå·åç§»
 		
-		-- ¿ªÆôÒôÆµÁ÷
+		-- å¼€å¯éŸ³é¢‘æµ
 		l_nsm.open_stream(id, chnn, idx, 0)
 		
 		sdp['playing'] = true
@@ -86,8 +86,8 @@ local close_stream = function (id, sdp)
 	local chnn = sdp['chnn']
 	local idx = sdp['idx']
 
-	l_nsm.close_stream(id, chnn, idx, 0)			-- ¹Ø±ÕÊÓÆµÁ÷
-	l_nsm.close_stream(id, chnn, idx + 0x0020, 0)	-- ¹Ø±ÕÒôÆµÁ÷
+	l_nsm.close_stream(id, chnn, idx, 0)			-- å…³é—­è§†é¢‘æµ
+	l_nsm.close_stream(id, chnn, idx + 0x0020, 0)	-- å…³é—­éŸ³é¢‘æµ
 
 	sdp['playing'] = false
 end
@@ -99,7 +99,7 @@ local on_setup = function (sdp, sdp1, cseq)
 		
 		-- 'RTP/AVP/TCP', 'RTP/AVP'
 		if not string.find(transport, 'tcp') then			
-			-- ²»Ö§³ÖUDP´«ÊäĞ­Òé
+			-- ä¸æ”¯æŒUDPä¼ è¾“åè®®
 			return 0, rtsp_sdp1.pack_error(sdp, cseq, rtsp_status.TRANSPORT)
 		end
 	end
@@ -121,11 +121,11 @@ local on_setup = function (sdp, sdp1, cseq)
 end
 
 
--- @brief rtsp/sdpĞ­ÒéÇëÇóÁ÷³Ì
--- @param [in]	id[number]	Á¬½Óid
--- @param [in]	txt[string]	rtspÇëÇóµÄsdpÎÄ±¾
--- @return [number]		´íÎóÂë
---			[string]	»Ø¸´¸ø¿Í»§¶ËµÄsdpÎÄ±¾
+-- @brief rtsp/sdpåè®®è¯·æ±‚æµç¨‹
+-- @param [in]	id[number]	è¿æ¥id
+-- @param [in]	txt[string]	rtspè¯·æ±‚çš„sdpæ–‡æœ¬
+-- @return [number]		é”™è¯¯ç 
+--			[string]	å›å¤ç»™å®¢æˆ·ç«¯çš„sdpæ–‡æœ¬
 rtsp_ser.sdp_request = function (id, txt)
 	local ret = 0
 	local res = ''
@@ -136,7 +136,7 @@ rtsp_ser.sdp_request = function (id, txt)
 	local method = sdp1['method']
 	local cseq = sdp1['cseq']
 	
-	-- ¿½±´²ÎÊı/²¢½âÎö²ÎÊı
+	-- æ‹·è´å‚æ•°/å¹¶è§£æå‚æ•°
 	rtsp_sdp1.copy_parser_sdp(sdp, sdp1)
 
 
@@ -156,7 +156,7 @@ rtsp_ser.sdp_request = function (id, txt)
 		res = rtsp_sdp1.pack_play(sdp, cseq)
 		
 	elseif rtsp_sdp1.TEARDOWN == method then
-		-- ¹Ø±ÕÁ÷, ÓÉ¿Í»§¶ËÖ÷¶¯¶Ï¿ª
+		-- å…³é—­æµ, ç”±å®¢æˆ·ç«¯ä¸»åŠ¨æ–­å¼€
 		close_stream(id, sdp)
 		
 		res = rtsp_sdp1.pack_teardown(sdp, cseq)
@@ -184,9 +184,9 @@ rtsp_ser.sdp_request = function (id, txt)
 end
 
 
--- @brief rtspÁ¬½Ó¶Ï¿ª´¦Àí
--- @param [in]	id[number]	Á¬½Óid
--- @return ÎŞ
+-- @brief rtspè¿æ¥æ–­å¼€å¤„ç†
+-- @param [in]	id[number]	è¿æ¥id
+-- @return æ— 
 rtsp_ser.on_disconnect = function (id)
 	remove_conn(id)
 end

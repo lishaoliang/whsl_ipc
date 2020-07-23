@@ -1,21 +1,17 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 --
 -- @file    lightweight.lua
--- @brief   ÇáÁ¿¼¶¹¤×÷Ïß³ÌÈë¿Ú: ×¨ÓÃÓÚ´¦Àíµ÷ÓÃº£Ë¼Éè±¸½Ó¿Ú
---		¿ÉÒÔ½ÓÊÜ×î¶à300msºÄÊ±
+-- @brief   è½»é‡çº§å·¥ä½œçº¿ç¨‹å…¥å£: ä¸“ç”¨äºå¤„ç†è°ƒç”¨æµ·æ€è®¾å¤‡æ¥å£
+--		å¯ä»¥æ¥å—æœ€å¤š300msè€—æ—¶
 -- @version 0.1
--- @author	ÀîÉÜÁ¼
+-- @author	æç»è‰¯
 --]]
 
 local string = require("string")
 local cjson = require("cjson")
 
-local l_dev_ipc = require("l_dev_ipc")
-local l_dev_vi = require("l_dev_vi")
-local l_dev_venc = require("l_dev_venc")
-local l_dev_osd = require("l_dev_osd")
-local l_dev_base = require("l_dev_base")
+local l_dev = require("l_dev")
 
 local util_ex =  require("base.util_ex")
 
@@ -33,11 +29,11 @@ quit = function ()
 end
 
 local lwdi_on_request_i = function (lobj, wobj)
-	l_dev_venc.request_i(wobj['chnn'], wobj['idx'])
+	l_dev.request_i(wobj['chnn'], wobj['idx'])
 end
 
 local lwdi_on_image = function (lobj, wobj)	
-	l_dev_vi.set_image(wobj['chnn'], lobj['bright'], lobj['contrast'], lobj['saturation'], lobj['hue'])
+	l_dev.set_image(wobj['chnn'], lobj['bright'], lobj['contrast'], lobj['saturation'], lobj['hue'])
 end
 
 local get_wh = function (wh)
@@ -45,7 +41,7 @@ local get_wh = function (wh)
 		return
 	end
 	
-	local str_w, str_h = string.match(wh, '([%d]+)[^%d]+([%d]+)') -- Æ¥ÅäĞÎÈç '1920*1080'
+	local str_w, str_h = string.match(wh, '([%d]+)[^%d]+([%d]+)') -- åŒ¹é…å½¢å¦‚ '1920*1080'
 	
 	local w = tonumber(str_w)
 	local h = tonumber(str_h)
@@ -57,16 +53,16 @@ end
 
 local lwdi_on_stream = function (lobj, wobj)	
 	local w, h = get_wh(lobj['wh'])
-	l_dev_venc.set_stream(wobj['chnn'], wobj['idx'], lobj['fmt'], w, h, lobj['frame_rate'], lobj['bitrate'], lobj['rc_mode'], lobj['quality'], lobj['i_interval'])
+	l_dev.set_stream(wobj['chnn'], wobj['idx'], lobj['fmt'], w, h, lobj['frame_rate'], lobj['bitrate'], lobj['rc_mode'], lobj['quality'], lobj['i_interval'])
 end
 
 local lwdi_on_stream_pic = function (lobj, wobj)
 	local w, h = get_wh(lobj['wh'])
-	l_dev_venc.set_stream_pic(wobj['chnn'], wobj['idx'], lobj['fmt'], w, h, lobj['interval_ms'], lobj['quality'])
+	l_dev.set_stream_pic(wobj['chnn'], wobj['idx'], lobj['fmt'], w, h, lobj['interval_ms'], lobj['quality'])
 end
 
 local lwdi_on_img_rotate = function (lobj, wobj)	
-	l_dev_vi.set_rotate(wobj['chnn'], lobj['rotate'])
+	l_dev.set_rotate(wobj['chnn'], lobj['rotate'])
 end
 
 local lwdi_on_img_awb = function (lobj, wobj)
@@ -78,30 +74,30 @@ local lwdi_on_img_awb = function (lobj, wobj)
 		b_auto = false		
 	end
 	
-	l_dev_vi.set_awb(wobj['chnn'], b_auto, lobj['b'], lobj['gb'], lobj['gr'], lobj['r'])
+	l_dev.set_awb(wobj['chnn'], b_auto, lobj['b'], lobj['gb'], lobj['gr'], lobj['r'])
 end
 
 
 local lwdi_on_img_mirror_flip = function (lobj, wobj)
-	l_dev_vi.set_mirror_flip(wobj['chnn'], lobj['mirror'], lobj['flip'])
+	l_dev.set_mirror_flip(wobj['chnn'], lobj['mirror'], lobj['flip'])
 end
 
 
 local lwdi_on_img_exposure = function (lobj, wobj)
-	l_dev_vi.set_exposure(wobj['chnn'], lobj['compensation'])
+	l_dev.set_exposure(wobj['chnn'], lobj['compensation'])
 end
 
 
 local lwdi_on_osd_timestamp = function (lobj, wobj)
-	l_dev_osd.set_osd_timestamp(wobj['chnn'], lobj['enable'], lobj['format'], lobj['pos'], lobj['font_size'])
+	l_dev.set_osd_timestamp(wobj['chnn'], lobj['enable'], lobj['format'], lobj['pos'], lobj['font_size'])
 end
 
 local lwdi_on_ntp = function (lobj, wobj)
-	l_dev_base.set_ntp(lobj['enable'], lobj['server'], lobj['port'], lobj['interval'])
+	--l_dev_base.set_ntp(lobj['enable'], lobj['server'], lobj['port'], lobj['interval'])
 end
 
 local lwdi_on_ntp_sync = function (lobj, wobj)
-	l_dev_base.ntp_sync(lobj['server'], lobj['port'])
+	--l_dev_base.ntp_sync(lobj['server'], lobj['port'])
 end
 
 
@@ -117,14 +113,14 @@ local func_map = {
 	
 	osd_timestamp = lwdi_on_osd_timestamp,
 	
-	ntp = lwdi_on_ntp,
-	ntp_sync = lwdi_on_ntp_sync,
+	--ntp = lwdi_on_ntp,
+	--ntp_sync = lwdi_on_ntp_sync,
 }
 
 on_cmd = function (msg, lparam, wparam, cobj)
 	--print('on_cmd.name:'..lt_name, msg, lparam, wparam)
 
-	local cmd_low = string.lower(msg) -- ²»Çø·Ökey×Ö¶Î´óĞ¡Ğ´	
+	local cmd_low = string.lower(msg) -- ä¸åŒºåˆ†keyå­—æ®µå¤§å°å†™	
 	local cb = func_map[cmd_low]
 	if nil ~= cb then
 		local ret, lobj = pcall(cjson.decode, lparam)

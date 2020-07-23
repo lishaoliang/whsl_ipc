@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_pub Ğ­Òé½âÎö
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_pub åè®®è§£æ
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local np_err = require("base.np_err")
@@ -11,10 +11,10 @@ local iworker = require("ipc.iworker")
 
 local p_pub = {}
 
--- brief helloĞÄÌø
--- @param [in]		req[table]	ÇëÇó
--- res [table]	»Ø¸´¶ÔÏó
--- cmd [string] ·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
+-- brief helloå¿ƒè·³
+-- @param [in]		req[table]	è¯·æ±‚
+-- res [table]	å›å¤å¯¹è±¡
+-- cmd [string] ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
 p_pub.on_hello = function (req, res, cmd)
 	
 	res[cmd] = {
@@ -23,9 +23,9 @@ p_pub.on_hello = function (req, res, cmd)
 	}
 end
 
--- brief ÇëÇó¼ÓÃÜÃØÔ¿
--- res [table]	»Ø¸´¶ÔÏó
--- cmd [string] ·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
+-- brief è¯·æ±‚åŠ å¯†ç§˜é’¥
+-- res [table]	å›å¤å¯¹è±¡
+-- cmd [string] ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
 p_pub.on_encrypt = function (req, res, cmd)
 	
 	res[cmd] = {

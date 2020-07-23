@@ -1,80 +1,80 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/4/23
 --
 -- @file    l_file.lua
--- @brief   ÄÚÖÃ¿â require("l_file"), Ìá¹©¶ş½øÖÆÎÄ¼ş¶ÁĞ´
+-- @brief   å†…ç½®åº“ require("l_file"), æä¾›äºŒè¿›åˆ¶æ–‡ä»¶è¯»å†™
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/4/23 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/4/23 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_file = {}
 
 
--- @brief ´ò¿ªÎÄ¼ş
--- @param [in]	file_path[string]	ÎÄ¼şÂ·¾¶
--- @param [in]	wrb[string]			´ò¿ª·½Ê½: 'wb', 'rb', 'rb+'
--- @return [nil, l_file] nil.´ò¿ªÊ§°Ü; ·Çnil.´ò¿ª³É¹¦
+-- @brief æ‰“å¼€æ–‡ä»¶
+-- @param [in]	file_path[string]	æ–‡ä»¶è·¯å¾„
+-- @param [in]	wrb[string]			æ‰“å¼€æ–¹å¼: 'wb', 'rb', 'rb+'
+-- @return [nil, l_file] nil.æ‰“å¼€å¤±è´¥; énil.æ‰“å¼€æˆåŠŸ
 l_file.open = function (file_path, wrb)
 	return nil
 	-- return l_file
 end
 
--- @brief ¹Ø±ÕÎÄ¼ş
--- @param [in]	file[l_file]	ÎÄ¼ş¶ÔÏó
--- @return ÎŞ
+-- @brief å…³é—­æ–‡ä»¶
+-- @param [in]	file[l_file]	æ–‡ä»¶å¯¹è±¡
+-- @return æ— 
 l_file.close = function (file)
 	return
 end
 
--- @brief ¶¨Î»ÎÄ¼ş
--- @param [in]	file[l_file]	ÎÄ¼ş¶ÔÏó
--- @param [in]	offset[number]	Êä³ö²ÎÊı
--- @param [in]	origin[string]	¶¨Î»·½Ê½: 'seek_set', 'seek_cur', 'seek_end'
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
+-- @brief å®šä½æ–‡ä»¶
+-- @param [in]	file[l_file]	æ–‡ä»¶å¯¹è±¡
+-- @param [in]	offset[number]	è¾“å‡ºå‚æ•°
+-- @param [in]	origin[string]	å®šä½æ–¹å¼: 'seek_set', 'seek_cur', 'seek_end'
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
 -- @note
---  \n 'seek_set' : ´ÓÎÄ¼ş¿ªÍ·
---  \n 'seek_cur' : ´Óµ±Ç°Î»ÖÃ
---  \n 'seek_end' : ´ÓÎÄ¼şÄ©Î²·´Ïò
+--  \n 'seek_set' : ä»æ–‡ä»¶å¼€å¤´
+--  \n 'seek_cur' : ä»å½“å‰ä½ç½®
+--  \n 'seek_end' : ä»æ–‡ä»¶æœ«å°¾åå‘
 l_file.seek = function (file, offset, origin)
 	return true
 end
 
 
--- @brief »ñÈ¡µ±Ç°ÎÄ¼şÎ»ÖÃ
--- @param [in]	file[l_file]	ÎÄ¼ş¶ÔÏó
--- @return [number] ·µ»ØÎÄ¼şÎ»ÖÃ
+-- @brief è·å–å½“å‰æ–‡ä»¶ä½ç½®
+-- @param [in]	file[l_file]	æ–‡ä»¶å¯¹è±¡
+-- @return [number] è¿”å›æ–‡ä»¶ä½ç½®
 l_file.tell = function(file)
 	return 0
 end
 
 
--- @brief ¶ÁÈ¡¶ş½øÖÆÊı¾İ
--- @param [in]	file[l_file]	ÎÄ¼ş¶ÔÏó
--- @param [in]	size[number]	(¿ÉÑ¡)¶ÁÈ¡´óĞ¡: Ä¬ÈÏ32K
--- @return [nil, l_buf] nil.Ã»ÓĞ¶ÁÈ¡Êı¾İ»òÎÄ¼ş½áÊø; l_buf¶Áµ½µÄÊı¾İ»º´æ
---  \n size[number]		¶Áµ½µÄÊı¾İ´óĞ¡
+-- @brief è¯»å–äºŒè¿›åˆ¶æ•°æ®
+-- @param [in]	file[l_file]	æ–‡ä»¶å¯¹è±¡
+-- @param [in]	size[number]	(å¯é€‰)è¯»å–å¤§å°: é»˜è®¤32K
+-- @return [nil, l_buf] nil.æ²¡æœ‰è¯»å–æ•°æ®æˆ–æ–‡ä»¶ç»“æŸ; l_bufè¯»åˆ°çš„æ•°æ®ç¼“å­˜
+--  \n size[number]		è¯»åˆ°çš„æ•°æ®å¤§å°
 l_file.read = function (file, size)
 	return nil, 0
 	-- return l_buf, 30 * 1024
 end
 
--- @brief ÏòÎÄ¼şĞ´Èë»º´æÊı¾İ
--- @param [in]	file[l_file]	ÎÄ¼ş¶ÔÏó
--- @param [in]	buf[l_buf]		»º´æ¶ÔÏó
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
---  \n 		size[number]		Ğ´ÈëµÄÊı¾İ´óĞ¡
+-- @brief å‘æ–‡ä»¶å†™å…¥ç¼“å­˜æ•°æ®
+-- @param [in]	file[l_file]	æ–‡ä»¶å¯¹è±¡
+-- @param [in]	buf[l_buf]		ç¼“å­˜å¯¹è±¡
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
+--  \n 		size[number]		å†™å…¥çš„æ•°æ®å¤§å°
 l_file.write = function (file, buf)
 	return false, 0
 	-- return true, 30 * 1024
 end
 
--- @brief Í¬²½fileÎÄ¼şÏµÍ³»º´æ
--- @param [in]	file[l_file]	ÎÄ¼ş¶ÔÏó
--- @return ÎŞ
+-- @brief åŒæ­¥fileæ–‡ä»¶ç³»ç»Ÿç¼“å­˜
+-- @param [in]	file[l_file]	æ–‡ä»¶å¯¹è±¡
+-- @return æ— 
 l_file.flush = function (file)
 	return 
 end

@@ -1,16 +1,16 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/4/28
 --
 -- @file    lfs.lua
--- @brief   ÄÚÖÃ¿â require("lfs"), ÎÄ¼şÏµÍ³Ä¿Â¼²Ù×÷
+-- @brief   å†…ç½®åº“ require("lfs"), æ–‡ä»¶ç³»ç»Ÿç›®å½•æ“ä½œ
 -- @version 2.0
 -- @author  Kepler
---  \n Ô´ÂëµØÖ·: http://keplerproject.github.io/luafilesystem
---  \n ¹Ù·½ÊÖ²á: http://math2.org/luasearch/lfs.html#reference
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/4/28 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+--  \n æºç åœ°å€: http://keplerproject.github.io/luafilesystem
+--  \n å®˜æ–¹æ‰‹å†Œ: http://math2.org/luasearch/lfs.html#reference
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/4/28 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local lfs = {}
@@ -23,13 +23,13 @@ local lfs = {}
 -- \n table
 -- \n userdata(lightuserdata)
 
--- @brief º¯ÊıÃèÊö
--- @param [in]  	xxx[string]	ÊäÈë²ÎÊı
--- @param [out]		xxx[table]	Êä³ö²ÎÊı
--- @param [in,out]	xxx[table]	ÊäÈëÊä³ö²ÎÊı
--- @param [in]		x_xx[function] Èç¹ûÓĞ»Øµ÷º¯Êı, ±ØĞë±êÃ÷ÔÚseeÖĞ±êÃ÷Ô­ĞÍ
--- @return [nil, table] [boolean] ¼¸¸ö·µ»ØÖµ¼¯ºÏ
--- @note ×¢ÒâÊÂÏî,²Î¼ûxxx
+-- @brief å‡½æ•°æè¿°
+-- @param [in]  	xxx[string]	è¾“å…¥å‚æ•°
+-- @param [out]		xxx[table]	è¾“å‡ºå‚æ•°
+-- @param [in,out]	xxx[table]	è¾“å…¥è¾“å‡ºå‚æ•°
+-- @param [in]		x_xx[function] å¦‚æœæœ‰å›è°ƒå‡½æ•°, å¿…é¡»æ ‡æ˜åœ¨seeä¸­æ ‡æ˜åŸå‹
+-- @return [nil, table] [boolean] å‡ ä¸ªè¿”å›å€¼é›†åˆ
+-- @note æ³¨æ„äº‹é¡¹,å‚è§xxx
 -- @see [string][table] = x_xx(string, string, table)
 
 
@@ -38,11 +38,11 @@ lfs.attributes = function (filepath)
 end
 
 
--- @brief ±ä¸üµ±Ç°Ä¿Â¼
--- @param [in]	path[string]	Ä¿Â¼
--- @return [nil, boolean]	ÊÇ·ñ³É¹¦
---  \n err_str[string]		·µ»ØnilÊ±µÄ´íÎóÌáÊ¾
--- @note º¯Êı·µ»ØÖµ¿ÉÄÜÎª1¸ö »ò 2¸ö, ×¢ÒâÊ¹ÓÃ
+-- @brief å˜æ›´å½“å‰ç›®å½•
+-- @param [in]	path[string]	ç›®å½•
+-- @return [nil, boolean]	æ˜¯å¦æˆåŠŸ
+--  \n err_str[string]		è¿”å›nilæ—¶çš„é”™è¯¯æç¤º
+-- @note å‡½æ•°è¿”å›å€¼å¯èƒ½ä¸º1ä¸ª æˆ– 2ä¸ª, æ³¨æ„ä½¿ç”¨
 lfs.chdir = function (path)
 	return true
 	-- return false
@@ -50,18 +50,18 @@ lfs.chdir = function (path)
 end
 
 
--- @brief »ñÈ¡µ±Ç°Ä¿Â¼
--- @return [string]		µ±Ç°Ä¿Â¼
---  \n err_str[string]	´íÎóÂëÌáÊ¾´®
---  \n errno[number]	´íÎóÂë
--- @note º¯Êı·µ»ØÖµ¿ÉÄÜÎª1¸ö »ò 2¸ö, ×¢ÒâÊ¹ÓÃ
+-- @brief è·å–å½“å‰ç›®å½•
+-- @return [string]		å½“å‰ç›®å½•
+--  \n err_str[string]	é”™è¯¯ç æç¤ºä¸²
+--  \n errno[number]	é”™è¯¯ç 
+-- @note å‡½æ•°è¿”å›å€¼å¯èƒ½ä¸º1ä¸ª æˆ– 2ä¸ª, æ³¨æ„ä½¿ç”¨
 lfs.currentdir = function ()
 	return ''
 	-- return nil, 'strerror(errno)', errno
 end
 
 
--- @brief ±éÀúÄ¿Â¼
+-- @brief éå†ç›®å½•
 lfs.dir = function (path)
 	
 end
@@ -83,17 +83,17 @@ lfs.lock_dir = function ()
 end
 
 
--- @brief ´´½¨Ä¿Â¼
--- @param [in]	path[string]	Ä¿Â¼
+-- @brief åˆ›å»ºç›®å½•
+-- @param [in]	path[string]	ç›®å½•
 -- @return [nil true]
--- @note Ö»´´½¨Ò»²ãÄ¿Â¼; ²¢Î´µİ¹é´´½¨Ä¿Â¼
+-- @note åªåˆ›å»ºä¸€å±‚ç›®å½•; å¹¶æœªé€’å½’åˆ›å»ºç›®å½•
 lfs.mkdir = function (path)
 	return 0
 end
 
 
--- @brief É¾³ıÄ¿Â¼
--- @param [in]	path[string]	Ä¿Â¼
+-- @brief åˆ é™¤ç›®å½•
+-- @param [in]	path[string]	ç›®å½•
 -- @return [nil true]
 lfs.rmdir = function (path)
 	return true

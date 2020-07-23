@@ -1,77 +1,77 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_cfg.lua
--- @brief   ÄÚÖÃ¿ârequire("l_cfg"), º¯ÊıËµÃ÷
+-- @brief   å†…ç½®åº“require("l_cfg"), å‡½æ•°è¯´æ˜
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_cfg = {}
 
 
 
--- @brief ÅäÖÃÎÄ¼ş³õÊ¼»¯
--- @param [in] version[string] °æ±¾ĞÅÏ¢(0,15],ĞÎÈç"v1.0.0"
--- @return [boolean] ·µ»ØÊÇ·ñ³É¹¦
+-- @brief é…ç½®æ–‡ä»¶åˆå§‹åŒ–
+-- @param [in] version[string] ç‰ˆæœ¬ä¿¡æ¯(0,15],å½¢å¦‚"v1.0.0"
+-- @return [boolean] è¿”å›æ˜¯å¦æˆåŠŸ
 l_cfg.init = function (version)
 	return true
 	-- return false
 end
 
--- @brief ÅäÖÃÎÄ¼şÍË³ö
+-- @brief é…ç½®æ–‡ä»¶é€€å‡º
 l_cfg.quit = function ()
 	return
 end
 
 
--- @brief ÅäÖÃÎÄ¼şÊÇ·ñÕı³£
--- @return [boolean] ·µ»ØÊÇ·ñÕı³£
--- @note ·µ»Øfalse, ÔòĞèÒªĞŞ¸´ÅäÖÃÎÄ¼ş
+-- @brief é…ç½®æ–‡ä»¶æ˜¯å¦æ­£å¸¸
+-- @return [boolean] è¿”å›æ˜¯å¦æ­£å¸¸
+-- @note è¿”å›false, åˆ™éœ€è¦ä¿®å¤é…ç½®æ–‡ä»¶
 l_cfg.is_ok = function ()
 	return true
 	-- return false
 end
 
 
--- @brief »ñÈ¡¾ÉÅäÖÃÖµ
--- @param [in] key[string] ÅäÖÃµÄkey×Ö·û´®(0,255]
--- @return [string] ·µ»ØµÃµ½µÄÅäÖÃÖµ»òÕß¿Õ×Ö·û´®
+-- @brief è·å–æ—§é…ç½®å€¼
+-- @param [in] key[string] é…ç½®çš„keyå­—ç¬¦ä¸²(0,255]
+-- @return [string] è¿”å›å¾—åˆ°çš„é…ç½®å€¼æˆ–è€…ç©ºå­—ç¬¦ä¸²
 l_cfg.get_old = function(key)
 	return ''	
 end
 
 
--- @brief »ñÈ¡µ±Ç°ÅäÖÃÖµ
--- @param [in] key[string] ÅäÖÃµÄkey×Ö·û´®(0,255]
--- @return [string] ·µ»ØµÃµ½µÄÅäÖÃÖµ»òÕß¿Õ×Ö·û´®
+-- @brief è·å–å½“å‰é…ç½®å€¼
+-- @param [in] key[string] é…ç½®çš„keyå­—ç¬¦ä¸²(0,255]
+-- @return [string] è¿”å›å¾—åˆ°çš„é…ç½®å€¼æˆ–è€…ç©ºå­—ç¬¦ä¸²
 l_cfg.get = function(key)
 	return ''
 end
 
 
--- @brief ÉèÖÃÅäÖÃ
--- @param [in] key[string] ÅäÖÃµÄkey×Ö·û´®(0,255]
--- @param [in] v[string] ÅäÖÃµÄv×Ö·û´®(0,128K]
--- @return [boolean] ÉèÖÃÊÇ·ñ³É¹¦
+-- @brief è®¾ç½®é…ç½®
+-- @param [in] key[string] é…ç½®çš„keyå­—ç¬¦ä¸²(0,255]
+-- @param [in] v[string] é…ç½®çš„vå­—ç¬¦ä¸²(0,128K]
+-- @return [boolean] è®¾ç½®æ˜¯å¦æˆåŠŸ
 l_cfg.set = function(key, v)
 	return ''
 end
 
 
--- @brief ¸´Î»ÅäÖÃ: Ö»¸´Î»ÄÚ´æÖĞµÄÊı¾İ, ²¢²»±£´æÎÄ¼ş
--- @return [boolean] ¸´Î»ÊÇ·ñ³É¹¦
+-- @brief å¤ä½é…ç½®: åªå¤ä½å†…å­˜ä¸­çš„æ•°æ®, å¹¶ä¸ä¿å­˜æ–‡ä»¶
+-- @return [boolean] å¤ä½æ˜¯å¦æˆåŠŸ
 l_cfg.reset = function()
 	return true
 end
 
 
--- @brief ±£´æÅäÖÃ(Á¢¼´Ğ´ÎÄ¼ş)
--- @return [boolean] ±£´æÊÇ·ñ³É¹¦
+-- @brief ä¿å­˜é…ç½®(ç«‹å³å†™æ–‡ä»¶)
+-- @return [boolean] ä¿å­˜æ˜¯å¦æˆåŠŸ
 l_cfg.save = function()
 	return true
 end

@@ -1,13 +1,13 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/12/10
 --
 -- @file    mcache.lua
--- @brief	·şÎñ¶ËËùÓĞÏß³ÌÖ®¼ä¹²ÏíµÄÊı¾İ
+-- @brief	æœåŠ¡ç«¯æ‰€æœ‰çº¿ç¨‹ä¹‹é—´å…±äº«çš„æ•°æ®
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
---   ±¾Ä£¿éÒÀÀµ l_tpool.init()
---   ÔÚ l_tpool.quit() Ö®ºó, ÎŞ·¨Ê¹ÓÃ
+-- @author  æç»è‰¯
+--   æœ¬æ¨¡å—ä¾èµ– l_tpool.init()
+--   åœ¨ l_tpool.quit() ä¹‹å, æ— æ³•ä½¿ç”¨
 --]]
 
 local string = require("string")
@@ -21,25 +21,26 @@ local l_mcache = require("l_mcache")
 local mcache = {}
 
 
--- ¹²ÏíÊı¾İ²¿·ÖµÄÖ»¶ÁÄ¬ÈÏÖµ
+-- å…±äº«æ•°æ®éƒ¨åˆ†çš„åªè¯»é»˜è®¤å€¼
 local mkeys_r = {
-	-- 
-	
-	
-	-- surport ÊÇ·ñÖ§³ÖÏî
-	surport_wireless = true,	-- ÊÇ·ñÖ§³ÖÎŞÏßÍø¿¨
-	surport_ipc_pool = true,	-- ÊÇ·ñÖ§³ÖipcµÄÂëÁ÷ÄÚ´æ³Ø: Ó°ÏìËùÓĞÁ¬½ÓÊÇ·ñÖ§³ÖÂëÁ÷
-	surport_listen = true,		-- ÊÇ·ñÖ§³Ö¼àÌı±ê×¼(80)¶Ë¿Ú
-	surport_listen_local = true,-- ÊÇ·ñÖ§³Ö¼àÌı±¾µØ¶Ë¿Ú
-	surport_ui = false,			-- ÊÇ·ñÖ§³ÖUIÄ£¿é
-	surport_shm = false			-- ÊÇ·ñÖ§³Ö½ø³Ì¼ä¹²ÏíÄÚ´æÄ£¿é(share mem)
+	-- surport æ˜¯å¦æ”¯æŒé¡¹
+	surport_wireless = true,	-- æ˜¯å¦æ”¯æŒæ— çº¿ç½‘å¡
+
+
+	-- å…¶ä»–å…±äº«é¡¹
 }
 
 
--- @brief ÔÚ½ø³ÌÄÚ¹²ÏíÄ£¿é, ÉèÖÃÊı¾İ
--- @param [in]	k[string]					key¹Ø¼ü×Ö
--- @param [in]	v[string,boolean,number]	Öµ
--- @return ÎŞ
+-- @brief æ˜¯å¦åªä¼šæ— çº¿ç½‘å¡
+mcache.is_surport_wireless = function ()
+	return mcache.get('surport_wireless')
+end
+
+
+-- @brief åœ¨è¿›ç¨‹å†…å…±äº«æ¨¡å—, è®¾ç½®æ•°æ®
+-- @param [in]	k[string]					keyå…³é”®å­—
+-- @param [in]	v[string,boolean,number]	å€¼
+-- @return æ— 
 mcache.set = function (k, v)
 	local default_v = mkeys_r[k]
 	
@@ -57,9 +58,9 @@ mcache.set = function (k, v)
 end
 
 
--- @brief ´Ó½ø³ÌÄÚ¹²ÏíÄ£¿é, »ñÈ¡Êı¾İ
--- @param [in]	k[string]	key¹Ø¼ü×Ö
--- @return [nil,string,boolean,number]	Öµ
+-- @brief ä»è¿›ç¨‹å†…å…±äº«æ¨¡å—, è·å–æ•°æ®
+-- @param [in]	k[string]	keyå…³é”®å­—
+-- @return [nil,string,boolean,number]	å€¼
 mcache.get = function (k)
 	local default_v = mkeys_r[k]
 	
@@ -77,17 +78,17 @@ mcache.get = function (k)
 end
 
 
--- @brief ³õÊ¼»¯
+-- @brief åˆå§‹åŒ–
 mcache.init = function ()
-	-- ´ÓÖ§³ÖÏîÄ¿Â¼ '/nfsmem/surport'
-	-- ¶ÁÈ¡ÎÄ¼ş '/nfsmem/surport/surport_*' µÄÒ»¸öÊıÖµ, Èç¹û²»Îª0 ÔòÖ§³Ö
-	if 'hisi_linux' == l_sys.platform then
+	-- ä»æ”¯æŒé¡¹ç›®å½• '/nfsmem/surport'
+	-- è¯»å–æ–‡ä»¶ '/nfsmem/surport/surport_*' çš„ä¸€ä¸ªæ•°å€¼, å¦‚æœä¸ä¸º0 åˆ™æ”¯æŒ
+	if not l_sys.simulator then
 		for k, v in pairs(mkeys_r) do
 			if 1 == string.find(k, 'surport_') then
 				local path = '/nfsmem/surport/' .. k
 				local file = io.open(path)
 				if nil ~= file then
-					local num = file:read('*n')	-- ´ÓÎÄ¼şÖĞ¶ÁÈ¡Ò»¸öÊı×Ö				
+					local num = file:read('*n')	-- ä»æ–‡ä»¶ä¸­è¯»å–ä¸€ä¸ªæ•°å­—				
 					if 0 ~= num then
 						mcache.set(k, true)
 					else
@@ -99,12 +100,12 @@ mcache.init = function ()
 		end
 	end
 	
-	-- ´òÓ¡Ö§³ÖÏîÄ¿
-	for k, v in pairs(mkeys_r) do
-		if 1 == string.find(k, 'surport_') then
-			print(k, mcache.get(k))
-		end
-	end
+	-- æ‰“å°æ”¯æŒé¡¹ç›®
+	--for k, v in pairs(mkeys_r) do
+	--	if 1 == string.find(k, 'surport_') then
+	--		print(k, mcache.get(k))
+	--	end
+	--end
 end
 
 

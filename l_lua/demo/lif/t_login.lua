@@ -1,9 +1,9 @@
---[[
--- Copyright (c) 2019 ÎäººË´Á¢Èí¼ş, All Rights Reserved
+ï»¿--[[
+-- Copyright (c) 2019 æ­¦æ±‰èˆœç«‹è½¯ä»¶, All Rights Reserved
 -- Created: 2019/11/15
 --
--- @brief	²âÊÔµÇÂ¼/µÇ³öÉè±¸
--- @author	ÀîÉÜÁ¼
+-- @brief	æµ‹è¯•ç™»å½•/ç™»å‡ºè®¾å¤‡
+-- @author	æç»è‰¯
 -- @see https://github.com/lishaoliang/l_sdk_doc/blob/master/protocol/auth.md
 --]]
 local l_sys = require("l_sys")
@@ -15,15 +15,15 @@ local to_json =  require("demo.to_json")
 local login = require("demo.login")
 
 
--- sdk³õÊ¼»¯
+-- sdkåˆå§‹åŒ–
 l_lif.init('')
 
 
--- µÇÂ¼µ½Éè±¸
+-- ç™»å½•åˆ°è®¾å¤‡
 local err = login(target.protocol, target.ip, target.port, target.path_local, target.username, target.passwd)
 
 
--- ´òÓ¡µÇÂ¼½á¹û
+-- æ‰“å°ç™»å½•ç»“æœ
 if 0 ~= err then
 	print('login error!'.. 'err=' .. err,  target.protocol, target.username .. '@' .. target.ip .. ':'..target.port .. ' -p ' .. target.passwd)
 else	
@@ -41,13 +41,13 @@ local ret, res = l_lif.request(to_json(support))
 print('request support, ret='..ret, 'res='..res)
 
 
--- ĞİÃß3S
+-- ä¼‘çœ 3S
 l_sys.sleep(3000)
 
 
--- µÇ³ö
+-- ç™»å‡º
 l_lif.logout()
 
 
--- sdkÍË³ö
+-- sdké€€å‡º
 l_lif.quit()

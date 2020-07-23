@@ -1,89 +1,89 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_nsm.lua
--- @brief   ÄÚÖÃ¿â"l_nsm", º¯ÊıËµÃ÷
+-- @brief   å†…ç½®åº“"l_nsm", å‡½æ•°è¯´æ˜
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_nsm = {}
 
 
 
--- @brief ÉèÖÃÊı¾İ»Øµ÷´¦Àíº¯Êı
+-- @brief è®¾ç½®æ•°æ®å›è°ƒå¤„ç†å‡½æ•°
 -- @param [in] cb[function] 
--- @return [boolean] ·µ»ØÊÇ·ñ³É¹¦
+-- @return [boolean] è¿”å›æ˜¯å¦æˆåŠŸ
 -- @note [number] = cb(id, protocol, body)
---  \n [in] id[number] Á¬½Óid
---  \n [in] protocol[number] Ğ­ÒéÖµ;²Î¿¼ base.np_id
---  \n [in] body ¿Í»§¶Ë·¢ËÍ¹ıÀ´µÄÎÄ±¾Êı¾İÌå
---  \n return [number] 0.±íÊ¾±£³ÖÁ¬½Ó; ·Ç0.¶Ï¿ªÁ¬½Ó
+--  \n [in] id[number] è¿æ¥id
+--  \n [in] protocol[number] åè®®å€¼;å‚è€ƒ base.np_id
+--  \n [in] body å®¢æˆ·ç«¯å‘é€è¿‡æ¥çš„æ–‡æœ¬æ•°æ®ä½“
+--  \n return [number] 0.è¡¨ç¤ºä¿æŒè¿æ¥; é0.æ–­å¼€è¿æ¥
 l_nsm.set_recv = function (cb)
 	return true
 	-- return false
 end
 
--- @brief ÉèÖÃÁ¬½Ó¶Ï¿ª»Øµ÷´¦Àíº¯Êı
+-- @brief è®¾ç½®è¿æ¥æ–­å¼€å›è°ƒå¤„ç†å‡½æ•°
 -- @param [in] cb[function] 
--- @return [boolean] ·µ»ØÊÇ·ñ³É¹¦
+-- @return [boolean] è¿”å›æ˜¯å¦æˆåŠŸ
 -- @note [number] = cb(id, protocol, body)
---  \n [in] id[number] Á¬½Óid
---  \n [in] protocol[number] Ğ­ÒéÖµ;²Î¿¼ base.np_id
---  \n return [number] 0.±íÊ¾±£³ÖÁ¬½Ó; ·Ç0.¶Ï¿ªÁ¬½Ó
+--  \n [in] id[number] è¿æ¥id
+--  \n [in] protocol[number] åè®®å€¼;å‚è€ƒ base.np_id
+--  \n return [number] 0.è¡¨ç¤ºä¿æŒè¿æ¥; é0.æ–­å¼€è¿æ¥
 l_nsm.set_disconnect = function (cb)
 	return true
 	-- return false
 end
 
--- @brief ·¢ËÍÊı¾İ
--- @param [in] id[number]	·¢ËÍµÄÁ¬½Óid
--- @param [in] body[string] ÎÄ±¾Êı¾İ
--- @return [boolean] ·µ»ØÊÇ·ñ·¢ËÍ³É¹¦
+-- @brief å‘é€æ•°æ®
+-- @param [in] id[number]	å‘é€çš„è¿æ¥id
+-- @param [in] body[string] æ–‡æœ¬æ•°æ®
+-- @return [boolean] è¿”å›æ˜¯å¦å‘é€æˆåŠŸ
 l_nsm.send = function (id, body)
 	return true
 	-- return false
 end
 
 
--- @brief ¿ªÆô·¢ËÍÃ½ÌåÁ÷
--- @param [in] id[number]	 ·¢ËÍµÄÁ¬½Óid
--- @param [in] chnn[number]	 Í¨µÀ
--- @param [in] idx[number]	 Á÷ĞòºÅ
--- @param [in] md_id[number] Ã½Ìåid
+-- @brief å¼€å¯å‘é€åª’ä½“æµ
+-- @param [in] id[number]	 å‘é€çš„è¿æ¥id
+-- @param [in] chnn[number]	 é€šé“
+-- @param [in] idx[number]	 æµåºå·
+-- @param [in] md_id[number] åª’ä½“id
 -- @return [number]
 l_nsm.open_stream =  function (id, chnn, idx, md_id)
 	return 0
 end
 
 
--- @brief ¹Ø±Õ·¢ËÍÃ½ÌåÁ÷
--- @param [in] id[number]	 ·¢ËÍµÄÁ¬½Óid
--- @param [in] chnn[number]	 Í¨µÀ
--- @param [in] idx[number]	 Á÷ĞòºÅ
--- @param [in] md_id[number] Ã½Ìåid
+-- @brief å…³é—­å‘é€åª’ä½“æµ
+-- @param [in] id[number]	 å‘é€çš„è¿æ¥id
+-- @param [in] chnn[number]	 é€šé“
+-- @param [in] idx[number]	 æµåºå·
+-- @param [in] md_id[number] åª’ä½“id
 -- @return [number]
 l_nsm.close_stream =  function (id, chnn, idx, md_id)
 	return 0
 end
 
--- @brief »ñÈ¡Í¨µÀÁ÷µÄSPS/PPS(base64±àÂë×Ö·û´®)
--- @param [in] chnn[number]	 Í¨µÀ
--- @param [in] idx[number]	 Á÷ĞòºÅ
+-- @brief è·å–é€šé“æµçš„SPS/PPS(base64ç¼–ç å­—ç¬¦ä¸²)
+-- @param [in] chnn[number]	 é€šé“
+-- @param [in] idx[number]	 æµåºå·
 -- @return [string],[string] SPS/PPS
 l_nsm.get_sps_pps = function (chnn, idx)
 	return '', ''
 end
 
--- @brief »ñÈ¡Í¨µÀÁ÷µÄSPS/PPS(base64±àÂë×Ö·û´®)
--- @param [in] chnn[number]	 Í¨µÀ
--- @param [in] idx[number]	 Á÷ĞòºÅ
--- @return [nil, l_obj_buf_t]	Êı¾İ¿é
---			size[number]		¶Áµ½µÄÊı¾İ´óĞ¡
---			[string]			ÀàĞÍ: 'jpeg'
+-- @brief è·å–é€šé“æµçš„SPS/PPS(base64ç¼–ç å­—ç¬¦ä¸²)
+-- @param [in] chnn[number]	 é€šé“
+-- @param [in] idx[number]	 æµåºå·
+-- @return [nil, l_obj_buf_t]	æ•°æ®å—
+--			size[number]		è¯»åˆ°çš„æ•°æ®å¤§å°
+--			[string]			ç±»å‹: 'jpeg'
 l_nsm.get_frame = function (chnn, idx)
 	return nil, 0, ''
 	-- return xxx, 1200, 'jpeg'

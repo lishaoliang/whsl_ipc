@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_base base»ù´¡²¿·ÖĞ­Òé
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_base baseåŸºç¡€éƒ¨åˆ†åè®®
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local np_err = require("base.np_err")
@@ -13,11 +13,11 @@ local cjson = require("cjson.safe")
 local p_base = {}
 
 
--- @brief ÉèÖÃÉè±¸Ãû³Æ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®è®¾å¤‡åç§°
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_base.on_set_name = function (req, res, cmd)
 	
 	local param = req.body[cmd]
@@ -45,11 +45,11 @@ p_base.on_set_name = function (req, res, cmd)
 end
 
 
--- @brief »ñÈ¡Éè±¸Ê±¼ä
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è·å–è®¾å¤‡æ—¶é—´
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_base.on_time = function (req, res, cmd)
 	
 	res[cmd] = {
@@ -58,11 +58,11 @@ p_base.on_time = function (req, res, cmd)
 end
 
 
--- @brief ÉèÖÃÉè±¸Ê±¼ä
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®è®¾å¤‡æ—¶é—´
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_base.on_set_time = function (req, res, cmd)
 	
 	res[cmd] = {
@@ -71,11 +71,11 @@ p_base.on_set_time = function (req, res, cmd)
 end
 
 
--- @brief ÉèÖÃNTP
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®NTP
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_base.on_set_ntp = function (req, res, cmd)
 	local param = req.body[cmd]
 	
@@ -102,11 +102,11 @@ p_base.on_set_ntp = function (req, res, cmd)
 end
 
 
--- @brief Á¢¼´½øĞĞntpÍ¬²½
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief ç«‹å³è¿›è¡ŒntpåŒæ­¥
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_base.on_ntp_sync = function (req, res, cmd)
 	local param = req.body[cmd]
 	

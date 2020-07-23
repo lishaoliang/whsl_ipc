@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    user.lua
--- @brief   ÓÃ»§È¨ÏŞ
+-- @brief   ç”¨æˆ·æƒé™
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local l_sys = require("l_sys")
 
@@ -17,19 +17,19 @@ local np_err = require("base.np_err")
 local user = {}
 
 
--- @variable Ä¬ÈÏÁ¬½Ó³¬Ê±,12Ğ¡Ê±
+-- @variable é»˜è®¤è¿æ¥è¶…æ—¶,12å°æ—¶
 local timeout = 1000 * 3600 * 12
 
 
--- @variable ËùÓĞ»á»°
+-- @variable æ‰€æœ‰ä¼šè¯
 local session = {}
 
 
--- @brief ÓÃ»§µÇÂ¼
--- @param [in] lg[table] µÇÂ¼ĞÅÏ¢
--- @return [boolean][string][string]ÊÇ·ñ³É¹¦
--- @note ³¤Á¬½Ó¶Ï¿ª, ×Ô¶¯×¢Ïú;Í¨¹ıĞÄÌø±£³ÖµÇÂ¼×´Ì¬ 
---  \n µÇÂ¼ĞÅÏ¢ĞÎÈç
+-- @brief ç”¨æˆ·ç™»å½•
+-- @param [in] lg[table] ç™»å½•ä¿¡æ¯
+-- @return [boolean][string][string]æ˜¯å¦æˆåŠŸ
+-- @note é•¿è¿æ¥æ–­å¼€, è‡ªåŠ¨æ³¨é”€;é€šè¿‡å¿ƒè·³ä¿æŒç™»å½•çŠ¶æ€ 
+--  \n ç™»å½•ä¿¡æ¯å½¢å¦‚
 --  \n username = 'xxxx'
 --  \n passwd = 'xxxx'
 user.login = function (lg)
@@ -68,25 +68,25 @@ user.logout = function (llssid, llauth)
 end
 
 
--- @brief ¶¨Ê±Æ÷
--- @param [in] id[number] ¶¨Ê±Æ÷id
--- @param [in] count[number] µÚ¼¸´Î»Øµ÷(´Ó1¿ªÊ¼¼ÆÊı,³¬¹ıintĞÍÖ®ºó»Øµ½1)
--- @param [in] interval[number] ¶¨Ê±µ÷ÓÃµÄÊ±¼ä¼ä¸ô
--- @param [in] tc[number] µ±Ç°Ê±¼ä
--- @param [in] last_tc[number] ÉÏÒ»´Î»Øµ÷µÄÊ±¼ä
--- @return 0.±íÊ¾¼ÌĞø¶¨»áÆ÷; ·Ç0.É¾³ı¶¨Ê±Æ÷
+-- @brief å®šæ—¶å™¨
+-- @param [in] id[number] å®šæ—¶å™¨id
+-- @param [in] count[number] ç¬¬å‡ æ¬¡å›è°ƒ(ä»1å¼€å§‹è®¡æ•°,è¶…è¿‡intå‹ä¹‹åå›åˆ°1)
+-- @param [in] interval[number] å®šæ—¶è°ƒç”¨çš„æ—¶é—´é—´éš”
+-- @param [in] tc[number] å½“å‰æ—¶é—´
+-- @param [in] last_tc[number] ä¸Šä¸€æ¬¡å›è°ƒçš„æ—¶é—´
+-- @return 0.è¡¨ç¤ºç»§ç»­å®šä¼šå™¨; é0.åˆ é™¤å®šæ—¶å™¨
 local on_timer = function (id, count, interval, tc, last_tc)
 
 	return 0
 end
 
--- @brief ÓÃ»§Ä£¿é³õÊ¼ÉèÖÃ
--- @return ÎŞ
+-- @brief ç”¨æˆ·æ¨¡å—åˆå§‹è®¾ç½®
+-- @return æ— 
 user.setup = function ()
 	
 	
 	
-	-- Ìí¼Ó¶¨Ê±Æ÷
+	-- æ·»åŠ å®šæ—¶å™¨
 	local ret = l_sys.add_timer(999, 1000, on_timer)
 	--local ret = l_sys.add_timer(999, 60000, on_timer)
 	assert(ret)

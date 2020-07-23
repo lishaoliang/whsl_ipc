@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    cfg_setup.lua
--- @brief   ³õÊ¼ÅäÖÃÉúĞ§
+-- @brief   åˆå§‹é…ç½®ç”Ÿæ•ˆ
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local cjson = require("cjson")
@@ -107,34 +107,34 @@ end
 
 local cfg_setup = function ()
 
-	setup_img_xxx('img_mirror_flip', 0)	-- ÉúĞ§×óÓÒ¾µÏñ,ÉÏÏÂ·­×ª
-	setup_img_xxx('img_rotate', 0)		-- ÉúĞ§Í¼ÏñĞı×ª
-	setup_img_xxx('image', 0)			-- ÉúĞ§É«²Ê
-	setup_img_xxx('img_awb', 0)			-- ÉúĞ§°×Æ½ºâ
-	setup_img_xxx('img_exposure', 0)	-- ÉúĞ§ÆØ¹â
+	setup_img_xxx('img_mirror_flip', 0)	-- ç”Ÿæ•ˆå·¦å³é•œåƒ,ä¸Šä¸‹ç¿»è½¬
+	setup_img_xxx('img_rotate', 0)		-- ç”Ÿæ•ˆå›¾åƒæ—‹è½¬
+	setup_img_xxx('image', 0)			-- ç”Ÿæ•ˆè‰²å½©
+	setup_img_xxx('img_awb', 0)			-- ç”Ÿæ•ˆç™½å¹³è¡¡
+	setup_img_xxx('img_exposure', 0)	-- ç”Ÿæ•ˆæ›å…‰
 
 
-	setup_osd_xxx('osd_timestamp', 0)	-- ÉúĞ§OSDÊ±¼ä´Á 
+	setup_osd_xxx('osd_timestamp', 0)	-- ç”Ÿæ•ˆOSDæ—¶é—´æˆ³ 
 
 
-	-- ÉúĞ§Á÷ÅäÖÃ
+	-- ç”Ÿæ•ˆæµé…ç½®
 	setup_stream(0, 0)
 	setup_stream(0, 1)
 	
-	-- ÉúĞ§Í¼Æ¬Á÷
+	-- ç”Ÿæ•ˆå›¾ç‰‡æµ
 	setup_stream_pic(0, 64)
 	setup_stream_pic(0, 65)
 
-	-- ÉúĞ§NTP	
+	-- ç”Ÿæ•ˆNTP	
 	setup_ntp()	
 	
-	-- systemĞÅÏ¢
+	-- systemä¿¡æ¯
 	local system = cfg.get('system')
 	
-	-- ÉúĞ§¹ã²¥ÏûÏ¢
+	-- ç”Ÿæ•ˆå¹¿æ’­æ¶ˆæ¯
 	setup_discover(system)
 	
-	-- ´òÓ¡ĞÅÏ¢
+	-- æ‰“å°ä¿¡æ¯
 	print('model:', system['model'] or 'ipc')
 	print('dev_type:', system['dev_type'] or 'ipc')
 	print('hw_ver:', system['hw_ver'] or 'h0.0.0')

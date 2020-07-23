@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>set image</title>
+	<script src="/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+	<div>
+		<form id="formSetImage" action="/luaurlencoded" method="post" enctype="application/x-www-form-urlencoded">
+			<p><input type="text" id="bright" value="50"/>亮度</p>
+			<p><input type="text" id="contrast" value="50">对比度</p>
+			<p><input type="text" id="saturation" value="50">饱和度</p>
+			<p><input type="text" id="hue" value="50">色度</p>
+		</form>
+		<p><input type="button" id="submitJson" value="提交: POST/Json"/></p>
+		<p><input type="button" id="submitUrlencoded" value="提交: POST/urlencoded"/></p>
+	</div>
+
+	<div>
+		<textarea id="logtxt" style="width: 960px; height: 128px;"></textarea>
+	</div>
+
+	<script>
+$(document).ready(function(){	
+		var mylog = function() {
+			// arguments
+			var is_string = function(param) {
+				return (typeof(param) === 'string');
+			};
+
+			var to_string = function(obj) {
+				if (is_string(obj)){
+					return obj;
+				} else {
+					var text = '';
+					try {
+						text = JSON.stringify(obj);
+					} catch (e) {
+						return obj.toString();
+					}
+					return text;
+				}
+			};
+
+			var combine_arg = function(arg) {
+				var msg = '';
+				for(var i = 0; i < arg.length; i++)
+				{
+					var text = to_string(arg[i]);
+					if (0 !== i){
+						msg += ' ';
+					}
+					msg += text;
+				}
+				return msg;
+			};
+
+			var text = combine_arg(arguments);
+			console.log(text);
+
+			var logtxt = $("#logtxt").text() + "\r\n" + text
+			$("#logtxt").text(logtxt)
+		};
+
+		// $.post(url, data, callback, dataType)
+		var jsonPost = function(url, data, callback, dataType){
+			$.ajax({
+				type : "POST",
+				url : url,
+				contentType : "application/json",
+				data : data,
+				success : callback,
+				dataType : dataType
+			});
+		};
+
+		mylog("document.ready");
+
+		var req = {
+			cmd : "image",
+			llssid : "123456",
+			llauth : "123456",
+			image : {
+				chnn : 0
+			} 
+		};
+
+		jsonPost("/luajson", JSON.stringify(req), function(data){
+			mylog("get image", data);
+
+			$("#bright").val(data.image.bright);
+			$("#contrast").val(data.image.contrast);
+			$("#saturation").val(data.image.saturation);
+			$("#hue").val(data.image.hue);
+
+			mylog("bright", $("#bright").val());
+			mylog("contrast", $("#contrast").val());
+			mylog("saturation", $("#saturation").val());
+			mylog("hue", $("#hue").val());
+		}, "json");
+		
+		$("#submitJson").click(function(){
+			mylog("submit click post JSON");
+
+			var reqSetImage = {
+				cmd : "set_image",
+				llssid : "123456",
+				llauth : "123456",
+				set_image : {
+					chnn : 0,
+					bright : Number($("#bright").val()),
+					contrast : Number($("#contrast").val()),
+					saturation : Number($("#saturation").val()),
+					hue : Number($("#hue").val())
+				} 
+			};
+
+			jsonPost("/luajson", JSON.stringify(reqSetImage), function(data){
+				mylog("set image", JSON.stringify(reqSetImage), data);
+			}, "json");
+		});
+
+		$("#submitUrlencoded").click(function(){
+			var reqSetImage = {
+				cmd : "set_image",
+				llssid : "123456",
+				llauth : "123456",
+				
+				chnn : 0,
+				bright : Number($("#bright").val()),
+				contrast : Number($("#contrast").val()),
+				saturation : Number($("#saturation").val()),
+				hue : Number($("#hue").val())
+			};
+
+			mylog("submit click post urlencoded");
+
+			$.post("/luaurlencoded", reqSetImage, function(data){
+				mylog("set image", data);
+			});
+		});
+});
+	</script>
+</body>
+
+</html>

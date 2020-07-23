@@ -1,104 +1,104 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/4/20
 --
 -- @file    l_nsm_a.lua
--- @brief   ÄÚÖÃ¿ârequire("l_nsm_a"), net server man armÄ£¿é
+-- @brief   å†…ç½®åº“require("l_nsm_a"), net server man armæ¨¡å—
 --  \n require("l_net_a")
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/14/20 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/14/20 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_nsm_a = {}
 
 
--- @brief ´´½¨nsm¶ÔÏó
--- @param [in]  	name[string]		nsmÃû³Æ
--- @param [in]  	l_skdr[l_skdr_a]	l_skdr_a¶ÔÏóuserdata(lightuserdata)
--- @return [nil, l_nsm_a] ´´½¨³É¹¦µÄl_nsm_a¶ÔÏó
+-- @brief åˆ›å»ºnsmå¯¹è±¡
+-- @param [in]  	name[string]		nsmåç§°
+-- @param [in]  	l_skdr[l_skdr_a]	l_skdr_aå¯¹è±¡userdata(lightuserdata)
+-- @return [nil, l_nsm_a] åˆ›å»ºæˆåŠŸçš„l_nsm_aå¯¹è±¡
 -- @note
---  \n ·ÇÏß³Ì°²È«; ±ØĞëÔÚl_net_a.initÖ®ºó, l_net_a.startÖ®Ç°µ÷ÓÃ
+--  \n éçº¿ç¨‹å®‰å…¨; å¿…é¡»åœ¨l_net_a.initä¹‹å, l_net_a.startä¹‹å‰è°ƒç”¨
 l_nsm_a.create = function (name, l_skdr)
 	return l_nsm
 	-- return nil
 end
 
 
--- @brief »ñÈ¡nsm¶ÔÏó
--- @param [in]  	name[string]	nsmÃû³Æ
--- @return [nil, l_nsm_a] ´´½¨³É¹¦µÄl_nsm_a¶ÔÏó
+-- @brief è·å–nsmå¯¹è±¡
+-- @param [in]  	name[string]	nsmåç§°
+-- @return [nil, l_nsm_a] åˆ›å»ºæˆåŠŸçš„l_nsm_aå¯¹è±¡
 -- @note
---  \n ·ÇÏß³Ì°²È«;
+--  \n éçº¿ç¨‹å®‰å…¨;
 l_nsm_a.get = function (name)
 	return l_nsm
 	-- return nil
 end
 
 
--- @brief ½«socket½»¸ønsmÄ£¿é¹ÜÀí
--- @param [in]	l_nsm[l_nsm_a]			nsm¶ÔÏó
--- @param [in]	l_socket[l_socket_a]	¼àÌıº¯Êıl_nmps_a.get_socketº¯ÊıµÃµ½l_socket
--- @param [in]	id[number]				Á¬½Óid
--- @param [in]	proto_main[number] 		Ö÷Ğ­Òé
--- @param [in]	proto_sub[number] 		×ÓĞ­Òé
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
--- @note false.Ê§°Üºó, Ğè×ÔĞĞ´¦Àí l_socket
+-- @brief å°†socketäº¤ç»™nsmæ¨¡å—ç®¡ç†
+-- @param [in]	l_nsm[l_nsm_a]			nsmå¯¹è±¡
+-- @param [in]	l_socket[l_socket_a]	ç›‘å¬å‡½æ•°l_nmps_a.get_socketå‡½æ•°å¾—åˆ°l_socket
+-- @param [in]	id[number]				è¿æ¥id
+-- @param [in]	proto_main[number] 		ä¸»åè®®
+-- @param [in]	proto_sub[number] 		å­åè®®
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
+-- @note false.å¤±è´¥å, éœ€è‡ªè¡Œå¤„ç† l_socket
 l_nsm_a.push = function (l_nsm, l_socket, id, proto_main, proto_sub)
 	return true
 end
 
 
--- @brief ¹Ø±ÕÖµÎªidµÄsocket
--- @param [in]	l_nsm[l_nsm_a]			nsm¶ÔÏó
--- @param [in]	id[number]				Á¬½Óid
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
+-- @brief å…³é—­å€¼ä¸ºidçš„socket
+-- @param [in]	l_nsm[l_nsm_a]			nsmå¯¹è±¡
+-- @param [in]	id[number]				è¿æ¥id
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
 l_nsm_a.close = function (l_nsm, id)
 	return true
 end
 
 
--- @brief Ïòid·¢ËÍÎÄ±¾Êı¾İ
--- @param [in]	l_nsm[l_nsm_a]	nsm¶ÔÏó
--- @param [in]	id[number]		Á¬½Óid
--- @param [in]	body[string]	ÎÄ±¾×Ö·û´®
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
+-- @brief å‘idå‘é€æ–‡æœ¬æ•°æ®
+-- @param [in]	l_nsm[l_nsm_a]	nsmå¯¹è±¡
+-- @param [in]	id[number]		è¿æ¥id
+-- @param [in]	body[string]	æ–‡æœ¬å­—ç¬¦ä¸²
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
 l_nsm_a.send = function (l_nsm, id, body)
 	return true
 end
 
 
--- @brief ´ÓnsmÖĞ»ñÈ¡ÎÄ±¾Êı¾İ
--- @param [in]	l_nsm[l_nsm_a]	nsm¶ÔÏó
--- @return [boolean]			true.ÓĞÊı¾İ; false.ÎŞÊı¾İ
---  \n 		code[number]		0.³É¹¦; ·Ç0.ÍøÂç´íÎóÂë
---  \n		body[string]		´ÓÍøÂç»ñÈ¡µÄ×Ö·û´®
---  \n		id[number]			Á¬½Óid
---  \n		proto_main[number]	Ö÷Ğ­Òé
---  \n		proto_sub[number]	×ÓĞ­Òé
+-- @brief ä»nsmä¸­è·å–æ–‡æœ¬æ•°æ®
+-- @param [in]	l_nsm[l_nsm_a]	nsmå¯¹è±¡
+-- @return [boolean]			true.æœ‰æ•°æ®; false.æ— æ•°æ®
+--  \n 		code[number]		0.æˆåŠŸ; é0.ç½‘ç»œé”™è¯¯ç 
+--  \n		body[string]		ä»ç½‘ç»œè·å–çš„å­—ç¬¦ä¸²
+--  \n		id[number]			è¿æ¥id
+--  \n		proto_main[number]	ä¸»åè®®
+--  \n		proto_sub[number]	å­åè®®
 l_nsm_a.recv = function (l_nsm)
 	return false, 0, '', id, proto_main, proto_sub
 end
 
 
--- @brief Ïòid·¢ËÍ·ÇÎÄ±¾Êı¾İ(Ã½ÌåOR¶ş½øÖÆ)
--- @param [in]	l_nsm[l_nsm_a]	nsm¶ÔÏó
--- @param [in]	id[number]		Á¬½Óid
--- @param [in]	l_buf[l_buf]	»º´æ¶ÔÏó
--- @return [boolean]			true.³É¹¦; false.Ê§°Ü
+-- @brief å‘idå‘é€éæ–‡æœ¬æ•°æ®(åª’ä½“ORäºŒè¿›åˆ¶)
+-- @param [in]	l_nsm[l_nsm_a]	nsmå¯¹è±¡
+-- @param [in]	id[number]		è¿æ¥id
+-- @param [in]	l_buf[l_buf]	ç¼“å­˜å¯¹è±¡
+-- @return [boolean]			true.æˆåŠŸ; false.å¤±è´¥
 l_nsm_a.send_md = function (l_nsm, id, l_buf)
 	return true
-	-- return false		-- ·µ»Ø falseÊ±, µ÷ÓÃÕßĞèÒª×ÔĞĞÇåÀí l_buf
+	-- return false		-- è¿”å› falseæ—¶, è°ƒç”¨è€…éœ€è¦è‡ªè¡Œæ¸…ç† l_buf
 end
 
 
--- @brief ´ÓnsmÖĞ»ñÈ¡Ã½Ìå(¶ş½øÖÆ)Êı¾İ
--- @param [in]	l_nsm[l_nsm_a]	nsm¶ÔÏó
--- @return [l_buf]				nilÎŞÊı¾İ, lightuserdata
---  \n		id[number]			Á¬½Óid
---  \n		proto_main[number]	Ö÷Ğ­Òé
---  \n		proto_sub[number]	×ÓĞ­Òé
+-- @brief ä»nsmä¸­è·å–åª’ä½“(äºŒè¿›åˆ¶)æ•°æ®
+-- @param [in]	l_nsm[l_nsm_a]	nsmå¯¹è±¡
+-- @return [l_buf]				nilæ— æ•°æ®, lightuserdata
+--  \n		id[number]			è¿æ¥id
+--  \n		proto_main[number]	ä¸»åè®®
+--  \n		proto_sub[number]	å­åè®®
 l_nsm_a.recv_md = function (l_nsm)
 	return nil, id, proto_main, proto_sub
 	-- return l_buf, id, proto_main, proto_sub

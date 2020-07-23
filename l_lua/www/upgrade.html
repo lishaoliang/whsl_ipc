@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>upgrade</title>
+    <link rel="stylesheet" type="text/css" href="/css/demo.css" />
+</head>
+
+<body>
+    
+    <div>
+		<input type="file" accept="application/*" onchange = "selectedFile()" />
+    </div>
+    
+	
+	<script>
+	// https://www.cnblogs.com/toward-the-sun/p/7687916.html
+	// https://www.ietf.org/rfc/rfc1867.txt
+	
+	function selectedFile(){
+		var oFile = event.target.files[0];
+		
+		var fileReader = new FileReader();
+
+		fileReader.onload = function(){
+		  var base64URL =  this.result;
+		  var blob = convertBase64UrlToBlob(base64URL,'application/octet-stream');
+		  uploadImage(blob);
+		}
+
+		fileReader.readAsDataURL(oFile); 
+	}
+
+	function convertBase64UrlToBlob(urlData, filetype){
+		var bytes = window.atob(urlData.split(',')[1]);
+		var ab = new ArrayBuffer(bytes.length);
+		var ia = new Int8Array(ab);
+		var i;
+		for (i = 0; i < bytes.length; i++) {
+			ia[i] = bytes.charCodeAt(i);
+		}
+		return new Blob([ab], {type : filetype});
+	}
+
+	function uploadImage(blob){
+		var formData = new FormData();
+		formData.append('upgrade', blob);
+		
+		var xhr = new XMLHttpRequest();
+		xhr.open('post', '/luaupload/upgrade',true);
+	　　xhr.onload = function(){
+			console.log("xhr.onload")
+		};
+		
+	　　xhr.onerror = function(){
+			console.log("xhr.onerror")
+		};
+		
+		xhr.send(formData);    
+	}
+	
+	</script>
+</body>
+
+</html>

@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/04
 --
 -- @file    t_set_sta.lua
--- @brief   ÉèÖÃstaÄ£Ê½
+-- @brief   è®¾ç½®staæ¨¡å¼
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/04 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/04 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local l_sys = require("l_sys")
@@ -18,24 +18,24 @@ local wlan = require("ipc.phynet.wlan")
 local wpa_cli = require("ipc.phynet.wpa_cli")
 
 
--- ĞèÒªÁ¬½ÓµÄÂ·ÓÉÆ÷ĞÅÏ¢
+-- éœ€è¦è¿æ¥çš„è·¯ç”±å™¨ä¿¡æ¯
 local ssid = 'HUAWEI-7NLNPF_5G'
 local passwd = 'qwertyuiop1234567890'
 
 
--- ¸üĞÂÅäÖÃÎÄ¼ş
+-- æ›´æ–°é…ç½®æ–‡ä»¶
 write_wpa_cfg(ssid, passwd)
 
 
--- ÉèÖÃ»·¾³Îªsta Ä£Ê½, ²¢Á¬½Óµ½wifi
+-- è®¾ç½®ç¯å¢ƒä¸ºsta æ¨¡å¼, å¹¶è¿æ¥åˆ°wifi
 wlan.env_sta()
 
 
--- ÒÔÏÂ dhcp ºÍ ¾²Ì¬ip Ñ¡ÔñÒ»Ïî
+-- ä»¥ä¸‹ dhcp å’Œ é™æ€ip é€‰æ‹©ä¸€é¡¹
 
--- ¿ªÆôdhcpc
+-- å¼€å¯dhcpc
 --wlan.set_sta_dhcp()
 
 
--- ÉèÖÃ¾²Ì¬ip
+-- è®¾ç½®é™æ€ip
 wlan.set_sta_ipv4('192.168.9.218', '255.255.255.0', '192.168.9.1')

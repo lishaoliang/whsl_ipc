@@ -1,34 +1,34 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    cjson.lua
--- @brief   ÄÚÖÃ¿â require("cjson"), º¯ÊıËµÃ÷
---  \n ÄÚÖÃ¿â require("cjson.safe"), ²»Å×³öÒì³£°æ±¾
+-- @brief   å†…ç½®åº“ require("cjson"), å‡½æ•°è¯´æ˜
+--  \n å†…ç½®åº“ require("cjson.safe"), ä¸æŠ›å‡ºå¼‚å¸¸ç‰ˆæœ¬
 -- @version 2.1.0
 -- @author  Mark Pulford
---  \n Ô´ÂëµØÖ·: 
---  \n ¹Ù·½ÊÖ²á: 
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
--- @note ×¢ÒâÊ¹ÓÃ ÄÚÖÃµÄcjson¿â»áÅ×³öÒì³£
+--  \n æºç åœ°å€: 
+--  \n å®˜æ–¹æ‰‹å†Œ: 
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
+-- @note æ³¨æ„ä½¿ç”¨ å†…ç½®çš„cjsonåº“ä¼šæŠ›å‡ºå¼‚å¸¸
 --]]
 local cjson = {}
 
 
--- @brief ½«¶ÔÏó±àÂë³Éjson
--- @param [in] t[table] table¶ÔÏó
--- @return [string] json×Ö·û´®
+-- @brief å°†å¯¹è±¡ç¼–ç æˆjson
+-- @param [in] t[table] tableå¯¹è±¡
+-- @return [string] jsonå­—ç¬¦ä¸²
 cjson.encode = function (t)
 	return ''
 end
 
 
--- @brief ½«json×Ö·û´®½âÂë³Étable¶ÔÏó
--- @param [in] json[string] json×Ö·û´®
--- @return [table] table¶ÔÏó
--- @note ×¢Òâ´Ëº¯Êı»áÅ×³öÒì³£, µ÷ÓÃ·½·¨ÈçÏÂ
+-- @brief å°†jsonå­—ç¬¦ä¸²è§£ç æˆtableå¯¹è±¡
+-- @param [in] json[string] jsonå­—ç¬¦ä¸²
+-- @return [table] tableå¯¹è±¡
+-- @note æ³¨æ„æ­¤å‡½æ•°ä¼šæŠ›å‡ºå¼‚å¸¸, è°ƒç”¨æ–¹æ³•å¦‚ä¸‹
 -- local ret, obj = pcall(cjson.decode, txt)
 cjson.decode = function (json)
 	return {}

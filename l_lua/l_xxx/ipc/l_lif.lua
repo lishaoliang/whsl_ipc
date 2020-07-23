@@ -1,50 +1,50 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/11/15
 --
 -- @file    libl_lif.so
--- @brief   ±¾µØĞ­Òé½Ó¿Ú; ±¾ÎÄ¼şÄ£ÄâÃèÊölibl_lif.soµ¼³ölua½Ó¿ÚÀà
+-- @brief   æœ¬åœ°åè®®æ¥å£; æœ¬æ–‡ä»¶æ¨¡æ‹Ÿæè¿°libl_lif.soå¯¼å‡ºluaæ¥å£ç±»
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
+-- @author  æç»è‰¯
 --]]
 
 local l_lif = {}
 
 
 
--- @brief ³õÊ¼»¯sdk
--- @param [in] cfg[string]	json×Ö·û´® 
--- @return [number] 0.³É¹¦; ·Ç0.´íÎóÂë
+-- @brief åˆå§‹åŒ–sdk
+-- @param [in] cfg[string]	jsonå­—ç¬¦ä¸² 
+-- @return [number] 0.æˆåŠŸ; é0.é”™è¯¯ç 
 l_lif.init = function (cfg)
 	return 0
 end
 
 
--- @brief ÍË³ösdk
+-- @brief é€€å‡ºsdk
 l_lif.quit = function ()
 	
 end
 
 
--- @brief µÇÂ¼Éè±¸
--- @param [in] param[string]	json×Ö·û´® 
--- @return [number] err			´íÎóÂë
+-- @brief ç™»å½•è®¾å¤‡
+-- @param [in] param[string]	jsonå­—ç¬¦ä¸² 
+-- @return [number] err			é”™è¯¯ç 
 l_lif.login = function (param)
 	return err
 end
 
 
--- @brief µÇ³öÉè±¸
--- @return [number] err ´íÎóÂë
+-- @brief ç™»å‡ºè®¾å¤‡
+-- @return [number] err é”™è¯¯ç 
 l_lif.logout = function ()
 	return err
 end
 
 
--- @brief ÇëÇóÊı¾İ
--- @param [in] str_req[string]	ÇëÇójson×Ö·û´®
--- @return err[number] ´íÎóÂë
--- @return str_res[string] err=0Ê±,´Ó·şÎñ¶Ë»Ø¸´µÄÊı¾İ
+-- @brief è¯·æ±‚æ•°æ®
+-- @param [in] str_req[string]	è¯·æ±‚jsonå­—ç¬¦ä¸²
+-- @return err[number] é”™è¯¯ç 
+-- @return str_res[string] err=0æ—¶,ä»æœåŠ¡ç«¯å›å¤çš„æ•°æ®
 l_lif.request = function (str_req)
 	return err, str_res
 end

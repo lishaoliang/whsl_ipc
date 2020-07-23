@@ -1,45 +1,45 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/4/20
 --
 -- @file    l_net_x.lua
--- @brief   À©Õ¹¿â require("l_net_x"), Ä£¿é»¯ÍøÂçÖ§³Ö
+-- @brief   æ‰©å±•åº“ require("l_net_x"), æ¨¡å—åŒ–ç½‘ç»œæ”¯æŒ
 --  \n require("l_net_x")
---  \n ±¾¿âÍøÂç²ÉÓÃÒì²½ioÄ£ĞÍ, ²¿·ÖÄ£¿é init,start,stop,quitÓĞ³ÖĞøÒªÇó
---  \n l_net_xÊÊÓÃÓÚ: ÄÚ´æ·á¸»
+--  \n æœ¬åº“ç½‘ç»œé‡‡ç”¨å¼‚æ­¥ioæ¨¡å‹, éƒ¨åˆ†æ¨¡å— init,start,stop,quitæœ‰æŒç»­è¦æ±‚
+--  \n l_net_xé€‚ç”¨äº: å†…å­˜ä¸°å¯Œ
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/14/20 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/14/20 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_net_x = {}
 
 
--- @brief ÍøÂçÄ£¿é³õÊ¼»¯
--- @return [number]	0.³É¹¦; ·Ç0.´íÎóÂë
+-- @brief ç½‘ç»œæ¨¡å—åˆå§‹åŒ–
+-- @return [number]	0.æˆåŠŸ; é0.é”™è¯¯ç 
 l_net_x.init = function ()
 	return 0
 end
 
 
--- @brief ÍøÂçÄ£¿é·´³õÊ¼»¯
--- @return ÎŞ
+-- @brief ç½‘ç»œæ¨¡å—ååˆå§‹åŒ–
+-- @return æ— 
 l_net_x.quit = function ()
 	return
 end
 
 
--- @brief ÍøÂçÄ£¿éÆô¶¯Ïß³Ì
--- @return [number]	0.³É¹¦; ·Ç0.´íÎóÂë
---  \n ÒÀ´ÎĞòÆô¶¯ l_skdr_a ÖĞ´´½¨µÄskdrÏß³Ì
+-- @brief ç½‘ç»œæ¨¡å—å¯åŠ¨çº¿ç¨‹
+-- @return [number]	0.æˆåŠŸ; é0.é”™è¯¯ç 
+--  \n ä¾æ¬¡åºå¯åŠ¨ l_skdr_a ä¸­åˆ›å»ºçš„skdrçº¿ç¨‹
 l_net_x.start = function ()
 	return 0
 end
 
 
--- @brief ÍøÂçÄ£¿é·´³õÊ¼»¯
--- @return ÎŞ
+-- @brief ç½‘ç»œæ¨¡å—ååˆå§‹åŒ–
+-- @return æ— 
 l_net_x.stop = function ()
 	return
 end

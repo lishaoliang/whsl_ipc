@@ -1,74 +1,74 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_tmsg.lua
--- @brief   À©Õ¹¿ârequire("l_tmsg"), Lua¸÷¸öÏß³ÌÖ®¼äµÄÎÄ±¾ÏûÏ¢Í¨ĞÅ
+-- @brief   æ‰©å±•åº“require("l_tmsg"), Luaå„ä¸ªçº¿ç¨‹ä¹‹é—´çš„æ–‡æœ¬æ¶ˆæ¯é€šä¿¡
 --  \n require("l_tpool")
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_tmsg = {}
 
 
--- @brief l_tmsg Ä£¿é³õÊ¼»¯
---  \n ·Ç¶àÏß³ÌÍêÈ«
+-- @brief l_tmsg æ¨¡å—åˆå§‹åŒ–
+--  \n éå¤šçº¿ç¨‹å®Œå…¨
 --l_tmsg.init = function ()
 --
 --end
 
--- @brief l_tmsg Ä£¿éÍË³ö
---  \n ·Ç¶àÏß³ÌÍêÈ«
+-- @brief l_tmsg æ¨¡å—é€€å‡º
+--  \n éå¤šçº¿ç¨‹å®Œå…¨
 --l_tmsg.quit = function ()
 --
 --end
 
--- @brief l_tmsg×¢²áÏûÏ¢¶ÓÁĞ
--- @param [in] name[string] ÏûÏ¢¶ÓÁĞÃû³Æ
--- @return [boolean] ÊÇ·ñ³É¹¦
--- @note ±ØĞëÔÚl_tpool.initº¯ÊıÖ®ºó, post/get/clearµÈº¯ÊıÖ®Ç°Íê³ÉËùÓĞÏûÏ¢¶ÓÁĞµÄ×¢²á
---  \n ·Ç¶àÏß³ÌÍêÈ«
+-- @brief l_tmsgæ³¨å†Œæ¶ˆæ¯é˜Ÿåˆ—
+-- @param [in] name[string] æ¶ˆæ¯é˜Ÿåˆ—åç§°
+-- @return [boolean] æ˜¯å¦æˆåŠŸ
+-- @note å¿…é¡»åœ¨l_tpool.initå‡½æ•°ä¹‹å, post/get/clearç­‰å‡½æ•°ä¹‹å‰å®Œæˆæ‰€æœ‰æ¶ˆæ¯é˜Ÿåˆ—çš„æ³¨å†Œ
+--  \n éå¤šçº¿ç¨‹å®Œå…¨
 l_tmsg.register = function (name)
 	return true
 	-- return false
 end
 
 
--- @brief ÏòÃû³ÆÎªnameµÄÏûÏ¢¶ÓÁĞpostÏûÏ¢
--- @param [in] name[string] ÏûÏ¢¶ÓÁĞÃû³Æ
--- @param [in] msg[string]	ÏûÏ¢
--- @param [in] lparam[string] lparam²ÎÊı
--- @param [in] wparam[string] wparam²ÎÊı
--- @param [in] cobj[userdata] c¶ÔÏóÖ¸Õë
--- @return [boolean] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÃ»ÓĞÕÒµ½nameµÄ¶ÓÁĞ
--- @note ¶àÏß³ÌÍêÈ«
+-- @brief å‘åç§°ä¸ºnameçš„æ¶ˆæ¯é˜Ÿåˆ—postæ¶ˆæ¯
+-- @param [in] name[string] æ¶ˆæ¯é˜Ÿåˆ—åç§°
+-- @param [in] msg[string]	æ¶ˆæ¯
+-- @param [in] lparam[string] lparamå‚æ•°
+-- @param [in] wparam[string] wparamå‚æ•°
+-- @param [in] cobj[userdata] cå¯¹è±¡æŒ‡é’ˆ
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºæ²¡æœ‰æ‰¾åˆ°nameçš„é˜Ÿåˆ—
+-- @note å¤šçº¿ç¨‹å®Œå…¨
 l_tmsg.post = function (name, msg, lparam, wparam, cobj)
 	return true
 	-- return false
 end
 
--- @brief ´ÓÃû³ÆÎªnameµÄÏûÏ¢¶ÓÁĞÖĞ»ñÈ¡ÏûÏ¢
--- @param [in] name[string] ÏûÏ¢¶ÓÁĞÃû³Æ
--- @return	ret[boolean] 	true±íÊ¾ÓĞÊı¾İ
---  \n		msg[string]		ÏûÏ¢
---  \n		lparam[string]	lparam²ÎÊı
---  \n		wparam[string]	wparam²ÎÊı
---  \n 		cobj[userdata]	c¶ÔÏóÖ¸Õë
--- @note ¶àÏß³ÌÍêÈ«
+-- @brief ä»åç§°ä¸ºnameçš„æ¶ˆæ¯é˜Ÿåˆ—ä¸­è·å–æ¶ˆæ¯
+-- @param [in] name[string] æ¶ˆæ¯é˜Ÿåˆ—åç§°
+-- @return	ret[boolean] 	trueè¡¨ç¤ºæœ‰æ•°æ®
+--  \n		msg[string]		æ¶ˆæ¯
+--  \n		lparam[string]	lparamå‚æ•°
+--  \n		wparam[string]	wparamå‚æ•°
+--  \n 		cobj[userdata]	cå¯¹è±¡æŒ‡é’ˆ
+-- @note å¤šçº¿ç¨‹å®Œå…¨
 l_tmsg.get = function (name)
 	return true, msg, lparam, wparam, cobj
 	-- return false, '', '', '', NULL
 end
 
--- @brief Çå¿ÕÃû³ÆÎªnameµÄ¶ÓÁĞÖĞµÄËùÓĞÏûÏ¢
--- @param [in] name[string] ÏûÏ¢¶ÓÁĞÃû³Æ
--- @return [boolean] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÃ»ÓĞÕÒµ½nameµÄ¶ÓÁĞ
--- @note ¶àÏß³ÌÍêÈ«
--- \n ×¢ÒâÈç¹ûÑ¹ÈëµÄÊı¾İº¬ÓĞC¶ÔÏó, C¶ÔÏó½«²»»á±»ÊÍ·Å
+-- @brief æ¸…ç©ºåç§°ä¸ºnameçš„é˜Ÿåˆ—ä¸­çš„æ‰€æœ‰æ¶ˆæ¯
+-- @param [in] name[string] æ¶ˆæ¯é˜Ÿåˆ—åç§°
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºæ²¡æœ‰æ‰¾åˆ°nameçš„é˜Ÿåˆ—
+-- @note å¤šçº¿ç¨‹å®Œå…¨
+-- \n æ³¨æ„å¦‚æœå‹å…¥çš„æ•°æ®å«æœ‰Cå¯¹è±¡, Cå¯¹è±¡å°†ä¸ä¼šè¢«é‡Šæ”¾
 l_tmsg.clear = function (name)
 	return true
 	-- return false

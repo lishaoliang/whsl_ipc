@@ -1,54 +1,54 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/09/17
 --
 -- @file    gpio_reset.lua
--- @brief   gpio_reset³¤°´¸´Î»
--- @author	ÀîÉÜÁ¼
+-- @brief   gpio_reseté•¿æŒ‰å¤ä½
+-- @author	æç»è‰¯
 -- @version 0.1
--- @warning Ã»ÓĞ¾¯¸æ
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local table = require("table")
 local l_sys = require("l_sys")
 local gpio = require("base.gpio")
 local gpio_reset_compatible = require("ipc.gpio.gpio_reset_compatible")
-local chip = l_sys.chip	-- Ğ¾Æ¬ĞÍºÅ
+local chip = l_sys.chip	-- èŠ¯ç‰‡å‹å·
 
 
 local gpio_reset = {}
 
 
-local enable = false	-- ÊÇ·ñÊ¹ÓÃ reset
-local grp = 3			-- gpio×é
-local idx = 4			-- gpio×éÄÚĞòºÅ
+local enable = false	-- æ˜¯å¦ä½¿ç”¨ reset
+local grp = 3			-- gpioç»„
+local idx = 4			-- gpioç»„å†…åºå·
 
 
-if 'hi_3519' == chip or 'hi_3516av200' == chip then	-- 3519Ê¹ÓÃGPIO3_4
+if 'hi_3519' == chip or 'hi_3516av200' == chip then	-- 3519ä½¿ç”¨GPIO3_4
 	enable = true
 	grp = 3
 	idx = 4
-elseif 'hi_3516a' == chip then -- 3516aÊ¹ÓÃGPIO10_3
-	enable = true
+elseif 'hi_3516a' == chip then -- 3516aä½¿ç”¨GPIO10_3
+	enable = false
 	grp = 10
 	idx = 3
-	gpio = require("ipc.gpio.gpio_my") -- 3516aÊ¹ÓÃ×Ô¶¨ÒågpioÊµÏÖ
+	gpio = require("ipc.gpio.gpio_my") -- 3516aä½¿ç”¨è‡ªå®šä¹‰gpioå®ç°
 end
 
 
-local check_tc = 500	-- ¼ì²éÊ±¼ä¼ä¸ô
-local check_num = 6		-- ¼ì²é¸öÊı, ĞèÒª×ÜÊ±¼äÎª: check_tc * check_num
+local check_tc = 500	-- æ£€æŸ¥æ—¶é—´é—´éš”
+local check_num = 6		-- æ£€æŸ¥ä¸ªæ•°, éœ€è¦æ€»æ—¶é—´ä¸º: check_tc * check_num
 
 local gpio_values = {}
 
 
--- ÊÇ·ñĞèÒª¸´Î»
+-- æ˜¯å¦éœ€è¦å¤ä½
 local need_reset = function ()
 	if check_num ~= #gpio_values then
 		return false
 	end
 
-	-- °´×¡°´¼üºó, ÊÇ ½«¸ßµçÆ½×ª»»ÎªµÍµçÆ½
-	-- ÕâÀï¼ì²éµÍµçÆ½¸öÊı
+	-- æŒ‰ä½æŒ‰é”®å, æ˜¯ å°†é«˜ç”µå¹³è½¬æ¢ä¸ºä½ç”µå¹³
+	-- è¿™é‡Œæ£€æŸ¥ä½ç”µå¹³ä¸ªæ•°
 	local low_num = 0
 	for k, v in pairs(gpio_values) do
 		if 0 == v then
@@ -56,7 +56,7 @@ local need_reset = function ()
 		end
 	end
 
-	-- ÖÁÉÙ check_num - 1 ¸öµÍµçÆ½, ¾ÍÈÏÎª´¥·¢¸´Î»
+	-- è‡³å°‘ check_num - 1 ä¸ªä½ç”µå¹³, å°±è®¤ä¸ºè§¦å‘å¤ä½
 	if check_num <= low_num + 1 then
 		return true
 	end	
@@ -65,7 +65,7 @@ local need_reset = function ()
 end
 
 
--- ³õÊ¼»¯
+-- åˆå§‹åŒ–
 gpio_reset.init = function ()
 	if not enable then
 		print('gpio not enable.', grp, idx)
@@ -77,7 +77,7 @@ gpio_reset.init = function ()
 end
 
 
--- ÍË³ö
+-- é€€å‡º
 gpio_reset.quit = function ()
 	if not enable then
 		return
@@ -88,13 +88,13 @@ end
 
 local time_tc = 0 
 
--- ¼ì²éÁ÷³Ì
+-- æ£€æŸ¥æµç¨‹
 gpio_reset.check_proc = function (tc)
 	if not enable then
 		return
 	end
 
-	-- ¼ÆÊ±
+	-- è®¡æ—¶
 	time_tc = time_tc + tc
 	if time_tc < check_tc then
 		return
@@ -102,23 +102,23 @@ gpio_reset.check_proc = function (tc)
 	time_tc = 0
 	
 	
-	-- »ñÈ¡Öµ
+	-- è·å–å€¼
 	local value = gpio.get_value(grp, idx)
 
-	-- ¼æÈİĞÔ¾É°åÂß¼­, ¾ö¶¨ÊÇ·ñÉúĞ§ºóĞø¸´Î»ÅĞ¶¨
+	-- å…¼å®¹æ€§æ—§æ¿é€»è¾‘, å†³å®šæ˜¯å¦ç”Ÿæ•ˆåç»­å¤ä½åˆ¤å®š
 	if not gpio_reset_compatible(value) then
 		return false
 	end
 	
-	-- ²¢½«Öµ²åÈëtable 
+	-- å¹¶å°†å€¼æ’å…¥table 
 	table.insert(gpio_values, 1, value)
 	
-	-- ±£Ö¤Êı×éÖĞÖ»ÓĞ×îĞÂµÄ¼¸¸öÖµ
+	-- ä¿è¯æ•°ç»„ä¸­åªæœ‰æœ€æ–°çš„å‡ ä¸ªå€¼
 	while check_num < #gpio_values do
 		table.remove(gpio_values)
 	end
 	
-	-- ¼ì²éÊÇ·ñĞèÒª¸´Î»
+	-- æ£€æŸ¥æ˜¯å¦éœ€è¦å¤ä½
 	return need_reset()
 end
 

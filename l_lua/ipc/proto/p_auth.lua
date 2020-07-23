@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_auth È¨ÏŞ²¿·ÖĞ­Òé
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_auth æƒé™éƒ¨åˆ†åè®®
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local np_err = require("base.np_err")
@@ -13,9 +13,9 @@ local user = require("ipc.auth.user")
 
 local p_auth = {}
 
--- brief µÇÈë
--- res [table]	»Ø¸´¶ÔÏó
--- cmd [string] ·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
+-- brief ç™»å…¥
+-- res [table]	å›å¤å¯¹è±¡
+-- cmd [string] ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
 p_auth.on_login = function (req, res, cmd)
 
 	local ret, llssid, llauth= user.login(nil)
@@ -27,9 +27,9 @@ p_auth.on_login = function (req, res, cmd)
 	}
 end
 
--- brief µÇ³ö
--- res [table]	»Ø¸´¶ÔÏó
--- cmd [string] ·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
+-- brief ç™»å‡º
+-- res [table]	å›å¤å¯¹è±¡
+-- cmd [string] ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
 p_auth.on_logout = function (req, res, cmd)
 	
 	res[cmd] = {

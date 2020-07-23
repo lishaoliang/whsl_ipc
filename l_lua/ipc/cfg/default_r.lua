@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief  ÅäÖÃÖ»¶ÁÏî
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief  é…ç½®åªè¯»é¡¹
+-- @author æç»è‰¯
 --]]
 
 local version = require("ipc.cfg.version")
@@ -10,7 +10,7 @@ local default_r_adjust = require("ipc.cfg.default_r_adjust")
 
 local default_r = {
 
-	-- ÕË»§, µÚ0¸ö ¼ÇÎª: user_name0
+	-- è´¦æˆ·, ç¬¬0ä¸ª è®°ä¸º: user_name0
 	user_name0 = {
 		--name = 'admin', passwd = '123456', type = 'administrators',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -19,7 +19,7 @@ local default_r = {
 		}
 	},
 	
-	-- ÕË»§, µÚ1¸ö ¼ÇÎª: user_name1
+	-- è´¦æˆ·, ç¬¬1ä¸ª è®°ä¸º: user_name1
 	user_name1 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -28,7 +28,7 @@ local default_r = {
 		}
 	},
 	
-	-- ÕË»§, µÚ2¸ö ¼ÇÎª: user_name2
+	-- è´¦æˆ·, ç¬¬2ä¸ª è®°ä¸º: user_name2
 	user_name2 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -37,7 +37,7 @@ local default_r = {
 		}
 	},
 	
-	-- ÕË»§, µÚ3¸ö ¼ÇÎª: user_name3
+	-- è´¦æˆ·, ç¬¬3ä¸ª è®°ä¸º: user_name3
 	user_name3 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -47,7 +47,7 @@ local default_r = {
 	},
 
 
-	-- ÕË»§, µÚ4¸ö ¼ÇÎª: user_name4
+	-- è´¦æˆ·, ç¬¬4ä¸ª è®°ä¸º: user_name4
 	user_name4 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -57,7 +57,7 @@ local default_r = {
 	},
 
 
-	-- ÕË»§, µÚ5¸ö ¼ÇÎª: user_name5
+	-- è´¦æˆ·, ç¬¬5ä¸ª è®°ä¸º: user_name5
 	user_name5 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -67,7 +67,7 @@ local default_r = {
 	},
 
 
-	-- ÕË»§, µÚ6¸ö ¼ÇÎª: user_name6
+	-- è´¦æˆ·, ç¬¬6ä¸ª è®°ä¸º: user_name6
 	user_name6 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -76,7 +76,7 @@ local default_r = {
 		}
 	},
 
-	-- ÕË»§, µÚ7¸ö ¼ÇÎª: user_name7
+	-- è´¦æˆ·, ç¬¬7ä¸ª è®°ä¸º: user_name7
 	user_name7 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -85,7 +85,7 @@ local default_r = {
 		}
 	},
 
-	-- ÕË»§, µÚ8¸ö ¼ÇÎª: user_name8
+	-- è´¦æˆ·, ç¬¬8ä¸ª è®°ä¸º: user_name8
 	user_name8 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -94,7 +94,7 @@ local default_r = {
 		}
 	},
 
-	-- ÕË»§, µÚ9¸ö ¼ÇÎª: user_name9
+	-- è´¦æˆ·, ç¬¬9ä¸ª è®°ä¸º: user_name9
 	user_name9 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -103,7 +103,7 @@ local default_r = {
 		}
 	},
 
-	-- ÕË»§, µÚ1¸ö ¼ÇÎª: user_name10
+	-- è´¦æˆ·, ç¬¬1ä¸ª è®°ä¸º: user_name10
 	user_name10 = {
 		--name = '', passwd = '', type = '',
 		--auth = { cfg = true, ctrl = true, ctrl_sys = true },
@@ -112,7 +112,7 @@ local default_r = {
 		}
 	},
 
-	-- »ù±¾ĞÅÏ¢
+	-- åŸºæœ¬ä¿¡æ¯
 	system = {
 		sn = 'YDFE4EFDFESHEDFR',
 		hw_ver = version.hw_ver or 'h1.0.6',
@@ -126,7 +126,7 @@ local default_r = {
 		mac_wireless = '00:13:09:FE:45:79'
 	},
 	
-	-- Éè±¸Ãû³Æ
+	-- è®¾å¤‡åç§°
 	--name = {
 	--	name = 'IPC'
 	--},
@@ -155,7 +155,7 @@ local default_r = {
 		}
 	},
 	
-	-- ÍøÂçipv4
+	-- ç½‘ç»œipv4
 	--ipv4 = {
 	--	dhcp = true,
 	--	ip = '192.168.1.247',
@@ -165,7 +165,7 @@ local default_r = {
 	--	dns2 = ''
 	--},
 	
-	-- ÎŞÏßÍøÂç²ÎÊı
+	-- æ— çº¿ç½‘ç»œå‚æ•°
 	wireless = {
 		--type = 'ap',
 		--net = '5g',
@@ -179,7 +179,7 @@ local default_r = {
 		}
 	},
 	
-	-- ÎŞÏßÍøÂçipv4
+	-- æ— çº¿ç½‘ç»œipv4
 	--wireless_ipv4 = {
 	--	dhcp = true,
 	--	ip = '192.168.7.247',
@@ -189,19 +189,19 @@ local default_r = {
 	--	dns2 = '',
 	--},
 	
-	-- ÍøÂç·şÎñ¶Ë¿Ú
+	-- ç½‘ç»œæœåŠ¡ç«¯å£
 	--net_port = {
 	--	port = 80
 	--},
 	
-	-- UPNPĞÅÏ¢
+	-- UPNPä¿¡æ¯
 	--upnp = {
 	--	analbe = false,
 	--	auto = false,
 	--	external_port = 80
 	--},	
 	
-	-- stream, 0Í¨µÀ, Ö÷ÂëÁ÷ ¼ÇÎª: stream_chnn0_idx0
+	-- stream, 0é€šé“, ä¸»ç æµ è®°ä¸º: stream_chnn0_idx0
 	stream_chnn0_idx0 = {
 		--fmt = 'h264',
 		--rc_mode = 'cbr',
@@ -230,7 +230,7 @@ local default_r = {
 		}
 	},
 	
-	-- stream, 0Í¨µÀ, ×ÓÂëÁ÷ ¼ÇÎª: stream_chnn0_idx1
+	-- stream, 0é€šé“, å­ç æµ è®°ä¸º: stream_chnn0_idx1
 	stream_chnn0_idx1 = {
 		--fmt = 'h264',
 		--rc_mode = 'cbr',
@@ -259,7 +259,7 @@ local default_r = {
 		}
 	},
 	
-	-- stream pic, 0Í¨µÀ, Í¼Æ¬Á÷1 ¼ÇÎª: stream_pic_chnn0_idx64
+	-- stream pic, 0é€šé“, å›¾ç‰‡æµ1 è®°ä¸º: stream_pic_chnn0_idx64
 	stream_pic_chnn0_idx64 = {
 		--fmt = 'jpeg',
 		--wh = '5120*3840',
@@ -276,7 +276,7 @@ local default_r = {
 		}
 	},
 	
-	-- stream pic, 0Í¨µÀ, Í¼Æ¬Á÷2 ¼ÇÎª: stream_pic_chnn0_idx65
+	-- stream pic, 0é€šé“, å›¾ç‰‡æµ2 è®°ä¸º: stream_pic_chnn0_idx65
 	stream_pic_chnn0_idx65 = {
 		--fmt = 'jpeg',
 		--wh = '960*540',
@@ -293,7 +293,7 @@ local default_r = {
 		}
 	},
 	
-	-- image Í¼Ïñ, 0Í¨µÀ ¼ÇÎª: image_chnn0
+	-- image å›¾åƒ, 0é€šé“ è®°ä¸º: image_chnn0
 	--image_chnn0 = {
 	--	bright = 50,
 	--	contrast = 50,
@@ -301,13 +301,13 @@ local default_r = {
 	--	hue = 50
 	--},
 	
-	-- img_wd Í¼Ïñ¿í¶¯Ì¬, 0Í¨µÀ ¼ÇÎª: img_wd_chnn0
+	-- img_wd å›¾åƒå®½åŠ¨æ€, 0é€šé“ è®°ä¸º: img_wd_chnn0
 	--img_wd_chnn0 = {
 	--	enable = true,
 	--	value = 50
 	--},
 	
-	-- img_dnr Í¼Ïñ½µÔë, 0Í¨µÀ ¼ÇÎª: img_dnr_chnn0
+	-- img_dnr å›¾åƒé™å™ª, 0é€šé“ è®°ä¸º: img_dnr_chnn0
 	img_dnr_chnn0 = {
 		--dnr_type = 'none',
 		--value = 50,
@@ -316,7 +316,7 @@ local default_r = {
 		}
 	},
 	
-	-- img_rotate Í¼ÏñĞı×ª, 0Í¨µÀ ¼ÇÎª: img_rotate_chnn0
+	-- img_rotate å›¾åƒæ—‹è½¬, 0é€šé“ è®°ä¸º: img_rotate_chnn0
 	img_rotate_chnn0 = {
 		--rotate = 0,
 		range = {
@@ -324,7 +324,7 @@ local default_r = {
 		}
 	},
 	
-	-- img_awb Í¼Ïñ°×Æ½ºâ, 0Í¨µÀ ¼ÇÎª: img_awb_chnn0
+	-- img_awb å›¾åƒç™½å¹³è¡¡, 0é€šé“ è®°ä¸º: img_awb_chnn0
 	img_awb_chnn0 = {	
 		--awb = 'auto',
 		--b = 2047,
@@ -340,13 +340,13 @@ local default_r = {
 		}
 	},
 	
-	-- img_mirror_flip Í¼Ïñ×óÓÒ¾µÏñ,ÉÏÏÂ·­×ª, 0Í¨µÀ ¼ÇÎª: img_mirror_flip_chnn0
+	-- img_mirror_flip å›¾åƒå·¦å³é•œåƒ,ä¸Šä¸‹ç¿»è½¬, 0é€šé“ è®°ä¸º: img_mirror_flip_chnn0
 	--img_mirror_flip_chnn0 = {
 	--	mirror = false,
-	--	flip = true			-- Ä¬ÈÏÉÏÏÂ·­×ª : f701w Ô¤Éè
+	--	flip = true			-- é»˜è®¤ä¸Šä¸‹ç¿»è½¬ : f701w é¢„è®¾
 	--},
 	
-	-- img_exposure Í¼ÏñÆØ¹â, 0Í¨µÀ ¼ÇÎª: img_exposure_chnn0
+	-- img_exposure å›¾åƒæ›å…‰, 0é€šé“ è®°ä¸º: img_exposure_chnn0
 	img_exposure_chnn0 = {
 		--compensation = 0x38,
 		range = {
@@ -354,7 +354,7 @@ local default_r = {
 		}
 	},
 	
-	-- OSD osd_timestamp Ê±¼ä´Á, 0Í¨µÀ ¼ÇÎª: osd_timestamp_chnn0
+	-- OSD osd_timestamp æ—¶é—´æˆ³, 0é€šé“ è®°ä¸º: osd_timestamp_chnn0
 	osd_timestamp_chnn0 = {
 		--enable = false,
 		--format = 'YY-MM-DD HH:MM:SS.3',
@@ -388,7 +388,7 @@ local default_r = {
 }
 
 
--- µ÷ÕûÓë²úÆ·Ïà¹ØµÄ²ÎÊı
+-- è°ƒæ•´ä¸äº§å“ç›¸å…³çš„å‚æ•°
 default_r_adjust(default_r)
 
 

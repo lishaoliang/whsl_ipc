@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/03
 --
 -- @file    wpa_cli.lua
--- @brief   wpa_cli½Ó¿Ú·â×°
+-- @brief   wpa_cliæ¥å£å°è£…
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/03 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/03 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local string = require("string")
@@ -26,10 +26,10 @@ local path_wpa_cli = '/opt/wireless_tools/wpa_cli'
 local iwlan = '-iwlan0'
 
 
--- @brief Ö´ĞĞwpa_cliµÄÃüÁî
--- @param [in]		msg[string]	ÃüÁî×Ö·û´®
--- @return [number]  shell´íÎóÂë
---			[string] shellµÄ½á¹û×Ö·û´®
+-- @brief æ‰§è¡Œwpa_cliçš„å‘½ä»¤
+-- @param [in]		msg[string]	å‘½ä»¤å­—ç¬¦ä¸²
+-- @return [number]  shellé”™è¯¯ç 
+--			[string] shellçš„ç»“æœå­—ç¬¦ä¸²
 local wpa_cli_cmd = function (msg)
 	local cmd = string.format('%s %s %s', path_wpa_cli, iwlan, msg)
 
@@ -40,9 +40,9 @@ local wpa_cli_cmd = function (msg)
 end
 
 
--- @brief ¼ì²é×Ö·û´®ÖĞÊÇ·ñº¬ÓĞÃ÷È·µÄ´íÎóĞÅÏ¢
--- @param [in]  	str[string]	×Ö·û´®
--- @return [boolean] true.º¬ÓĞ´íÎóĞÅÏ¢; false.Î´º¬ÓĞ´íÎóĞÅÏ¢
+-- @brief æ£€æŸ¥å­—ç¬¦ä¸²ä¸­æ˜¯å¦å«æœ‰æ˜ç¡®çš„é”™è¯¯ä¿¡æ¯
+-- @param [in]  	str[string]	å­—ç¬¦ä¸²
+-- @return [boolean] true.å«æœ‰é”™è¯¯ä¿¡æ¯; false.æœªå«æœ‰é”™è¯¯ä¿¡æ¯
 local check_is_error = function (str)
 	local low = string.lower(str)
 	
@@ -62,9 +62,9 @@ local check_is_error = function (str)
 	return false
 end
 
--- @brief Ì½²âwpa_supplicantÊÇ·ñÔÚÏß
--- @return [boolean] 	wpa_supplicantÊÇ·ñÔÚÏß
---			[boolean]	pingÊÇ·ñ³É¹¦
+-- @brief æ¢æµ‹wpa_supplicantæ˜¯å¦åœ¨çº¿
+-- @return [boolean] 	wpa_supplicantæ˜¯å¦åœ¨çº¿
+--			[boolean]	pingæ˜¯å¦æˆåŠŸ
 wpa_cli.ping = function ()
 	local ret, str = wpa_cli_cmd('ping')	
 	str = string.lower(str)
@@ -78,9 +78,9 @@ wpa_cli.ping = function ()
 	return not err, false
 end
 
--- @brief ÈÃwpa_supplicant·¢ÆğÉ¨Ãè
--- @return [boolean] 	wpa_supplicantÊÇ·ñ·¢ÆğÉ¨Ãè
--- @note ·¢ÆğÉ¨ÃèÒ»¶ÎÊ±¼äºó[¼¸Ãë], ²Å¿ÉÒÔÍêÕû»ñÈ¡apÁĞ±í
+-- @brief è®©wpa_supplicantå‘èµ·æ‰«æ
+-- @return [boolean] 	wpa_supplicantæ˜¯å¦å‘èµ·æ‰«æ
+-- @note å‘èµ·æ‰«æä¸€æ®µæ—¶é—´å[å‡ ç§’], æ‰å¯ä»¥å®Œæ•´è·å–apåˆ—è¡¨
 wpa_cli.scan = function ()
 	local ret, str = wpa_cli_cmd('scan')	
 	str = string.lower(str)
@@ -92,8 +92,8 @@ wpa_cli.scan = function ()
 	return false
 end
 
--- @brief »ñÈ¡wifi»·¾³ÏÂµÄapÁĞ±í
--- @return [table] 	apÁĞ±í
+-- @brief è·å–wifiç¯å¢ƒä¸‹çš„apåˆ—è¡¨
+-- @return [table] 	apåˆ—è¡¨
 wpa_cli.scan_results = function ()
 	local ret, str = wpa_cli_cmd('scan_results')
 	
@@ -131,8 +131,8 @@ local str =
 end
 
 
--- @brief »ñÈ¡µ±Ç°×´Ì¬
--- @return [table] 	×´Ì¬
+-- @brief è·å–å½“å‰çŠ¶æ€
+-- @return [table] 	çŠ¶æ€
 wpa_cli.status = function ()
 	local ret, str = wpa_cli_cmd('status')
 
@@ -168,7 +168,7 @@ local str =
 end
 
 
--- @brief ¶Ï¿ªµ±Ç°Á¬½Ó
+-- @brief æ–­å¼€å½“å‰è¿æ¥
 -- @return [boolean] true,false
 wpa_cli.disconnect = function ()
 	local ret, str = wpa_cli_cmd('disconnect')	
@@ -182,7 +182,7 @@ wpa_cli.disconnect = function ()
 end
 
 
--- @brief ÖØĞÂÁ¬½Ó; ÖØĞÂÁ¬½ÓÖ®Ç°, ĞèÒª¶Ï¿ªÁ¬½Ó
+-- @brief é‡æ–°è¿æ¥; é‡æ–°è¿æ¥ä¹‹å‰, éœ€è¦æ–­å¼€è¿æ¥
 -- @return [boolean] true,false
 wpa_cli.reconnect = function ()
 	local ret, str = wpa_cli_cmd('reconnect')

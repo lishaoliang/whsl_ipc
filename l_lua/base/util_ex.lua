@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief  À©Õ¹¹«¹²Ä£¿é,±ØĞëÖ§³Ö»ù´¡¿â: "cjson"
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief  æ‰©å±•å…¬å…±æ¨¡å—,å¿…é¡»æ”¯æŒåŸºç¡€åº“: "cjson"
+-- @author æç»è‰¯
 --]]
 local cjson = require("cjson")
 
@@ -25,10 +25,10 @@ copy_t_p = function(t)
 	return dst
 end
 
--- °´json·½Ê½´òÓ¡
--- ´Ëº¯Êı¿ÉÒÔ´òÓ¡ËùÓĞLua¶ÔÏó, µ«Ğ§ÂÊµÍÏÂ; Ö»¿ÉÁÙÊ±²âÊÔÊ¹ÓÃ
+-- æŒ‰jsonæ–¹å¼æ‰“å°
+-- æ­¤å‡½æ•°å¯ä»¥æ‰“å°æ‰€æœ‰Luaå¯¹è±¡, ä½†æ•ˆç‡ä½ä¸‹; åªå¯ä¸´æ—¶æµ‹è¯•ä½¿ç”¨
 util_ex.printf = function(...)
-	local arg = {...} -- arg ÎªÊı×é
+	local arg = {...} -- arg ä¸ºæ•°ç»„
 	local tmp = copy_t_p(arg)
 
 	print(cjson.encode(tmp))

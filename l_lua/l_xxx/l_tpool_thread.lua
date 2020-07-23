@@ -1,53 +1,53 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_tpool_thread.lua
--- @brief   ÓÉl_tpool.open_thread()º¯Êı´´½¨ÍêÈ«userdata
+-- @brief   ç”±l_tpool.open_thread()å‡½æ•°åˆ›å»ºå®Œå…¨userdata
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_tpool_thread = {}
 
 
--- @brief ¹Ø±ÕÏß³Ì
+-- @brief å…³é—­çº¿ç¨‹
 l_tpool_thread:close = function ()
 
 end
 
 
--- @brief ÏòÏß³ÌpostÏûÏ¢
--- @param [in] msg[string]	ÏûÏ¢
--- @param [in] lparam[string] lparam²ÎÊı
--- @param [in] wparam[string] wparam²ÎÊı
--- @param [in] cobj[userdata] c¶ÔÏóÖ¸Õë
--- @return [boolean] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÏß³ÌÒÑ¾­close
+-- @brief å‘çº¿ç¨‹postæ¶ˆæ¯
+-- @param [in] msg[string]	æ¶ˆæ¯
+-- @param [in] lparam[string] lparamå‚æ•°
+-- @param [in] wparam[string] wparamå‚æ•°
+-- @param [in] cobj[userdata] cå¯¹è±¡æŒ‡é’ˆ
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºçº¿ç¨‹å·²ç»close
 l_tpool_thread:post = function (msg, lparam, wparam, cobj)
 	return true
 	-- return false
 end
 
 
--- @brief »ñÈ¡Ïß³ÌÃû³Æ
--- @return [string] ·µ»Ø×Ö·û´®
+-- @brief è·å–çº¿ç¨‹åç§°
+-- @return [string] è¿”å›å­—ç¬¦ä¸²
 l_tpool_thread:name = function ()
 	return 'aaa'
 end
 
--- @brief »ñÈ¡Ïß³ÌÔËĞĞ×´Ì¬
--- @return [string] 'run' »ò 'close'
+-- @brief è·å–çº¿ç¨‹è¿è¡ŒçŠ¶æ€
+-- @return [string] 'run' æˆ– 'close'
 l_tpool_thread:status = function ()
 	return 'run'
 	-- return 'close'
 end
 
--- @brief »ñÈ¡Ïß³ÌµÄÈÎÎñÊıÄ¿
--- @return ret[boolean] true:±íÊ¾Ïß³ÌÔÚÔËĞĞ; false:±íÊ¾Ïß³ÌcloseÁË
--- \n 		num[number]	Èç¹ûÎªtrue,Ôò±íÊ¾µ±Ç°Ö´ĞĞµÄÈÎÎñÊıÄ¿
+-- @brief è·å–çº¿ç¨‹çš„ä»»åŠ¡æ•°ç›®
+-- @return ret[boolean] true:è¡¨ç¤ºçº¿ç¨‹åœ¨è¿è¡Œ; false:è¡¨ç¤ºçº¿ç¨‹closeäº†
+-- \n 		num[number]	å¦‚æœä¸ºtrue,åˆ™è¡¨ç¤ºå½“å‰æ‰§è¡Œçš„ä»»åŠ¡æ•°ç›®
 l_tpool_thread:job_size = function ()
 	return false, 0
 	--return true, 1

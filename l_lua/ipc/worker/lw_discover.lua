@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief	Éè±¸·¢ÏÖ·şÎñÇáÏß³Ì
--- @author	ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief	è®¾å¤‡å‘ç°æœåŠ¡è½»çº¿ç¨‹
+-- @author	æç»è‰¯
 --]]
 
 local string = require("string")
@@ -15,23 +15,27 @@ local lt_name = ''
 
 local on_recv = function(id, count, interval, tc, last_tc)
 
--- ret[boolean]	true.»ñÈ¡µ½Êı¾İ; false.Ã»ÓĞÊı¾İ
---	\n	code[number]		0.»ñÈ¡¹ã²¥ÏûÏ¢; ·Ç0.»ñÈ¡µ½´íÎóÂë
---	\n	body[string]		¹ã²¥ÏûÏ¢
---	\n	protocol[number]	Ğ­Òé
---	\n	id[number]			idºÅ
---	\n	ip[string]			·¢ËÍ¹ã²¥µÄIP
---	\n	port[number]		¶Ë¿Ú
+-- ret[boolean]	true.è·å–åˆ°æ•°æ®; false.æ²¡æœ‰æ•°æ®
+--	\n	code[number]		0.è·å–å¹¿æ’­æ¶ˆæ¯; é0.è·å–åˆ°é”™è¯¯ç 
+--	\n	body[string]		å¹¿æ’­æ¶ˆæ¯
+--	\n	protocol[number]	åè®®
+--	\n	id[number]			idå·
+--	\n	ip[string]			å‘é€å¹¿æ’­çš„IP
+--	\n	port[number]		ç«¯å£
 
 	while true do
 		local ret, code, body, protocol, id, ip, port = broadcast_ser.recv()
-	
+			
 		if ret then
 			--print('broadcast recv:' .. code, ip .. ':' .. port, body)
 		else
 			break
 		end
 	end
+	
+	-- GVCP recv
+	-- TODO
+	
 
 	return 0
 end
@@ -48,11 +52,14 @@ init = function (param)
 	--print('init .....', param)
 	lt_name = param
 
-	-- ¹ã²¥·şÎñ¶Ë³õÊ¼»¯
+	-- å¹¿æ’­æœåŠ¡ç«¯åˆå§‹åŒ–
 	broadcast_ser.init()
 
+	-- GVCPå¹¿æ’­æœåŠ¡ç«¯åˆå§‹åŒ–
+	--gvcp_broadcast_ser.init()
+
 	--[[
-	-- ÉèÖÃÄ¬ÈÏËÑË÷»ØÓ¦
+	-- è®¾ç½®é»˜è®¤æœç´¢å›åº”
 	local discover = 
 	{
 		cmd = 'discover',
@@ -73,9 +80,9 @@ init = function (param)
 	broadcast_ser.set_respond(discover)
 	--]]		
 		
-	-- Ìí¼Ó¶¨Ê±Æ÷
-	l_sys.add_timer(100, 10, on_recv)		-- ÊÕÈ¡¹ã²¥ÏûÏ¢
-	l_sys.add_timer(101, 30000, on_update)	-- Ä¬ÈÏ¼ì²â¸üĞÂÊ±¼ä¼ä¸ô 30S
+	-- æ·»åŠ å®šæ—¶å™¨
+	l_sys.add_timer(100, 10, on_recv)		-- æ”¶å–å¹¿æ’­æ¶ˆæ¯
+	l_sys.add_timer(101, 30000, on_update)	-- é»˜è®¤æ£€æµ‹æ›´æ–°æ—¶é—´é—´éš” 30S
 	
 	return 0
 end
@@ -94,7 +101,7 @@ end
 on_cmd = function (msg, lparam, wparam, cobj)
 	--print('on_cmd.name:'..lt_name, msg, lparam, wparam)
 	
-	local cmd_low = string.lower(msg) -- ²»Çø·Ökey×Ö¶Î´óĞ¡Ğ´
+	local cmd_low = string.lower(msg) -- ä¸åŒºåˆ†keyå­—æ®µå¤§å°å†™
 	
 	if 'broadcast_ser.set_respond' == cmd_low then
 		broadcast_ser.set_respond(lparam)

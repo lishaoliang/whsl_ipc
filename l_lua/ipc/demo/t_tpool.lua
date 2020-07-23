@@ -1,4 +1,4 @@
-
+ï»¿
 local l_sys = require("l_sys")
 local l_tpool = require("l_tpool")
 
@@ -8,7 +8,7 @@ local thread1 = l_tpool.open_thread('thread1', 10, 'ipc.demo.t_tpool_loader', 'o
 
 l_tpool.init()
 
--- ÈÎºÎÇé¿öÏÂµÄÍË³öº¯Êý
+-- ä»»ä½•æƒ…å†µä¸‹çš„é€€å‡ºå‡½æ•°
 local on_exit = function()
 	l_tpool.quit()
 	

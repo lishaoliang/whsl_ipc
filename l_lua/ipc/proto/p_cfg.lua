@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_cfg ÅäÖÃ²Ù×÷²¿·ÖĞ­Òé
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_cfg é…ç½®æ“ä½œéƒ¨åˆ†åè®®
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local np_err = require("base.np_err")
@@ -12,11 +12,11 @@ local iworker = require("ipc.iworker")
 local p_cfg = {}
 
 
--- @brief µ¼³öÅäÖÃ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief å¯¼å‡ºé…ç½®
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_cfg.on_cfg_export = function (req, res, cmd)
 
 	res[cmd] = {
@@ -25,11 +25,11 @@ p_cfg.on_cfg_export = function (req, res, cmd)
 end
 
 
--- @brief µ¼ÈëÅäÖÃ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief å¯¼å…¥é…ç½®
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_cfg.on_cfg_inport = function (req, res, cmd)
 	
 	res[cmd] = {
@@ -38,11 +38,11 @@ p_cfg.on_cfg_inport = function (req, res, cmd)
 end
 
 
--- @brief ¼òÒ×»Ø¸´ÅäÖÃ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief ç®€æ˜“å›å¤é…ç½®
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_cfg.on_cfg_default = function (req, res, cmd)
 	
 	res[cmd] = {
@@ -50,11 +50,11 @@ p_cfg.on_cfg_default = function (req, res, cmd)
 	}
 end
 
--- @brief ¼òÒ×´ó²¿·ÖÅäÖÃ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief ç®€æ˜“å¤§éƒ¨åˆ†é…ç½®
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_cfg.on_cfg_default_all = function (req, res, cmd)
 	
 	res[cmd] = {

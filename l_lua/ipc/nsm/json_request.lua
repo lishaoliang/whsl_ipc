@@ -1,10 +1,10 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file   json_request.lua
--- @brief  jsonĞ­ÒéÇëÇó´¦ÀíÁ÷³Ì
--- @author ÀîÉÜÁ¼
+-- @brief  jsonåè®®è¯·æ±‚å¤„ç†æµç¨‹
+-- @author æç»è‰¯
 --]]
 local h_code = require("ipc.http.h_code")
 local np_err = require("base.np_err")
@@ -24,7 +24,7 @@ local p_cfg = require("ipc.proto.p_cfg")
 local str_support = ''
 
 
--- brief ËùÓĞÏûÏ¢ÏìÓ¦
+-- brief æ‰€æœ‰æ¶ˆæ¯å“åº”
 local func_map = {
 	-- pub
 	hello = p_pub.on_hello,
@@ -140,7 +140,7 @@ local func_map = {
 	
 	
 	
-	-- cfg²Ù×÷
+	-- cfgæ“ä½œ
 	--cfg_export = p_cfg.on_cfg_export,
 	--cfg_inport = p_cfg.on_cfg_inport,
 	--cfg_default = p_cfg.on_cfg_default,
@@ -154,7 +154,7 @@ local func_map = {
 	
 	
 	
-	-- support, Ö§³ÖµÄÃüÁî¼¯ºÏ
+	-- support, æ”¯æŒçš„å‘½ä»¤é›†åˆ
 	support = function (req, res, cmd)				
 		res[cmd] = {
 			code = np_err.OK,
@@ -164,7 +164,7 @@ local func_map = {
 }
 
 local get_func_support = function (func)
-	-- Ê¹ÓÃ table À´Æ´½Ó×Ö·û´®, '..'Æ´½ÓĞ§ÂÊ½ÏÎªµÍÏÂ
+	-- ä½¿ç”¨ table æ¥æ‹¼æ¥å­—ç¬¦ä¸², '..'æ‹¼æ¥æ•ˆç‡è¾ƒä¸ºä½ä¸‹
 	local t = {}
 	for k, v in pairs(func) do
 		if nil ~= next(t) then
@@ -180,9 +180,9 @@ end
 str_support = get_func_support(func_map)
 
 
--- brief ²»Ö§³ÖĞ­ÒéÏìÓ¦
--- res [table]	»Ø¸´¶ÔÏó
--- cmd [string] ·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
+-- brief ä¸æ”¯æŒåè®®å“åº”
+-- res [table]	å›å¤å¯¹è±¡
+-- cmd [string] ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
 local on_unsupport = function (req, res, cmd)
 	res[cmd] = {
 		code = np_err.UNSUPPORT
@@ -190,27 +190,27 @@ local on_unsupport = function (req, res, cmd)
 end
 
 
--- @brief ÏìÓ¦jsonĞ­ÒéÇëÇó
--- @param [in]	req[table]	ÇëÇó
--- @param [out]	res[table]	ÏìÓ¦ÇëÇóµÄ»Ø¸´Êı¾İ
--- @return [number] ´íÎóÂë
+-- @brief å“åº”jsonåè®®è¯·æ±‚
+-- @param [in]	req[table]	è¯·æ±‚
+-- @param [out]	res[table]	å“åº”è¯·æ±‚çš„å›å¤æ•°æ®
+-- @return [number] é”™è¯¯ç 
 local json_request = function (req, res)
-	-- note: req±ØĞëÎªÍêÕûµÄ¶ÔÏó, ¸÷ÖÖĞ­Òé¹ıÀ´µÄÊı¾İ±ØĞëÊÂÏÈ½âÎöÍêÕû
+	-- note: reqå¿…é¡»ä¸ºå®Œæ•´çš„å¯¹è±¡, å„ç§åè®®è¿‡æ¥çš„æ•°æ®å¿…é¡»äº‹å…ˆè§£æå®Œæ•´
 	assert('table' == type(req))
 
-	-- res»Ø¸´
+	-- reså›å¤
 	res.cmd = req.cmd
 	
-	-- Ğ­Òé×Ö·û¼¯[azAZ09_]
+	-- åè®®å­—ç¬¦é›†[azAZ09_]
 	for cmd in string.gmatch(req.cmd, '[%w_]+') do
-		local cmd_low = string.lower(cmd) -- ²»Çø·Ökey×Ö¶Î´óĞ¡Ğ´
+		local cmd_low = string.lower(cmd) -- ä¸åŒºåˆ†keyå­—æ®µå¤§å°å†™
 		
-		local cmd_real, ext = string.match(cmd_low, '([%w_]+)(_[%d]+)$') -- È¥³ıºó×º '_[0-9]+'
+		local cmd_real, ext = string.match(cmd_low, '([%w_]+)(_[%d]+)$') -- å»é™¤åç¼€ '_[0-9]+'
 		if nil == cmd_real then
-			cmd_real = cmd_low -- ²»·ûºÏºó×º·½Ê½Ê±,ÃüÁîÎªĞ¡Ğ´·½Ê½
+			cmd_real = cmd_low -- ä¸ç¬¦åˆåç¼€æ–¹å¼æ—¶,å‘½ä»¤ä¸ºå°å†™æ–¹å¼
 		end
 		
-		-- ÅÅ³ı¹Ø¼ü×Ö 'cmd'
+		-- æ’é™¤å…³é”®å­— 'cmd'
 		if 'cmd' ~= cmd_real then
 			local cb = func_map[cmd_real]
 			if nil ~= cb then
@@ -221,7 +221,7 @@ local json_request = function (req, res)
 		end
 	end
 	
-	return 0 --·µ»Ø0, ±íÊ¾¼ÌĞøÁ¬½Ó; ·Ç0, ±íÊ¾¶Ï¿ªÁ¬½Ó
+	return 0 --è¿”å›0, è¡¨ç¤ºç»§ç»­è¿æ¥; é0, è¡¨ç¤ºæ–­å¼€è¿æ¥
 end
 
 return json_request

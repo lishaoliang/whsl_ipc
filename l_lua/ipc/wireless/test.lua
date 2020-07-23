@@ -1,4 +1,4 @@
-
+﻿
 local wireless = require "l_wireless"
 
 local function excute_cmd(cmd)

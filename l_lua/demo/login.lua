@@ -1,24 +1,24 @@
---[[
--- Copyright (c) 2019 ÎäººË´Á¢Èí¼ş, All Rights Reserved
+ï»¿--[[
+-- Copyright (c) 2019 æ­¦æ±‰èˆœç«‹è½¯ä»¶, All Rights Reserved
 -- Created: 2019/11/15
 --
--- @brief	µÇÂ¼µ½Éè±¸
--- @author	ÀîÉÜÁ¼
+-- @brief	ç™»å½•åˆ°è®¾å¤‡
+-- @author	æç»è‰¯
 -- @see https://github.com/lishaoliang/l_sdk_doc
 --]]
 local l_lif = require("l_lif")
 local to_json =  require("demo.to_json")
 
 
--- @brief µÇÂ¼µ½Éè±¸
--- @param [in]  	ip[string]			Éè±¸ip
--- @param [in]		port[number]		¶Ë¿Ú
--- @param [in]		username[string]	ÓÃ»§Ãû
--- @param [in]		passwd[string]		ÃÜÂë
--- @return err_id[number]	 0.³É¹¦; ·Ç0.´íÎóÂë
---	\n		login_id[number] µÇÂ¼³É¹¦Ö®ºóµÄµÇÂ¼id	
+-- @brief ç™»å½•åˆ°è®¾å¤‡
+-- @param [in]  	ip[string]			è®¾å¤‡ip
+-- @param [in]		port[number]		ç«¯å£
+-- @param [in]		username[string]	ç”¨æˆ·å
+-- @param [in]		passwd[string]		å¯†ç 
+-- @return err_id[number]	 0.æˆåŠŸ; é0.é”™è¯¯ç 
+--	\n		login_id[number] ç™»å½•æˆåŠŸä¹‹åçš„ç™»å½•id	
 -- @see https://github.com/lishaoliang/l_sdk_doc/blob/master/protocol/auth.md
---  \n 'err_id'´íÎóÂë: https://github.com/lishaoliang/l_sdk_doc/blob/master/protocol/net_err.md
+--  \n 'err_id'é”™è¯¯ç : https://github.com/lishaoliang/l_sdk_doc/blob/master/protocol/net_err.md
 local login = function (protocol, ip, port, path, username, passwd)
 	local req = {
 		cmd  = 'login',

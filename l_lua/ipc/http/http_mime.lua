@@ -1,10 +1,10 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- brief  http mime ¶ÔÕÕ±í
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- brief  http mime å¯¹ç…§è¡¨
+-- @author æç»è‰¯
 --]]
 
--- mime ¶ÔÕÕ±í: http://tool.oschina.net/commons
+-- mime å¯¹ç…§è¡¨: http://tool.oschina.net/commons
 local http_mime = {
 	asp = 'text/asp',
 	awf = 'application/vnd.adobe.workflow',
@@ -93,6 +93,7 @@ local http_mime = {
 	vxml = 'text/xml',
 	
 	wav = 'audio/wav',
+	wasm = 'application/wasm',
 
 	xls = 'application/x-xls',
 	xml = 'text/xml',

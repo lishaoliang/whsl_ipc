@@ -1,4 +1,4 @@
-local l_ipc = require("l_ipc")
+ï»¿local l_ipc = require("l_ipc")
 local cfg = require("ipc.cfg.cfg")
 local util_ex = require("base.util_ex")
 
@@ -40,7 +40,7 @@ local wireless = {
 --util_ex.printf('cfg get:', cfg.get('wireless'))
 
 
--- ÆÕÍ¨ÅäÖÃ
+-- æ™®é€šé…ç½®
 --local key_normal = {'system', 'name', 'ipv4', 'wireless', 'wireless_ipv4', 'net_port', 'upnp'}
 
 

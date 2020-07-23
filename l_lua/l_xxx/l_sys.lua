@@ -1,38 +1,38 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_sys.lua
--- @brief   ÄÚÖÃ¿ârequire("l_sys"), ³£ÓÃº¯Êı
+-- @brief   å†…ç½®åº“require("l_sys"), å¸¸ç”¨å‡½æ•°
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_sys = {}
 
 
 -- @name   l_sys.chip
--- @export Ğ¾Æ¬ÀàĞÍ
+-- @export èŠ¯ç‰‡ç±»å‹
 -- \n hisi: 'hi_3516a','hi_3519'
 -- \n win,linux:  'x86', 'x86_64'
 l_sys.chip = 'hi_3516a'
 
 
 -- @name   l_sys.platform
--- @export ÏµÍ³Æ½Ì¨: 'hisi_linux','win', 'linux'
+-- @export ç³»ç»Ÿå¹³å°: 'hisi_linux','win', 'linux'
 l_sys.platform = 'hisi_linux'
 
 
 -- @name   l_sys.version
--- @export °æ±¾ÀàĞÍ: 'debug','release'
+-- @export ç‰ˆæœ¬ç±»å‹: 'debug','release'
 l_sys.version = 'debug'
 
 
--- @brief »ñÈ¡»ù´¡Êı¾İÀàĞÍ´óĞ¡
--- @return [number] ´óĞ¡
+-- @brief è·å–åŸºç¡€æ•°æ®ç±»å‹å¤§å°
+-- @return [number] å¤§å°
 -- @note 
 --  \n 'void*', 'bool8', 'int8', 'bool16', 'uint16'
 --  \n 'int32', 'uint32', 'bool32', 'int64', 'uint64'
@@ -42,108 +42,108 @@ l_sys.type_size = function (t_name)
 end
 
 
--- @brief ÊÍ·Ål_obj¶ÔÏó
--- @param [in] l_obj[LUA_TLIGHTUSERDATA] l_obj¶ÔÏó
+-- @brief é‡Šæ”¾l_objå¯¹è±¡
+-- @param [in] l_obj[LUA_TLIGHTUSERDATA] l_objå¯¹è±¡
 l_sys.free = function (l_obj)
 	return
 end
 
 
--- @brief »ñÈ¡ÏµÍ³µÎ´ğÊı
--- @return [number] µÎ´ğÊı
--- @note Èç¹ûÎª32Î», ²Ù×÷int32×î´óÖµÖ®ºó, ÔÙ´Ó0¿ªÊ¼¼ÆÊı
---  \n ÏµÍ³µÎ´ğ²ÉÓÃÏß³Ì¸üĞÂ·½Ê½, Ïß³Ì±»×èÈû»òĞİÃß, ÏµÍ³µÎ´ğ½«²»»á±»¸üĞÂ!
+-- @brief è·å–ç³»ç»Ÿæ»´ç­”æ•°
+-- @return [number] æ»´ç­”æ•°
+-- @note å¦‚æœä¸º32ä½, æ“ä½œint32æœ€å¤§å€¼ä¹‹å, å†ä»0å¼€å§‹è®¡æ•°
+--  \n ç³»ç»Ÿæ»´ç­”é‡‡ç”¨çº¿ç¨‹æ›´æ–°æ–¹å¼, çº¿ç¨‹è¢«é˜»å¡æˆ–ä¼‘çœ , ç³»ç»Ÿæ»´ç­”å°†ä¸ä¼šè¢«æ›´æ–°!
 l_sys.tc = function ()
 	return 123456
 end
 
 
--- @brief ĞİÃß[ºÁÃë]
--- @param [in] ms[number] ĞİÃßºÁÃë, ×îĞ¡1ms
--- @return ÎŞ
--- @note ½÷É÷Ê¹ÓÃĞİÃß³¡¾°
+-- @brief ä¼‘çœ [æ¯«ç§’]
+-- @param [in] ms[number] ä¼‘çœ æ¯«ç§’, æœ€å°1ms
+-- @return æ— 
+-- @note è°¨æ…ä½¿ç”¨ä¼‘çœ åœºæ™¯
 l_sys.sleep = function (ms)
 
 end
 
 
--- @brief Î±Ëæ»úÊıÖÖ×Ó
--- @param [in] S[number] ÉèÖÃÎ±Ëæ»úÊıÖÖ×Ó[¿ÉÊ¡ÂÔ]
+-- @brief ä¼ªéšæœºæ•°ç§å­
+-- @param [in] S[number] è®¾ç½®ä¼ªéšæœºæ•°ç§å­[å¯çœç•¥]
 l_sys.srand = function (s)
 	return
 end
 
 
--- @brief Î±Ëæ»úÊı[1,N]
--- @param [in] N[number] Ëæ»ú×î´óÖµN=[1,0x7FFFFFFF]
--- @return [number] Ëæ»úÖµ
+-- @brief ä¼ªéšæœºæ•°[1,N]
+-- @param [in] N[number] éšæœºæœ€å¤§å€¼N=[1,0x7FFFFFFF]
+-- @return [number] éšæœºå€¼
 l_sys.rand = function (N)
 	return 1
 end
 
 
--- @brief Î±Ëæ»ú×Ö·û´®:[a-zA-Z0-9]
--- @param [in] N[number] Ëæ»ú×î´óÖµN=[1,256]
--- @return [string] Ëæ»ú×Ö·û´®
--- @note Ä¬ÈÏ8¸ö
---  \n N·¶Î§´íÎóÔòÎªÄ¬ÈÏ8
+-- @brief ä¼ªéšæœºå­—ç¬¦ä¸²:[a-zA-Z0-9]
+-- @param [in] N[number] éšæœºæœ€å¤§å€¼N=[1,256]
+-- @return [string] éšæœºå­—ç¬¦ä¸²
+-- @note é»˜è®¤8ä¸ª
+--  \n NèŒƒå›´é”™è¯¯åˆ™ä¸ºé»˜è®¤8
 l_sys.rand_char = function (N)
 	return 'abc'
 end
 
 
--- @brief Î±Ëæ»úÊı×Ö×Ö·û´®:[0-9]
--- @param [in] N[number] Ëæ»ú×î´óÖµN=[1,256]
--- @return [string] Ëæ»ú×Ö·û´®
--- @note Ä¬ÈÏ8¸ö,ÒÔ·Ç0¿ªÍ·
---  \n N·¶Î§´íÎóÔòÎªÄ¬ÈÏ8
+-- @brief ä¼ªéšæœºæ•°å­—å­—ç¬¦ä¸²:[0-9]
+-- @param [in] N[number] éšæœºæœ€å¤§å€¼N=[1,256]
+-- @return [string] éšæœºå­—ç¬¦ä¸²
+-- @note é»˜è®¤8ä¸ª,ä»¥é0å¼€å¤´
+--  \n NèŒƒå›´é”™è¯¯åˆ™ä¸ºé»˜è®¤8
 l_sys.rand_num = function (N)
 	return '123'
 end
 
 
--- @brief Ìí¼Ó¶¨Ê±Æ÷
--- @param [in] id[number] ¶¨Ê±Æ÷id
--- @param [in] interval[number] ¶¨Ê±»Øµ÷Ê±¼ä¼ä¸ô
--- @param [in] cb[function] »Øµ÷º¯Êı
--- @return [boolean] ÊÇ·ñ³É¹¦; ²»³É¹¦µÄÔ­Òò: idÖØ¸´
--- @note cbº¯ÊıÔ­ĞÍ 
+-- @brief æ·»åŠ å®šæ—¶å™¨
+-- @param [in] id[number] å®šæ—¶å™¨id
+-- @param [in] interval[number] å®šæ—¶å›è°ƒæ—¶é—´é—´éš”
+-- @param [in] cb[function] å›è°ƒå‡½æ•°
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; ä¸æˆåŠŸçš„åŸå› : idé‡å¤
+-- @note cbå‡½æ•°åŸå‹ 
 --  \n cb = function (id, count, interval, tc, last_tc) return 0 end
---  \n [in] id[number] ¶¨Ê±Æ÷id
---  \n [in] count[number] µÚ¼¸´Î»Øµ÷(´Ó1¿ªÊ¼¼ÆÊı,³¬¹ıintĞÍÖ®ºó»Øµ½1)
---  \n [in] interval[number] ¶¨Ê±µ÷ÓÃµÄÊ±¼ä¼ä¸ô
---  \n [in] tc[number] µ±Ç°Ê±¼ä
---  \n [in] last_tc[number] ÉÏÒ»´Î»Øµ÷µÄÊ±¼ä
---  \n return 0.±íÊ¾¼ÌĞø¶¨Ê±Æ÷; ·Ç0.É¾³ı¶¨Ê±Æ÷
+--  \n [in] id[number] å®šæ—¶å™¨id
+--  \n [in] count[number] ç¬¬å‡ æ¬¡å›è°ƒ(ä»1å¼€å§‹è®¡æ•°,è¶…è¿‡intå‹ä¹‹åå›åˆ°1)
+--  \n [in] interval[number] å®šæ—¶è°ƒç”¨çš„æ—¶é—´é—´éš”
+--  \n [in] tc[number] å½“å‰æ—¶é—´
+--  \n [in] last_tc[number] ä¸Šä¸€æ¬¡å›è°ƒçš„æ—¶é—´
+--  \n return 0.è¡¨ç¤ºç»§ç»­å®šæ—¶å™¨; é0.åˆ é™¤å®šæ—¶å™¨
 l_sys.add_timer = function (id, interval, cb)
 	return true
 end
 
 
--- @brief ĞŞ¸Ä¶¨Ê±Æ÷Ê±¼ä¼ä¸ô
--- @param [in] id[number] ¶¨Ê±Æ÷id
--- @param [in] interval[number] ¶¨Ê±»Øµ÷Ê±¼ä¼ä¸ô
--- @return [boolean] ÊÇ·ñ³É¹¦
+-- @brief ä¿®æ”¹å®šæ—¶å™¨æ—¶é—´é—´éš”
+-- @param [in] id[number] å®šæ—¶å™¨id
+-- @param [in] interval[number] å®šæ—¶å›è°ƒæ—¶é—´é—´éš”
+-- @return [boolean] æ˜¯å¦æˆåŠŸ
 l_sys.modify_timer = function (id, interval)
 	return true
 end
 
 
--- @brief ÒÆ³ı¶¨Ê±Æ÷
--- @param [in] id[number] ¶¨Ê±Æ÷id
--- @return [boolean] ÊÇ·ñ³É¹¦
--- @note ÔÚ add_timer µÄ»Øµ÷º¯Êı cb ÖĞ²»ÄÜÊ¹ÓÃ´Ëº¯Êı
---  \n Í¨¹ı»Øµ÷º¯Êıcb·µ»Ø·Ç0, À´ÈÃC²¿·Ö×Ô¶¯É¾³ı¶¨Ê±Æ÷
+-- @brief ç§»é™¤å®šæ—¶å™¨
+-- @param [in] id[number] å®šæ—¶å™¨id
+-- @return [boolean] æ˜¯å¦æˆåŠŸ
+-- @note åœ¨ add_timer çš„å›è°ƒå‡½æ•° cb ä¸­ä¸èƒ½ä½¿ç”¨æ­¤å‡½æ•°
+--  \n é€šè¿‡å›è°ƒå‡½æ•°cbè¿”å›é0, æ¥è®©Céƒ¨åˆ†è‡ªåŠ¨åˆ é™¤å®šæ—¶å™¨
 l_sys.remove_timer = function (id)
 	return true
 end
 
 
--- @brief Ö´ĞĞshellÃüÁî
--- @param [in] cmd[string] ĞèÒªÖ´ĞĞµÄÃüÁî
--- @return [number] 0.³É¹¦; ·Ç0.Ê§°Ü
---			[string]ÃüÁîÖ´ĞĞµÃµ½µÄ½á¹û×Ö·û´® 
--- @note º¯Êı»áµÈ´ı½ø³ÌÍË³ö
+-- @brief æ‰§è¡Œshellå‘½ä»¤
+-- @param [in] cmd[string] éœ€è¦æ‰§è¡Œçš„å‘½ä»¤
+-- @return [number] 0.æˆåŠŸ; é0.å¤±è´¥
+--			[string]å‘½ä»¤æ‰§è¡Œå¾—åˆ°çš„ç»“æœå­—ç¬¦ä¸² 
+-- @note å‡½æ•°ä¼šç­‰å¾…è¿›ç¨‹é€€å‡º
 l_sys.sh = function (cmd)
 	return 0, '123456'
 end

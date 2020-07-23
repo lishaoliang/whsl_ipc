@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- brief  http ser Ä£¿é
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- brief  http ser æ¨¡å—
+-- @author æç»è‰¯
 --]]
 local string = require("string")
 local cjson = require("cjson")
@@ -36,15 +36,15 @@ local send_err = function (id, code)
 	end	
 end
 
--- brief ½âÎöhttpµÄbody²¿·Ö
--- req [table]   ÇëÇó¶ÔÏó
--- txt [string]  HTTPµÄbodyÊı¾İ
+-- brief è§£æhttpçš„bodyéƒ¨åˆ†
+-- req [table]   è¯·æ±‚å¯¹è±¡
+-- txt [string]  HTTPçš„bodyæ•°æ®
 local parser_body = function (req, txt)
 	if 0 == string.len(txt) then
 		return false
 	end
 	
-	-- ½«body Êı¾İ×ª»»Îª lua µÄtable
+	-- å°†body æ•°æ®è½¬æ¢ä¸º lua çš„table
 	local ret, obj = pcall(cjson.decode, txt)
 	--print(ret, obj)
 
@@ -52,29 +52,29 @@ local parser_body = function (req, txt)
 		req.body = obj
 	end
 	
-	-- ¼ì²ébody ÓĞÎŞ llssid, llauth, ÓĞÔò¸üĞÂµ½ req.ck, ÒÔÈ·±£È¨ÏŞ¼ì²éok
+	-- æ£€æŸ¥body æœ‰æ—  llssid, llauth, æœ‰åˆ™æ›´æ–°åˆ° req.ck, ä»¥ç¡®ä¿æƒé™æ£€æŸ¥ok
 	if nil ~= req.body then
 		if 'string' == type(req.body['llssid']) then
-			req['llssid'] = req.body['llssid']		-- ÌáÈ¡llssid
+			req['llssid'] = req.body['llssid']		-- æå–llssid
 		end
 		
 		if 'string' == type(req.body['llauth']) then
-			req['llauth'] = req.body['llauth']		-- ÌáÈ¡llauth
+			req['llauth'] = req.body['llauth']		-- æå–llauth
 		end
 		
 		if 'string' == type(req.body['cmd']) then
-			req['cmd'] = req.body['cmd']			-- ÌáÈ¡cmd
+			req['cmd'] = req.body['cmd']			-- æå–cmd
 		end
 	end	
 end
 
--- brief ½âÎöhttpµÄurl²¿·Ö
--- req [table]   ÇëÇó¶ÔÏó
+-- brief è§£æhttpçš„urléƒ¨åˆ†
+-- req [table]   è¯·æ±‚å¯¹è±¡
 -- url [string]  url
 local parser_url = function (req, url)
-	-- url ¹æÔò /luajson?cmd=support&llssid=123456&llauth=123456
-	-- ½ö²âÊÔÊ¹ÓÃ
-	-- ','ÊôÓÚurl±£Áô×Ö·û²¢²»Ê®·Ö¹æ·¶
+	-- url è§„åˆ™ /luajson?cmd=support&llssid=123456&llauth=123456
+	-- ä»…æµ‹è¯•ä½¿ç”¨
+	-- ','å±äºurlä¿ç•™å­—ç¬¦å¹¶ä¸ååˆ†è§„èŒƒ
 	
 	for k, v in string.gmatch(url, '([%w_,]+)=([%w_,]+)') do
 		local low_k = string.lower(k)	
@@ -90,9 +90,9 @@ end
 
 local on_http_frame = function (id, req, url)
 	local chnn = 0
-	local idx = 65	-- Í¼Æ¬Á÷2
+	local idx = 65	-- å›¾ç‰‡æµ2
 
-	-- ´ÓÇëÇóÂ·¾¶ÖĞ, ½âÎö²ÎÊı
+	-- ä»è¯·æ±‚è·¯å¾„ä¸­, è§£æå‚æ•°
 	local path, param = string.match(url, '([^?]*)(.*)')
 	if nil ~= path then
 		for line in string.gmatch(path, '([%w]+)') do
@@ -112,7 +112,7 @@ local on_http_frame = function (id, req, url)
 		end
 	end
 	
-	-- ÔİÊ±½öÖ§³ÖÍ¼Æ¬Á÷
+	-- æš‚æ—¶ä»…æ”¯æŒå›¾ç‰‡æµ
 	if 65 ~= idx then
 		idx = 65
 	end
@@ -140,14 +140,14 @@ end
 
 
 local on_http_file = function (id, req, url)
-	-- GETÏÂÔØ, ÏÂÔØ'/opt/l_lua/www'Ä¿Â¼ÎÄ¼ş
+	-- GETä¸‹è½½, ä¸‹è½½'/opt/l_lua/www'ç›®å½•æ–‡ä»¶
 	local ret, head, body = http_file.request(req, url)
 	
 	if h_code.HTTP_200 == ret then
 		send(id, head, body)
 		
 		if 'userdata' == type(body) then
-			l_sys.free(body)	-- ÊÍ·Å¶ş½øÖÆÊı¾İ
+			l_sys.free(body)	-- é‡Šæ”¾äºŒè¿›åˆ¶æ•°æ®
 		end
 		
 		return h_code.HTTP_200
@@ -157,13 +157,13 @@ local on_http_file = function (id, req, url)
 end
 
 
--- brief ½ÓÊÕ´ÓC²¿·Ö¹ıÀ´µÄHTTPÇëÇó
--- id [number]   Á¬½Óid
--- head [string] HTTPÍ·
--- body [string] HTTPµÄBodyÇøÓò
+-- brief æ¥æ”¶ä»Céƒ¨åˆ†è¿‡æ¥çš„HTTPè¯·æ±‚
+-- id [number]   è¿æ¥id
+-- head [string] HTTPå¤´
+-- body [string] HTTPçš„BodyåŒºåŸŸ
 -- return 0
 http_ser.on_recv = function (id, head, body)
-	http_ser.b_res = false -- ÇëÇó¹ıÀ´, ±ê¼Ç±ØĞë»Ø¸´
+	http_ser.b_res = false -- è¯·æ±‚è¿‡æ¥, æ ‡è®°å¿…é¡»å›å¤
 	local code = h_code.HTTP_404
 	
 	local req = hnsm_parser(id, head)
@@ -172,7 +172,7 @@ http_ser.on_recv = function (id, head, body)
 	local url = string.lower(req.url)
 	parser_url(req, url)	
 	
-	-- lua ´Ó1¿ªÊ¼¼ÆÊı, ÇëÇójsonĞ­ÒéÄ¿Â¼, ÔòÎª´¦ÀíjsonÏûÏ¢
+	-- lua ä»1å¼€å§‹è®¡æ•°, è¯·æ±‚jsonåè®®ç›®å½•, åˆ™ä¸ºå¤„ç†jsonæ¶ˆæ¯
 	if 1 == string.find(url, '/luajson') then
 		parser_body(req, body)	
 		json_request(req, res)		
@@ -185,33 +185,33 @@ http_ser.on_recv = function (id, head, body)
 		code = h_code.HTTP_200
 	--elseif 1 == string.find(url, '/luaframe') then
 	--	
-	--	-- ÇëÇóÊµÊ±Ö¡, BUG.¶ÌÁ¬½ÓÇëÇó¶à,Êı¾İ·¢ËÍ²»¼°Ê±Ê±, »á½«ÄÚ´æºÄ¾¡ 
+	--	-- è¯·æ±‚å®æ—¶å¸§, BUG.çŸ­è¿æ¥è¯·æ±‚å¤š,æ•°æ®å‘é€ä¸åŠæ—¶æ—¶, ä¼šå°†å†…å­˜è€—å°½ 
 	--	--code = on_http_frame(id, req, url)
 	--	
 	elseif 'get' == req['method'] then
 		if '/' == url or '' == url then
-			url = '/index.html'	-- ÖØ¶¨Î»µ½Ö÷Ò³
+			url = '/index.html'	-- é‡å®šä½åˆ°ä¸»é¡µ
 		end
 		
-		-- ÆäËû'get'ÇëÇó, ÔòÈÏÎª´Ó·şÎñ¶ËÏÂÔØÎÄ¼ş
-		code = on_http_file(id, req, url)	-- GETÏÂÔØ, ÏÂÔØ'/opt/l_lua/www'Ä¿Â¼ÎÄ¼ş
+		-- å…¶ä»–'get'è¯·æ±‚, åˆ™è®¤ä¸ºä»æœåŠ¡ç«¯ä¸‹è½½æ–‡ä»¶
+		code = on_http_file(id, req, url)	-- GETä¸‹è½½, ä¸‹è½½'/opt/l_lua/www'ç›®å½•æ–‡ä»¶
 	end
 	
 	if h_code.HTTP_200 ~= code then
 		send_err(id, code)
 	end
 	
-	assert(true == http_ser.b_res) -- ¼ì²éÃ¿ÌõÇëÇóÊÇ·ñÏìÓ¦
+	assert(true == http_ser.b_res) -- æ£€æŸ¥æ¯æ¡è¯·æ±‚æ˜¯å¦å“åº”
 	return 0
 end
 
 
 http_ser.setup = function ()
 	
-	-- ³õÊ¼»¯	
+	-- åˆå§‹åŒ–	
 	http_ser.s_http = l_http.create_s_http()
 	
-	-- ÉèÖÃhttp·şÎñ¶Ë½ÓÊÕº¯Êı
+	-- è®¾ç½®httpæœåŠ¡ç«¯æ¥æ”¶å‡½æ•°
 	l_http.set_s_recv(http_ser.on_recv)
 end
 

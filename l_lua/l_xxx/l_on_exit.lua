@@ -1,24 +1,24 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_on_exit.lua
--- @brief   ÄÚÖÃ¹«¹²º¯Êı"l_on_exit", Ö»±»ÄÚÖÃÔÚ lluaÖ÷Ïß³ÌÖĞ
+-- @brief   å†…ç½®å…¬å…±å‡½æ•°"l_on_exit", åªè¢«å†…ç½®åœ¨ lluaä¸»çº¿ç¨‹ä¸­
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 
--- @brief µ±ÏµÍ³ÔÚÈÎºÎÇé¿öÏÂµÄÍË³ö»Øµ÷º¯Êı
--- @param [in] cb[function] »Øµ÷º¯Êı
--- @note cbº¯ÊıÔ­ĞÍ 
+-- @brief å½“ç³»ç»Ÿåœ¨ä»»ä½•æƒ…å†µä¸‹çš„é€€å‡ºå›è°ƒå‡½æ•°
+-- @param [in] cb[function] å›è°ƒå‡½æ•°
+-- @note cbå‡½æ•°åŸå‹ 
 --  \n cb = function () return 0 end
---  \n return 0 ½áÊø
---  \n winÍË³öº¬Òå: Õı³£ÍË³ö
---  \n linuxÍË³öº¬Òå: Õı³£ÍË³ö, ĞÅºÅSIGINT, SIGTERM, SIGKILL, SIGTSTP
+--  \n return 0 ç»“æŸ
+--  \n winé€€å‡ºå«ä¹‰: æ­£å¸¸é€€å‡º
+--  \n linuxé€€å‡ºå«ä¹‰: æ­£å¸¸é€€å‡º, ä¿¡å·SIGINT, SIGTERM, SIGKILL, SIGTSTP
 local l_on_exit = function (cb)
 
 end

@@ -1,81 +1,81 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/05/07
 --
 -- @file    l_http_ca.lua
--- @brief   ÄÚÖÃ¿ârequire("l_http_ca"), http client armÄ£¿é
+-- @brief   å†…ç½®åº“require("l_http_ca"), http client armæ¨¡å—
 --  \n require("l_net_a")
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/05/07 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/05/07 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_http_ca = {}
 
 
--- @brief ´´½¨http¶ÔÏó
--- @param [in]  	name[string]		httpÃû³Æ
--- @param [in]  	l_skdr[l_skdr_a]	l_skdr_a¶ÔÏóuserdata(lightuserdata)
--- @return [nil, l_http_ca] ´´½¨³É¹¦µÄl_http_ca¶ÔÏó
+-- @brief åˆ›å»ºhttpå¯¹è±¡
+-- @param [in]  	name[string]		httpåç§°
+-- @param [in]  	l_skdr[l_skdr_a]	l_skdr_aå¯¹è±¡userdata(lightuserdata)
+-- @return [nil, l_http_ca] åˆ›å»ºæˆåŠŸçš„l_http_caå¯¹è±¡
 -- @note
---  \n ·ÇÏß³Ì°²È«; ±ØĞëÔÚl_net_a.initÖ®ºó, l_net_a.startÖ®Ç°µ÷ÓÃ
+--  \n éçº¿ç¨‹å®‰å…¨; å¿…é¡»åœ¨l_net_a.initä¹‹å, l_net_a.startä¹‹å‰è°ƒç”¨
 l_http_ca.create = function (name, l_skdr)
 	return l_nsm
 	-- return nil
 end
 
 
--- @brief »ñÈ¡http¶ÔÏó
--- @param [in]  	name[string]	nsmÃû³Æ
--- @return [nil, l_http_ca] ´´½¨³É¹¦µÄl_nsm_a¶ÔÏó
+-- @brief è·å–httpå¯¹è±¡
+-- @param [in]  	name[string]	nsmåç§°
+-- @return [nil, l_http_ca] åˆ›å»ºæˆåŠŸçš„l_nsm_aå¯¹è±¡
 -- @note
---  \n ·ÇÏß³Ì°²È«;
+--  \n éçº¿ç¨‹å®‰å…¨;
 l_http_ca.get = function (name)
 	return l_nsm
 	-- return nil
 end
 
 
--- @brief (Òì²½)Á¬½Óµ½·şÎñÆ÷
--- @param [in]	http[l_http_ca]		http¶ÔÏó
--- @param [in]	id[number]			Á¬½Óid
--- @param [in]	proto_main[number]	Ö÷Ğ­Òé
--- @param [in]	ip[string]			ipµØÖ·
--- @param [in]	port[number]		¶Ë¿Ú
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
+-- @brief (å¼‚æ­¥)è¿æ¥åˆ°æœåŠ¡å™¨
+-- @param [in]	http[l_http_ca]		httpå¯¹è±¡
+-- @param [in]	id[number]			è¿æ¥id
+-- @param [in]	proto_main[number]	ä¸»åè®®
+-- @param [in]	ip[string]			ipåœ°å€
+-- @param [in]	port[number]		ç«¯å£
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
 l_http_ca.connect = function (http, id, proto_main, ip, port)
 	return true
 end
 
 
--- @brief ¹Ø±ÕÖµÎªidµÄsocket
--- @param [in]	http[l_http_ca]	http¶ÔÏó
--- @param [in]	id[number]		Á¬½Óid
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
+-- @brief å…³é—­å€¼ä¸ºidçš„socket
+-- @param [in]	http[l_http_ca]	httpå¯¹è±¡
+-- @param [in]	id[number]		è¿æ¥id
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
 l_http_ca.close = function (http, id)
 	return true
 end
 
 
--- @brief Ïòid·¢ËÍÎÄ±¾Êı¾İ
--- @param [in]	http[l_http_ca]	http¶ÔÏó
--- @param [in]	id[number]		Á¬½Óid
--- @param [in]	body[string]	ÎÄ±¾×Ö·û´®
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
+-- @brief å‘idå‘é€æ–‡æœ¬æ•°æ®
+-- @param [in]	http[l_http_ca]	httpå¯¹è±¡
+-- @param [in]	id[number]		è¿æ¥id
+-- @param [in]	body[string]	æ–‡æœ¬å­—ç¬¦ä¸²
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
 l_http_ca.send = function (http, id, body)
 	return true
 end
 
 
--- @brief ´ÓhttpÖĞ»ñÈ¡ÎÄ±¾Êı¾İ
--- @param [in]	http[l_http_ca]	http¶ÔÏó
--- @return [boolean]			true.ÓĞÊı¾İ; false.ÎŞÊı¾İ
---  \n 		code[number]		0.³É¹¦; ·Ç0.ÍøÂç´íÎóÂë
---  \n		head[string]		httpÍ·²¿
---  \n		body[string]		httpµÄbody
---  \n		id[number]			Á¬½Óid
---  \n		proto_main[number]	Ö÷Ğ­Òé
+-- @brief ä»httpä¸­è·å–æ–‡æœ¬æ•°æ®
+-- @param [in]	http[l_http_ca]	httpå¯¹è±¡
+-- @return [boolean]			true.æœ‰æ•°æ®; false.æ— æ•°æ®
+--  \n 		code[number]		0.æˆåŠŸ; é0.ç½‘ç»œé”™è¯¯ç 
+--  \n		head[string]		httpå¤´éƒ¨
+--  \n		body[string]		httpçš„body
+--  \n		id[number]			è¿æ¥id
+--  \n		proto_main[number]	ä¸»åè®®
 l_http_ca.recv = function (http)
 	return false, 0, '', '', id, proto_main
 end

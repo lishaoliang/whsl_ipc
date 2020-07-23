@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_net ÍøÂç²¿·ÖĞ­Òé
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_net ç½‘ç»œéƒ¨åˆ†åè®®
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local np_err = require("base.np_err")
@@ -12,11 +12,11 @@ local iworker = require("ipc.iworker")
 local p_net = {}
 
 
--- @brief ÉèÖÃipv4
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®ipv4
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_net.on_set_ipv4 = function (req, res, cmd)
 	local param = req.body[cmd]
 	
@@ -69,11 +69,11 @@ p_net.on_set_wireless = function (req, res, cmd)
 end
 
 
--- @brief ÉèÖÃÎŞÏßipv4
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®æ— çº¿ipv4
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_net.on_set_wireless_ipv4 = function (req, res, cmd)
 	local param = req.body[cmd]
 	
@@ -99,11 +99,11 @@ p_net.on_set_wireless_ipv4 = function (req, res, cmd)
 	end
 end
 
--- @brief ÉèÖÃ¶Ë¿Ú
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®ç«¯å£
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_net.on_set_net_port = function (req, res, cmd)
 	local param = req.body[cmd]
 	

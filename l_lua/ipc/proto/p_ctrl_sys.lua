@@ -1,10 +1,10 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_ctrl_sys ÏµÍ³¿ØÖÆĞ­Òé
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_ctrl_sys ç³»ç»Ÿæ§åˆ¶åè®®
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
-local l_ctrl_sys = require("l_ctrl_sys")
+--local l_ctrl_sys = require("l_ctrl_sys")
 
 local np_err = require("base.np_err")
 local cfg = require("ipc.cfg.cfg")
@@ -15,11 +15,11 @@ local iworker = require("ipc.iworker")
 local p_ctrl_sys = {}
 
 
--- @brief ²âÊÔÑù°å
--- @param [in]  	req[table]	ÇëÇó
--- @param [out]		res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
--- @return ÎŞ·µ»ØÖµ
+-- @brief æµ‹è¯•æ ·æ¿
+-- @param [in]  	req[table]	è¯·æ±‚
+-- @param [out]		res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
+-- @return æ— è¿”å›å€¼
 p_ctrl_sys.on_test = function (req, res, cmd)
 
 	res[cmd] = {
@@ -28,11 +28,11 @@ p_ctrl_sys.on_test = function (req, res, cmd)
 end
 
 
--- @brief ÖØÆô
--- @param [in]  	req[table]	ÇëÇó
--- @param [out]		res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
--- @return ÎŞ·µ»ØÖµ
+-- @brief é‡å¯
+-- @param [in]  	req[table]	è¯·æ±‚
+-- @param [out]		res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
+-- @return æ— è¿”å›å€¼
 p_ctrl_sys.on_ctrl_reboot = function (req, res, cmd)
 	
 	--l_ctrl_sys.reboot()

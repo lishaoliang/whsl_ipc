@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    imsg.lua
--- @brief   IPCÈ«¾ÖÏûÏ¢Í¨µÀ¶¨Òå; Ö§³Ö¿çLuaÏß³Ì·ÃÎÊ
+-- @brief   IPCå…¨å±€æ¶ˆæ¯é€šé“å®šä¹‰; æ”¯æŒè·¨Luaçº¿ç¨‹è®¿é—®
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local l_tpool = require("l_tpool")
 local l_tmsg = require("l_tmsg")
@@ -16,18 +16,18 @@ local l_tmsg = require("l_tmsg")
 local imsg = {}
 
 -- @name   imsg.update_phynet
--- @export ¸üĞÂÎïÀíÍø¿ÚĞÅÏ¢µÄÏûÏ¢¶ÓÁĞ
+-- @export æ›´æ–°ç‰©ç†ç½‘å£ä¿¡æ¯çš„æ¶ˆæ¯é˜Ÿåˆ—
 imsg.update_phynet = 'update_phynet'
 
 
 -- @name   imsg.update_nsm
--- @export ¸üĞÂnsmĞÅÏ¢µÄÏûÏ¢¶ÓÁĞ
+-- @export æ›´æ–°nsmä¿¡æ¯çš„æ¶ˆæ¯é˜Ÿåˆ—
 imsg.update_nsm = 'update_nsm'
 
 
--- @brief imsg Ä£¿é³õÊ¼»¯
---  \n ·Ç¶àÏß³ÌÍêÈ«
---  \n ±ØĞëÈ«¾ÖÊ¹ÓÃ, ×¢ÒâÓÉÖ÷LuaÏß³Ìµ÷ÓÃ
+-- @brief imsg æ¨¡å—åˆå§‹åŒ–
+--  \n éå¤šçº¿ç¨‹å®Œå…¨
+--  \n å¿…é¡»å…¨å±€ä½¿ç”¨, æ³¨æ„ç”±ä¸»Luaçº¿ç¨‹è°ƒç”¨
 imsg.init = function ()
 
 	for k, v in pairs(imsg) do
@@ -40,34 +40,34 @@ imsg.init = function ()
 end
 
 
--- @brief imsg Ä£¿éÍË³ö
---  \n ·Ç¶àÏß³ÌÍêÈ«
---  \n ±ØĞëÈ«¾ÖÊ¹ÓÃ, ×¢ÒâÓÉÖ÷LuaÏß³Ìµ÷ÓÃ
+-- @brief imsg æ¨¡å—é€€å‡º
+--  \n éå¤šçº¿ç¨‹å®Œå…¨
+--  \n å¿…é¡»å…¨å±€ä½¿ç”¨, æ³¨æ„ç”±ä¸»Luaçº¿ç¨‹è°ƒç”¨
 imsg.quit = function ()
 
 end
 
 
--- @brief ÏòÃû³ÆÎªnameµÄÏûÏ¢¶ÓÁĞpostÏûÏ¢
--- @param [in] name[string] ÏûÏ¢¶ÓÁĞÃû³Æ
--- @param [in] msg[string]	ÏûÏ¢
--- @param [in] lparam[string] lparam²ÎÊı
--- @param [in] wparam[string] wparam²ÎÊı
--- @return [boolean] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÃ»ÓĞÕÒµ½nameµÄ¶ÓÁĞ
--- @note ¶àÏß³Ì°²È«
+-- @brief å‘åç§°ä¸ºnameçš„æ¶ˆæ¯é˜Ÿåˆ—postæ¶ˆæ¯
+-- @param [in] name[string] æ¶ˆæ¯é˜Ÿåˆ—åç§°
+-- @param [in] msg[string]	æ¶ˆæ¯
+-- @param [in] lparam[string] lparamå‚æ•°
+-- @param [in] wparam[string] wparamå‚æ•°
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºæ²¡æœ‰æ‰¾åˆ°nameçš„é˜Ÿåˆ—
+-- @note å¤šçº¿ç¨‹å®‰å…¨
 imsg.post = function (name, msg, lparam, wparam)
 	return l_tmsg.post(name, msg, lparam, wparam, nil)
 end
 
 
--- @brief ´ÓÃû³ÆÎªnameµÄÏûÏ¢¶ÓÁĞÖĞ»ñÈ¡ÏûÏ¢
--- @param [in] name[string] ÏûÏ¢¶ÓÁĞÃû³Æ
--- @return	ret[boolean] 	true±íÊ¾ÓĞÊı¾İ
---  \n		msg[string]		ÏûÏ¢
---  \n		lparam[string]	lparam²ÎÊı
---  \n		wparam[string]	wparam²ÎÊı
---  \n 		cobj[userdata]	c¶ÔÏóÖ¸Õë
--- @note ¶àÏß³Ì°²È«
+-- @brief ä»åç§°ä¸ºnameçš„æ¶ˆæ¯é˜Ÿåˆ—ä¸­è·å–æ¶ˆæ¯
+-- @param [in] name[string] æ¶ˆæ¯é˜Ÿåˆ—åç§°
+-- @return	ret[boolean] 	trueè¡¨ç¤ºæœ‰æ•°æ®
+--  \n		msg[string]		æ¶ˆæ¯
+--  \n		lparam[string]	lparamå‚æ•°
+--  \n		wparam[string]	wparamå‚æ•°
+--  \n 		cobj[userdata]	cå¯¹è±¡æŒ‡é’ˆ
+-- @note å¤šçº¿ç¨‹å®‰å…¨
 imsg.get = function (name)
 	local ret, msg, lparam, wparam, cobj= l_tmsg.get(name)	
 	return ret, msg, lparam, wparam

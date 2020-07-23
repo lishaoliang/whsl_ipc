@@ -1,20 +1,20 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/12
 --
 -- @file    broadcast_ser.lua
--- @brief   ¹ã²¥·şÎñ¶Ë
+-- @brief   å¹¿æ’­æœåŠ¡ç«¯
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/12 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/12 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local cjson = require("cjson")
 local l_sys = require("l_sys")
-local l_net_a = require("l_net_a")
-local l_discover = require("l_discover")
+--local l_net_a = require("l_net_a")
+--local l_discover = require("l_discover")
 local l_broadcast_ser = require("l_broadcast_ser")
 local unix = require("base.unix")
 
@@ -76,7 +76,7 @@ end
 
 local update_bcast = function (nets)
 
-	-- ¼ì²é bcast_static.limited	
+	-- æ£€æŸ¥ bcast_static.limited	
 	if not bcast_static.limited.open then
 		local open, bcast, idx = open_bcast(bcast_static.limited.bcast)
 		bcast_static.limited.open = open
@@ -92,7 +92,7 @@ local update_bcast = function (nets)
 			local old = bcast_dynamic[name]
 
 			if nil ~= old and old['open'] and ip == old['bcast'] then
-				-- ±£ÁôÔ­¹ã²¥
+				-- ä¿ç•™åŸå¹¿æ’­
 				local o = {
 					open = old['open'],
 					bcast = old['bcast'],
@@ -102,7 +102,7 @@ local update_bcast = function (nets)
 				dynamic[name] = o
 				bcast_dynamic[name] = nil
 			else
-				-- ĞÂ¹ã²¥µØÖ·
+				-- æ–°å¹¿æ’­åœ°å€
 				local open, bcast, idx = open_bcast(ip)		
 				local o = {
 					open = open,
@@ -116,12 +116,12 @@ local update_bcast = function (nets)
 	end
 	
 	
-	-- ¸üĞÂĞÅÏ¢
+	-- æ›´æ–°ä¿¡æ¯
 	local old_dynamic = bcast_dynamic
 	bcast_dynamic  = dynamic
 	
 	
-	-- ¹Ø±Õ²»ÔÙĞèÒªµÄ¹ã²¥
+	-- å…³é—­ä¸å†éœ€è¦çš„å¹¿æ’­
 	close_bcast_table(old_dynamic)
 end
 
@@ -196,8 +196,8 @@ end
 
 
 --[[
-l_discover.init()
-l_discover.start()
+l_net_a.init()
+l_net_a.start()
 
 broadcast_ser.init()
 
@@ -232,8 +232,9 @@ while 0 < count do
 end
 
 broadcast_ser.quit()
-l_discover.stop()
-l_discover.quit()
+
+l_net_a.stop()
+l_net_a.quit()
 
 --]]
 

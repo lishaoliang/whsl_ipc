@@ -1,10 +1,10 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş, All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶, All Rights Reserved
 -- Created: 2019/11/25
 --
 -- @file  rtsp_sdp1.lua
--- @brief RTSP server sdpĞ­Òé½âÎö
--- @author ÀîÉÜÁ¼
+-- @brief RTSP server sdpåè®®è§£æ
+-- @author æç»è‰¯
 --]]
 local string = require("string")
 local table = require("table")
@@ -26,7 +26,7 @@ rtsp_sdp1.PAUSE = 'PAUSE'
 rtsp_sdp1.GET_PARAMETER = 'GET_PARAMETER'
 
 
--- È¥³ı×Ö·û´®Ê×Î²¿ÕĞĞ
+-- å»é™¤å­—ç¬¦ä¸²é¦–å°¾ç©ºè¡Œ
 local trim = function (s)
 	return (string.gsub(s, '^%s*(.-)%s*$', '%1'))
 end
@@ -54,9 +54,9 @@ local sdp_map = {
 	range = sdp_range
 }
 
--- ½âÎöÃ°ºÅ¸ñÔò: "*: *"
+-- è§£æå†’å·æ ¼åˆ™: "*: *"
 local parser_colon = function (sdp, line)
-	local k, v = string.match(line, '([^:]+):(.*)') -- Æ¥Åä²ÎÊı
+	local k, v = string.match(line, '([^:]+):(.*)') -- åŒ¹é…å‚æ•°
 	if nil ~= k and nil ~= v then
 		k = trim(k)
 		v = trim(v)
@@ -74,9 +74,9 @@ local parser_colon = function (sdp, line)
 	return false
 end
 
--- ½âÎö¿Õ¸ñ¹æÔò: "* * *" 
+-- è§£æç©ºæ ¼è§„åˆ™: "* * *" 
 local parser_space = function (sdp, line)
-	local method, url, protocol = string.match(line, '([^ ]+) +([^ ]+) +([^ ]+)') -- Æ¥ÅäÇëÇóÍ·
+	local method, url, protocol = string.match(line, '([^ ]+) +([^ ]+) +([^ ]+)') -- åŒ¹é…è¯·æ±‚å¤´
 	if nil ~= method and nil ~= url and nil ~= protocol then
 		method = string.upper(trim(method))
 		protocol = string.lower(trim(protocol))
@@ -86,7 +86,7 @@ local parser_space = function (sdp, line)
 			sdp['method'] = method
 			sdp['protocol'] = protocol
 			--sdp['url'] = url			
-			sdp['url'] = (string.gsub(url, '^%s*(.-)[/\\]*$', '%1'))	-- ·ÀÖ¹Ä©Î²´ø'/' '\'
+			sdp['url'] = (string.gsub(url, '^%s*(.-)[/\\]*$', '%1'))	-- é˜²æ­¢æœ«å°¾å¸¦'/' '\'
 		end
 		
 		--print(method, url, protocol)
@@ -99,10 +99,10 @@ end
 rtsp_sdp1.parser = function (txt)
 	local sdp = {}
 	
-	-- ÇĞ¸î
+	-- åˆ‡å‰²
 	local head, body = string.match(txt, '(.*)\r\n\r\n(.*)')
 	
-	-- ÌáÈ¡ÇëÇóÍ·ĞÅÏ¢
+	-- æå–è¯·æ±‚å¤´ä¿¡æ¯
 	if nil ~= head then
 		local frist = true
 		for line in string.gmatch(head, '[^\r\n]+[\r\n]*') do
@@ -122,14 +122,14 @@ end
 rtsp_sdp1.new_sdp = function ()
 	
 	local sdp = {
-		--- ×´Ì¬²ÎÊı
-		chnn = 0,			-- Í¨µÀ
-		idx = 1,			-- Á÷ĞòºÅ
-		video = false,		-- ÊÇ·ñÆôÓÃÊÓÆµ
-		audio = false,		-- ÊÇ·ñÆôÓÃÒôÆµ
-		playing = false,	-- ÊÇ·ñÕıÔÚ²¥·Å
+		--- çŠ¶æ€å‚æ•°
+		chnn = 0,			-- é€šé“
+		idx = 1,			-- æµåºå·
+		video = false,		-- æ˜¯å¦å¯ç”¨è§†é¢‘
+		audio = false,		-- æ˜¯å¦å¯ç”¨éŸ³é¢‘
+		playing = false,	-- æ˜¯å¦æ­£åœ¨æ’­æ”¾
 		
-		------------------½âÎöÊı¾İ
+		------------------è§£ææ•°æ®
 		method = '',
 		protocol = '',
 		url = 'rtsp://127.0.0.1:80/chnn0/idx1',
@@ -152,7 +152,7 @@ local parser_url_params = function (sdp)
 	-- rtsp://127.0.0.1:80/chnn0/idx1
 	local proto, host, path = string.match(url, '([%w]+)://([^/]*)(.*)')
 	
-	-- ´ÓÇëÇóÂ·¾¶ÖĞ, ½âÎö²ÎÊı
+	-- ä»è¯·æ±‚è·¯å¾„ä¸­, è§£æå‚æ•°
 	if nil ~= path then
 		for line in string.gmatch(path, '([%w]+)') do
 			if nil ~= line then
@@ -171,7 +171,7 @@ local parser_url_params = function (sdp)
 		end
 	end
 	
-	-- ÏŞÖÆÁ÷ĞòºÅ·¶Î§
+	-- é™åˆ¶æµåºå·èŒƒå›´
 	if 1 < sdp['idx'] then
 		sdp['idx'] = 1
 	end
@@ -323,7 +323,7 @@ rtsp_sdp1.pack_get_parameter = function (sdp, cseq)
 end
 
 rtsp_sdp1.pack_error = function (sdp, cseq, code)
-	-- 461 ¿Í»§¶ËĞ­Òé´íÎó
+	-- 461 å®¢æˆ·ç«¯åè®®é”™è¯¯
 	
 	local h = {}
 	table.insert(h, string.format('RTSP/1.0 %d Client error\r\n', code))

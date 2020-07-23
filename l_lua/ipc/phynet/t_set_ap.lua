@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/04
 --
 -- @file    t_set_ap.lua
--- @brief   ÉèÖÃapÄ£Ê½
+-- @brief   è®¾ç½®apæ¨¡å¼
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/04 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/04 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local l_sys = require("l_sys")
@@ -17,5 +17,5 @@ local wlan = require("ipc.phynet.wlan")
 local wpa_cli = require("ipc.phynet.wpa_cli")
 
 
--- ÉèÖÃ»·¾³Îª ap Ä£Ê½
+-- è®¾ç½®ç¯å¢ƒä¸º ap æ¨¡å¼
 wlan.env_ap()

@@ -1,49 +1,49 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_dev_ipc.lua
--- @brief   ÄÚÖÃ¿â"l_dev_ipc", IPCÓ²¼şÉè±¸Ïà¹Ø
+-- @brief   å†…ç½®åº“"l_dev_ipc", IPCç¡¬ä»¶è®¾å¤‡ç›¸å…³
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_dev_ipc = {}
 
 
--- @brief ipcÓ²¼şÉè±¸³õÊ¼»¯
--- @return [number] ·µ»Ø´íÎóÂë
+-- @brief ipcç¡¬ä»¶è®¾å¤‡åˆå§‹åŒ–
+-- @return [number] è¿”å›é”™è¯¯ç 
 l_dev_ipc.init = function ()
 	return 0
 	-- return 1
 end
 
 
--- @brief ipcÓ²¼şÉè±¸·´³õÊ¼»¯
+-- @brief ipcç¡¬ä»¶è®¾å¤‡ååˆå§‹åŒ–
 l_dev_ipc.quit = function ()
 	
 end
 
 
--- @brief ipcÓ²¼şstart
--- @return [number] ·µ»Ø´íÎóÂë
+-- @brief ipcç¡¬ä»¶start
+-- @return [number] è¿”å›é”™è¯¯ç 
 l_dev_ipc.start = function ()
 	return 0
 	-- return 1
 end
 
--- @brief ipcÓ²¼şstop
+-- @brief ipcç¡¬ä»¶stop
 l_dev_ipc.stop = function ()
 
 end
 
 
--- @brief Ìí¼ÓÂëÁ÷¼àÌı
--- @param [in] name[string] Ãû³Æ
--- @param [in] ptr[LUA_TLIGHTUSERDATA] ÇáÁ¿¼¶Ö¸Õë
--- @note ptrº¯ÊıµÄCÓïÑÔÔ­ĞÍ
+-- @brief æ·»åŠ ç æµç›‘å¬
+-- @param [in] name[string] åç§°
+-- @param [in] ptr[LUA_TLIGHTUSERDATA] è½»é‡çº§æŒ‡é’ˆ
+-- @note ptrå‡½æ•°çš„Cè¯­è¨€åŸå‹
 -- \n typedef int(*ldev_stream_cb)(int chnn, ldev_stream_id_e id, l_md_fmt_e fmt, ldev_stream_t* p_stream);
 l_dev_ipc.add_listener = function (name, ptr)
 

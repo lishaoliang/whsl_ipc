@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/16
 --
 -- @file    check_env.lua
--- @brief   ÔËĞĞ»·¾³¼ì²é
+-- @brief   è¿è¡Œç¯å¢ƒæ£€æŸ¥
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/16 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/16 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local io = require("io")
@@ -40,14 +40,14 @@ local reset_eth0_hw = function (mac)
 end
 
 
--- @brief Ëæ»úmac
+-- @brief éšæœºmac
 local rand_mac = function ()
 	local hexs = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'}
 	local mac = ''
 	for i = 1, 6, 1 do
 		if 1 == i then
 			local v1 = hexs[l_sys.rand(16)]
-			local v2 = 0 -- µÚ¶şÎ»ĞëÎª4µÄÕûÊı±¶, ¼òµ¥´¦ÀíÖ±½ÓÎª0
+			local v2 = 0 -- ç¬¬äºŒä½é¡»ä¸º4çš„æ•´æ•°å€, ç®€å•å¤„ç†ç›´æ¥ä¸º0
 			
 			mac = string.format('%s%s', v1, v2)
 		else
@@ -61,24 +61,24 @@ local rand_mac = function ()
 end
 
 
--- @brief ÖØĞÂ»ñÈ¡mac
+-- @brief é‡æ–°è·å–mac
 local get_my_mac = function ()
 	local mac = ''
 	
-	-- ÌáÈ¡ÏµÍ³Éú³ÉµÄMAC
+	-- æå–ç³»ç»Ÿç”Ÿæˆçš„MAC
 	local ifc = unix.get_ifconfig()
 	local ifc_eht0 = ifc['eth0']
 	if ifc_eht0 and ifc_eht0['mac'] then
 		mac = ifc_eht0['mac']
 	end
 	
-	-- ·ñÔò, Ëæ»úÉú³ÉÒ»¸ö
+	-- å¦åˆ™, éšæœºç”Ÿæˆä¸€ä¸ª
 	if 'string' ~= type(mac) or string.len(mac) ~= 17 then
 		mac = rand_mac()
 		print('ipc.env.check_env', 'rand mac='..mac)
 	end
 
-	-- ½«macµØÖ·ĞŞ¸ÄÎª '00:1*:*' ¸ñÊ½
+	-- å°†macåœ°å€ä¿®æ”¹ä¸º '00:1*:*' æ ¼å¼
 	mac = string.gsub(mac, '-', ':')
 	mac = string.format('%s%s', '00:1', string.sub(mac, 5))
 	mac = string.upper(mac)
@@ -87,7 +87,7 @@ local get_my_mac = function ()
 end
 
 
--- @brief ¼ì²éeth0µÄmacµØÖ·ÊÇ·ñºÏ·¨, ²»ºÏ·¨Ôò, ÖØĞ´macµØÖ·
+-- @brief æ£€æŸ¥eth0çš„macåœ°å€æ˜¯å¦åˆæ³•, ä¸åˆæ³•åˆ™, é‡å†™macåœ°å€
 local check_eth0_mac = function ()
 	local reboot = false
 	local reset = true
@@ -128,20 +128,20 @@ end
 local check_env = function ()
 	local reboot = false
 
-	-- ³õÊ¼»¯Ëæ»úÖµ
+	-- åˆå§‹åŒ–éšæœºå€¼
 	--l_sys.srand()
 
-	-- ¼ì²éÎïÀíÍø¿ÚmacµØÖ·
+	-- æ£€æŸ¥ç‰©ç†ç½‘å£macåœ°å€
 	local ret_eth0, mac = check_eth0_mac()
 	if ret_eth0 then
 		reset_eth0_hw(mac)
 		reboot = true
 	end
 	
-	-- ÊÇ·ñĞèÒªÖØÆô
+	-- æ˜¯å¦éœ€è¦é‡å¯
 	if reboot then
 		print('ipc.env.check_env', 'need reboot...')
-		-- shell('reboot', '') -- ÈíÖØÆôµ¼ÖÂ, USB·´¸´Éı¼¶
+		-- shell('reboot', '') -- è½¯é‡å¯å¯¼è‡´, USBåå¤å‡çº§
 	end
 end
 

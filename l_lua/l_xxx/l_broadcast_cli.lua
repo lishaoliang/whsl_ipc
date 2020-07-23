@@ -1,73 +1,73 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/04/12
 --
 -- @file    l_broadcast_cli.lua
--- @brief   À©Õ¹¿â"l_broadcast_cli", ¹ã²¥¿Í»§¶Ë
---  \n ËùÓĞº¯Êı±ØĞë l_discover.init, l_discover.start Ö®ºó²Å¿ÉÒÔµ÷ÓÃ
+-- @brief   æ‰©å±•åº“"l_broadcast_cli", å¹¿æ’­å®¢æˆ·ç«¯
+--  \n æ‰€æœ‰å‡½æ•°å¿…é¡» l_discover.init, l_discover.start ä¹‹åæ‰å¯ä»¥è°ƒç”¨
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/12 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/12 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_broadcast_cli = {}
 
 
--- @brief ´ò¿ª¹ã²¥
--- @param [in]  	id[number]	idºÅ
--- @param [in]		idx[number]	idxĞòºÅ
--- @param [in]		ip[string]	¹ã²¥ipµØÖ·: ÀıÈç'255.255.255.255', '192.168.255.255'
--- @param [in]		port[number] ¹ã²¥¶Ë¿Ú
+-- @brief æ‰“å¼€å¹¿æ’­
+-- @param [in]  	id[number]	idå·
+-- @param [in]		idx[number]	idxåºå·
+-- @param [in]		ip[string]	å¹¿æ’­ipåœ°å€: ä¾‹å¦‚'255.255.255.255', '192.168.255.255'
+-- @param [in]		port[number] å¹¿æ’­ç«¯å£
 -- @return [boolean] true, false
 l_broadcast_cli.open = function (id, idx, ip, port)
 	return true
 end
 
 
--- @brief ¹Ø±Õ¹ã²¥
--- @param [in]  	id[number]	idºÅ
--- @param [in]		idx[number]	idxĞòºÅ
+-- @brief å…³é—­å¹¿æ’­
+-- @param [in]  	id[number]	idå·
+-- @param [in]		idx[number]	idxåºå·
 -- @return [boolean] true, false
 l_broadcast_cli.close = function (id, idx)
 	return true
 end
 
 
--- @brief ¹Ø±ÕËùÓĞÍ¬Ò»idµÄ¹ã²¥
--- @param [in]  	id[number]	idºÅ
+-- @brief å…³é—­æ‰€æœ‰åŒä¸€idçš„å¹¿æ’­
+-- @param [in]  	id[number]	idå·
 -- @return [boolean] true, false
 l_broadcast_cli.close_all = function (id)
 	return true
 end
 
 
--- @brief ·¢ËÍÒ»´Î'discover'ÇëÇóÊı¾İ°ü
--- @param [in]  	id[number]	idºÅ
+-- @brief å‘é€ä¸€æ¬¡'discover'è¯·æ±‚æ•°æ®åŒ…
+-- @param [in]  	id[number]	idå·
 -- @return [boolean] true, false
 l_broadcast_cli.discover = function (id)
 	return true
 end
 
 
--- @brief »ñÈ¡¹ã²¥Êı¾İ
--- @return  ret[boolean]	true.»ñÈ¡µ½Êı¾İ; false.Ã»ÓĞÊı¾İ
---	\n	code[number]		0.»ñÈ¡¹ã²¥ÏûÏ¢; ·Ç0.»ñÈ¡µ½´íÎóÂë
---	\n	body[string]		¹ã²¥ÏûÏ¢
---	\n	protocol[number]	Ğ­Òé
---	\n	id[number]			idºÅ
---	\n	ip[string]			·¢ËÍ¹ã²¥µÄIP
---	\n	port[number]		¶Ë¿Ú
--- @note ×¢ÒâÊÂÏî,²Î¼ûxxx
+-- @brief è·å–å¹¿æ’­æ•°æ®
+-- @return  ret[boolean]	true.è·å–åˆ°æ•°æ®; false.æ²¡æœ‰æ•°æ®
+--	\n	code[number]		0.è·å–å¹¿æ’­æ¶ˆæ¯; é0.è·å–åˆ°é”™è¯¯ç 
+--	\n	body[string]		å¹¿æ’­æ¶ˆæ¯
+--	\n	protocol[number]	åè®®
+--	\n	id[number]			idå·
+--	\n	ip[string]			å‘é€å¹¿æ’­çš„IP
+--	\n	port[number]		ç«¯å£
+-- @note æ³¨æ„äº‹é¡¹,å‚è§xxx
 l_broadcast_cli.recv = function ()
 	return true, 0, '{}', 22, 900, '192.168.1.247', 25354
 end
 
 
--- @brief ·¢ËÍ¹ã²¥Êı¾İ[string.len(body) <= 1340]
--- @param [in]  	id[number]		idºÅ
--- @param [in]		body[string]	´ı·¢ËÍµÄµÄÊı¾İ
+-- @brief å‘é€å¹¿æ’­æ•°æ®[string.len(body) <= 1340]
+-- @param [in]  	id[number]		idå·
+-- @param [in]		body[string]	å¾…å‘é€çš„çš„æ•°æ®
 -- @return [boolean] true, false
 l_broadcast_cli.send = function (id, body)
 	return true

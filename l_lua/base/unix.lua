@@ -1,16 +1,16 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/08
 --
 -- @file    unix.lua
--- @brief   unix³£ÓÃÃüÁî
---	\n ÒÀÀµ¿â l_sys
--- @author	ÀîÉÜÁ¼
+-- @brief   unixå¸¸ç”¨å‘½ä»¤
+--	\n ä¾èµ–åº“ l_sys
+-- @author	æç»è‰¯
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/08 0.1 ´´½¨ÎÄ¼ş
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/08 0.1 åˆ›å»ºæ–‡ä»¶
 -- @note
--- @warning Ã»ÓĞ¾¯¸æ
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local util = require("base.util")
@@ -21,8 +21,8 @@ local sh = l_sys.sh
 local unix = {}
 
 
-if 'hisi_linux' ~= l_sys.platform then
-	-- ·ÇÄ¿±êÆ½Ì¨, ²»Ö´ĞĞ¶ÔÓ¦Óï¾ä
+if l_sys.simulator then
+	-- éç›®æ ‡å¹³å°, ä¸æ‰§è¡Œå¯¹åº”è¯­å¥
 	sh = function (cmd)
 		print(cmd)
 		return 0, ''
@@ -49,7 +49,7 @@ unix.kill = function (name, ...)
 		grep = string.format('%s |grep %s', grep, v)
 	end
 	
-	local cmd = string.format('ps -e %s |awk \'{print $1}\' |xargs kill', grep)
+	local cmd = string.format('ps %s |awk \'{print $1}\' |xargs kill -9', grep)
 	--print('cmd:..', cmd)
 	
 	sh(cmd)
@@ -63,7 +63,7 @@ unix.ps = function (...)
 		grep = string.format('%s |grep %s', grep, v)
 	end
 	
-	local cmd = string.format('ps -e %s |awk \'{print $1\" \"$4}\'', grep)
+	local cmd = string.format('ps %s |awk \'{print $1\" \"$4}\'', grep)
 	local ret, str = sh(cmd)
 	--print(str)
 
@@ -88,7 +88,7 @@ local str =
 			m = util.trim_cs(m)
 			n = util.trim_cs(n)
 			if 'sh' ~= n then
-				o[m] = n	-- PIDÏî²»»áÖØ¸´, ËùÒÔÊ¹ÓÃpidÏî×÷Îªkey
+				o[m] = n	-- PIDé¡¹ä¸ä¼šé‡å¤, æ‰€ä»¥ä½¿ç”¨pidé¡¹ä½œä¸ºkey
 			end	
 		end
 	end

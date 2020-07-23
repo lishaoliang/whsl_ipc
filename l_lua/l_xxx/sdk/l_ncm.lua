@@ -1,38 +1,38 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_ncm.lua
--- @brief   ÄÚÖÃ¿â"l_ncm", º¯ÊıËµÃ÷
+-- @brief   å†…ç½®åº“"l_ncm", å‡½æ•°è¯´æ˜
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_ncm = {}
 
 
--- @brief ÉèÖÃsdk½Ó¿Ú²Ù×÷
--- @param [in] cb_login[function] µ±½Ó¿Úlogin±»µ÷ÓÃÊ±µÄ»Øµ÷
--- @param [in] cb_logout[function] µ±½Ó¿Úlogout±»µ÷ÓÃÊ±µÄ»Øµ÷
--- @param [in] cb_request[function] µ±½Ó¿Úrequest±»µ÷ÓÃÊ±µÄ»Øµ÷
--- @return [boolean] ·µ»ØÊÇ·ñ³É¹¦
+-- @brief è®¾ç½®sdkæ¥å£æ“ä½œ
+-- @param [in] cb_login[function] å½“æ¥å£loginè¢«è°ƒç”¨æ—¶çš„å›è°ƒ
+-- @param [in] cb_logout[function] å½“æ¥å£logoutè¢«è°ƒç”¨æ—¶çš„å›è°ƒ
+-- @param [in] cb_request[function] å½“æ¥å£requestè¢«è°ƒç”¨æ—¶çš„å›è°ƒ
+-- @return [boolean] è¿”å›æ˜¯å¦æˆåŠŸ
 -- @note 
 --  \n [number][number] = cb_login(seq, id, param)
---  \n [in] seq[number] »á»°ĞòÁĞ
---  \n [in] id[number] µÇÂ¼id(¼´Á¬½Óid)
---  \n [in] param[string] µÇÂ¼×Ö·û´®²ÎÊı(json)
---  \n return [number] ´íÎóÂë
+--  \n [in] seq[number] ä¼šè¯åºåˆ—
+--  \n [in] id[number] ç™»å½•id(å³è¿æ¥id)
+--  \n [in] param[string] ç™»å½•å­—ç¬¦ä¸²å‚æ•°(json)
+--  \n return [number] é”™è¯¯ç 
 --  \n [number] = cb_logout(seq, id)
---  \n [in] seq[number] »á»°ĞòÁĞ
---  \n [in] id[number] µÇÂ¼id(¼´Á¬½Óid)
---  \n return [number] ´íÎóÂë
+--  \n [in] seq[number] ä¼šè¯åºåˆ—
+--  \n [in] id[number] ç™»å½•id(å³è¿æ¥id)
+--  \n return [number] é”™è¯¯ç 
 --  \n [number] = cb_request(seq, id, str_req)
---  \n [in] seq[number] »á»°ĞòÁĞ
---  \n [in] id[number] µÇÂ¼id(¼´Á¬½Óid)
---  \n [in] str_req[string] ÇëÇó×Ö·û´®(json)
---  \n return [number] ´íÎóÂë
+--  \n [in] seq[number] ä¼šè¯åºåˆ—
+--  \n [in] id[number] ç™»å½•id(å³è¿æ¥id)
+--  \n [in] str_req[string] è¯·æ±‚å­—ç¬¦ä¸²(json)
+--  \n return [number] é”™è¯¯ç 
 l_ncm.set_sdk = function (cb_login, cb_logout, cb_request)
 	return 0
 end
@@ -42,70 +42,70 @@ l_ncm.set_sdk_discover = function (cb_discover_open, cb_discover_close, cb_disco
 	return 0
 end
 
--- @brief »Ø¸´sdkÊı¾İ
--- @param [in] seq[number]	»á»°ĞòÁĞºÅ
--- @param [in] id[number]	µÇÂ¼id
--- @param [in] code[number]	´íÎóÂë
--- @param [in] str_res[string] ÎÄ±¾Êı¾İ
--- @return [boolean] ÊÇ·ñ»Ø¸´³É¹¦
+-- @brief å›å¤sdkæ•°æ®
+-- @param [in] seq[number]	ä¼šè¯åºåˆ—å·
+-- @param [in] id[number]	ç™»å½•id
+-- @param [in] code[number]	é”™è¯¯ç 
+-- @param [in] str_res[string] æ–‡æœ¬æ•°æ®
+-- @return [boolean] æ˜¯å¦å›å¤æˆåŠŸ
 l_ncm.response_sdk = function (seq, id, code, str_res)
 	return true
 end
 
 
--- @brief ÉèÖÃÊı¾İ»Øµ÷´¦Àíº¯Êı
--- @param [in] cb[function] µ±ÍøÂçÉÏÀ´Êı¾İµÄ»Øµ÷º¯Êı
--- @return [boolean] ·µ»ØÊÇ·ñ³É¹¦
+-- @brief è®¾ç½®æ•°æ®å›è°ƒå¤„ç†å‡½æ•°
+-- @param [in] cb[function] å½“ç½‘ç»œä¸Šæ¥æ•°æ®çš„å›è°ƒå‡½æ•°
+-- @return [boolean] è¿”å›æ˜¯å¦æˆåŠŸ
 -- @note [number] = cb(id, protocol, body)
---  \n [in] id[number] Á¬½Óid
---  \n [in] protocol[number] Ğ­ÒéÖµ;²Î¿¼ base.np_id
---  \n [in] body[string] ¿Í»§¶Ë·¢ËÍ¹ıÀ´µÄÎÄ±¾Êı¾İÌå
---  \n return [number] 0.±íÊ¾±£³ÖÁ¬½Ó; ·Ç0.¶Ï¿ªÁ¬½Ó
+--  \n [in] id[number] è¿æ¥id
+--  \n [in] protocol[number] åè®®å€¼;å‚è€ƒ base.np_id
+--  \n [in] body[string] å®¢æˆ·ç«¯å‘é€è¿‡æ¥çš„æ–‡æœ¬æ•°æ®ä½“
+--  \n return [number] 0.è¡¨ç¤ºä¿æŒè¿æ¥; é0.æ–­å¼€è¿æ¥
 l_ncm.set_recv = function (cb)
 	return true
 	-- return false
 end
 
 
--- @brief ÉèÖÃÁ¬½Ó¶Ï¿ªµÄ»Øµ÷´¦Àíº¯Êı
--- @param [in] cb[function] µ±Á¬½Ó¶Ï¿ªµÄ»Øµ÷º¯Êı
--- @return [boolean] ·µ»ØÊÇ·ñ³É¹¦
+-- @brief è®¾ç½®è¿æ¥æ–­å¼€çš„å›è°ƒå¤„ç†å‡½æ•°
+-- @param [in] cb[function] å½“è¿æ¥æ–­å¼€çš„å›è°ƒå‡½æ•°
+-- @return [boolean] è¿”å›æ˜¯å¦æˆåŠŸ
 -- @note [number] = cb(id, code)
---  \n [in] id[number] Á¬½Óid
---  \n [in] code[number] ´íÎóÂë
---  \n return [number] 0.³É¹¦
+--  \n [in] id[number] è¿æ¥id
+--  \n [in] code[number] é”™è¯¯ç 
+--  \n return [number] 0.æˆåŠŸ
 l_ncm.set_disconnect = function (cb)
 	return true
 	-- return false
 end
 
 
--- @brief ÏòÍøÂç·¢ËÍÊı¾İ
--- @param [in] id[number]	·¢ËÍµÄÁ¬½Óid
--- @param [in] body[string] ÎÄ±¾Êı¾İ
--- @return [boolean] ·µ»ØÊÇ·ñ·¢ËÍ³É¹¦
+-- @brief å‘ç½‘ç»œå‘é€æ•°æ®
+-- @param [in] id[number]	å‘é€çš„è¿æ¥id
+-- @param [in] body[string] æ–‡æœ¬æ•°æ®
+-- @return [boolean] è¿”å›æ˜¯å¦å‘é€æˆåŠŸ
 l_ncm.send = function (id, body)
 	return true
 	-- return false
 end
 
 
--- @brief ·¢ÆğÁ¬½Ó
--- @param [in] ip[string]	Ä¿±êip
--- @param [in] port[number]	Ä¿±ê¶Ë¿Ú
--- @param [in] id[number]	¿Í»§¶Ëid(¼´Á¬½Óid)
--- @param [in] protocol[number] Ä¿±êĞ­Òé(Ä¬ÈÏnp_id.NSPP)
--- @return [boolean] ÊÇ·ñ·¢ÆğÁ¬½Ó
--- @note ÕâÖ»ÊÇ·¢ÆğÁ¬½Ó, ÊÇ·ñÁ¬½Ó³É¹¦, ÔÚ set_recvµÄ»Øµ÷º¯ÊıÖĞ¸ø³ö½á¹û
+-- @brief å‘èµ·è¿æ¥
+-- @param [in] ip[string]	ç›®æ ‡ip
+-- @param [in] port[number]	ç›®æ ‡ç«¯å£
+-- @param [in] id[number]	å®¢æˆ·ç«¯id(å³è¿æ¥id)
+-- @param [in] protocol[number] ç›®æ ‡åè®®(é»˜è®¤np_id.NSPP)
+-- @return [boolean] æ˜¯å¦å‘èµ·è¿æ¥
+-- @note è¿™åªæ˜¯å‘èµ·è¿æ¥, æ˜¯å¦è¿æ¥æˆåŠŸ, åœ¨ set_recvçš„å›è°ƒå‡½æ•°ä¸­ç»™å‡ºç»“æœ
 l_ncm.connect = function (ip, port, id, protocol)
 	return true,10000
 	-- return false,0
 end
 
 
--- @brief »ñÈ¡ncm¶ÔÏó
--- @param [in] name[string] ¶ÔÏóÃû³Æ: 'upgrade'
--- @return [nil, l_ncm_x] ·µ»Øl_ncm_x¶ÔÏó
+-- @brief è·å–ncmå¯¹è±¡
+-- @param [in] name[string] å¯¹è±¡åç§°: 'upgrade'
+-- @return [nil, l_ncm_x] è¿”å›l_ncm_xå¯¹è±¡
 l_ncm.get_ncm = function (name)
 	return nil
 	-- return l_ncm_x

@@ -1,17 +1,18 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- brief  IPCÆô¶¯Èë¿Ú
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- brief  IPCå¯åŠ¨å…¥å£
+-- @author  æç»è‰¯
 -- note
 --]]
 local l_sys = require("l_sys")
 local l_tpool = require("l_tpool")
 local imsg = require("ipc.imsg")
 local iworker = require("ipc.iworker")
-local inet = require("ipc.inet")
 local mcache = require("ipc.mcache")
 
-local l_dev_ipc = require("l_dev_ipc")
+local l_ipc = require("l_ipc")
+local l_dev = require("l_dev")
+
 local cfg = require("ipc.cfg.cfg")
 
 local check_env = require("ipc.env.check_env")
@@ -22,66 +23,60 @@ local cfg_setup = require("ipc.cfg_setup")
 local unix = require("base.unix")
 local gpio_reset = require("ipc.gpio.gpio_reset")
 
--- ´òÓ¡»ù´¡Æ½Ì¨ĞÅÏ¢
-print('platform=' .. l_sys.platform)
-print('chip=' .. l_sys.chip)
+
+
+
+-- æ‰“å°åŸºç¡€å¹³å°ä¿¡æ¯
+print('project=' .. l_sys.project)
 print('version=' .. l_sys.version)
+print('simulator=' .. tostring(l_sys.simulator))
+
+print('l_dev.version=' .. l_dev.version())
+print('l_dev.project=' .. l_dev.project())
+print('l_dev.platform=' .. l_dev.platform())
+print('l_dev.chip=' .. l_dev.chip())
 
 
---¼ì²éÔËĞĞ»·¾³
+--æ£€æŸ¥è¿è¡Œç¯å¢ƒ
 check_env()
 
 
--- ³õÊ¼»¯»ù´¡»·¾³
-l_tpool.init()	-- Ïß³ÌµÈÄ£¿é³õÊ¼»¯
-mcache.init()	-- Ïß³ÌÖ®¼ä¹²ÏíÊı¾İ³õÊ¼»¯
+-- åˆå§‹åŒ–åŸºç¡€ç¯å¢ƒ
+mcache.init()	-- çº¿ç¨‹ä¹‹é—´å…±äº«æ•°æ®åˆå§‹åŒ–
 
-cfg.init()		-- ³õÊ¼»¯ÅäÖÃÎÄ¼ş
-imsg.init()		-- ³õÊ¼»¯ÏûÏ¢ÖĞĞÄ
-iworker.init()	-- ³õÊ¼»¯¹¤×÷Ïß³Ì
-
-
--- µÚÒ»´Î¼ÓÔØÍøÂçÅäÖÃ
-phynet.setup()
-phynet.check_proc(1000)
+cfg.init()		-- åˆå§‹åŒ–é…ç½®æ–‡ä»¶
+imsg.init()		-- åˆå§‹åŒ–æ¶ˆæ¯ä¸­å¿ƒ
+iworker.init()	-- åˆå§‹åŒ–å·¥ä½œçº¿ç¨‹
 
 
--- ³õÊ¼»¯ÒµÎñÄ£¿é
-inet.init()			-- ÍøÂçÄ£¿é³õÊ¼»¯
-l_dev_ipc.init()	-- º£Ë¼Ó²¼şÄ£¿é³õÊ¼»¯£ºmppÏµÍ³³õÊ¼»¯
+-- åˆå§‹åŒ–ä¸šåŠ¡æ¨¡å—
+l_ipc.init()		-- åˆå§‹åŒ–IPCæ¡†æ¶
 
 
--- ÉèÖÃÃ½ÌåÁ÷¼àÌı£¬ÈÃÍøÂçÄ£¿éÄÜ»ñÈ¡µ½ÒôÊÓÆµ¡¢Í¼Æ¬Á÷
-l_dev_ipc.add_listener('my ipc', inet.get_listener())
+-- å¯åŠ¨ä¸šåŠ¡
+l_ipc.start()		-- IPCæ¡†æ¶å¯åŠ¨
+iworker.start()		-- å„ä¸ªå·¥ä½œçº¿ç¨‹å¯åŠ¨
 
 
--- Æô¶¯ÒµÎñ
-inet.start()		-- ÍøÂçÄ£¿éÆô¶¯
-l_dev_ipc.start()	-- º£Ë¼Ó²¼şÄ£¿éÆô¶¯
-iworker.start()		-- ¸÷¸ö¹¤×÷Ïß³ÌÆô¶¯
-
-
--- ¸´Î»±ê¼Ç
+-- å¤ä½æ ‡è®°
 local reset = false
 gpio_reset.init()
 
 
--- ÈÎºÎÇé¿öÏÂµÄÍË³öº¯Êı
+-- ä»»ä½•æƒ…å†µä¸‹çš„é€€å‡ºå‡½æ•°
 local on_exit = function()
 	print('system on_exit,reset=', reset)
 	
-	gpio_reset.quit() -- ÍË³ögpio¸´Î»
+	gpio_reset.quit() -- é€€å‡ºgpioå¤ä½
 	
-	-- ¹Ø±ÕÒµÎñ
+	-- å…³é—­ä¸šåŠ¡
 	iworker.stop()
-	l_dev_ipc.stop()
-	inet.stop()
+	l_ipc.stop()
 
-	-- ÍË³öÒµÎñ
-	l_dev_ipc.quit()
-	inet.quit()
+	-- é€€å‡ºä¸šåŠ¡
+	l_ipc.quit()
 	
-	-- »ù´¡»·¾³
+	-- åŸºç¡€ç¯å¢ƒ
 	iworker.quit()
 	imsg.quit()
 
@@ -90,15 +85,15 @@ local on_exit = function()
 		cfg.reset()
 	end
 	
-	-- ÅäÖÃÍË³ö	
+	-- é…ç½®é€€å‡º	
 	cfg.quit()
 
-	-- Ïß³ÌµÈÄ£¿éÍË³ö
-	l_tpool.quit()
+	-- çº¿ç¨‹ç­‰æ¨¡å—é€€å‡º
+	--l_tpool.quit()
 
 	if reset then
 		print('system reset reboot...')
-		unix.shell('reboot')	-- ÖØÆô
+		unix.shell('reboot')	-- é‡å¯
 	end
 	
 	print('system on_exit,over...')
@@ -108,13 +103,13 @@ end
 l_on_exit(on_exit)
 
 
--- µÈ´ıÒ»¶¨Ê±¼ä, ÔÙÉúĞ§¸÷¸öÄ£¿é
+-- ç­‰å¾…ä¸€å®šæ—¶é—´, å†ç”Ÿæ•ˆå„ä¸ªæ¨¡å—
 l_sys.sleep(1000)
-cfg_setup()		-- ÉúĞ§ÅäÖÃ
-check_arping() 	-- arpingÒ»´ÎÍøÂç, È·±£ÍøÂçÖĞµÄmacµØÖ·¶ÔÓ¦¹ØÏµok
+cfg_setup()		-- ç”Ÿæ•ˆé…ç½®
+--check_arping() 	-- arpingä¸€æ¬¡ç½‘ç»œ, ç¡®ä¿ç½‘ç»œä¸­çš„macåœ°å€å¯¹åº”å…³ç³»ok
 
 
--- Ö´ĞĞÒ»´ÎluaÄÚ´æ»ØÊÕ
+-- æ‰§è¡Œä¸€æ¬¡luaå†…å­˜å›æ”¶
 collectgarbage('collect')
 
 
@@ -123,21 +118,21 @@ local count = 1000
 while 0 < count do
 	--count = count - 1
 
-	-- ¶¨ÆÚÖ´ĞĞluaÄÚ´æ»ØÊÕ
+	-- å®šæœŸæ‰§è¡Œluaå†…å­˜å›æ”¶
 	tc_collect = tc_collect + 100
 	if 10000 < tc_collect then
 		tc_collect = 0
 		collectgarbage('collect')
 	end
 	
-	-- ÍøÂçÅäÖÃ¼ì²é
-	phynet.check_proc(100)
+	-- ç½‘ç»œé…ç½®æ£€æŸ¥
+	--phynet.check_proc(100)
 
-	-- ¼ì²é¸´Î»
+	-- æ£€æŸ¥å¤ä½
 
 	reset = gpio_reset.check_proc(100)
 	if reset then
-		break -- ÊÇ¸´Î», ÔòÍË³ö³ÌĞò
+		break -- æ˜¯å¤ä½, åˆ™é€€å‡ºç¨‹åº
 	end
 	l_sys.sleep(100)
 end

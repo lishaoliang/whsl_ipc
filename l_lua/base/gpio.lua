@@ -1,12 +1,12 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/09/12
 --
 -- @file    gpio.lua
--- @brief   gpioÍ¨ÓÃ²Ù×÷
--- @author	ÀîÉÜÁ¼
+-- @brief   gpioé€šç”¨æ“ä½œ
+-- @author	æç»è‰¯
 -- @version 0.1
--- @warning Ã»ÓĞ¾¯¸æ
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local string = require("string")
@@ -14,19 +14,19 @@ local unix = require("base.unix")
 local gpio = {}
 
 
--- @brief »ñÈ¡gpio±àºÅ
--- @param [in]  	grp[number]	×éºÅ
--- @param [in]		idx[number]	×éÄÚĞòºÅ
--- @return [number] ±àºÅ
+-- @brief è·å–gpioç¼–å·
+-- @param [in]  	grp[number]	ç»„å·
+-- @param [in]		idx[number]	ç»„å†…åºå·
+-- @return [number] ç¼–å·
 local get_grp_id = function (grp, idx)
 	return 8 * grp + idx
 end
 
 
--- @brief ´ò¿ªgpio
--- @param [in]  	grp[number]	×éºÅ
--- @param [in]		idx[number]	×éÄÚĞòºÅ
--- @return ÎŞ
+-- @brief æ‰“å¼€gpio
+-- @param [in]  	grp[number]	ç»„å·
+-- @param [in]		idx[number]	ç»„å†…åºå·
+-- @return æ— 
 gpio.open = function (grp, idx)
 	local id = get_grp_id(grp, idx)
 	local cmd = string.format('echo %d > /sys/class/gpio/export', id)	
@@ -36,10 +36,10 @@ gpio.open = function (grp, idx)
 end
 
 
--- @brief ¹Ø±Õgpio
--- @param [in]  	grp[number]	×éºÅ
--- @param [in]		idx[number]	×éÄÚĞòºÅ
--- @return ÎŞ
+-- @brief å…³é—­gpio
+-- @param [in]  	grp[number]	ç»„å·
+-- @param [in]		idx[number]	ç»„å†…åºå·
+-- @return æ— 
 gpio.close = function (grp, idx)
 	local id = get_grp_id(grp, idx)
 	local cmd = string.format('echo %d > /sys/class/gpio/unexport', id)	
@@ -49,11 +49,11 @@ gpio.close = function (grp, idx)
 end
 
 
--- @brief ÉèÖÃgpioÎªÊäÈë
--- @param [in]  	grp[number]	×éºÅ
--- @param [in]		idx[number]	×éÄÚĞòºÅ
--- @return ÎŞ
--- @note ´ÓÍâ²¿»ñÈ¡ĞÅºÅ, Ä¬ÈÏ1(¸ßµçÆ½)
+-- @brief è®¾ç½®gpioä¸ºè¾“å…¥
+-- @param [in]  	grp[number]	ç»„å·
+-- @param [in]		idx[number]	ç»„å†…åºå·
+-- @return æ— 
+-- @note ä»å¤–éƒ¨è·å–ä¿¡å·, é»˜è®¤1(é«˜ç”µå¹³)
 gpio.set_in = function (grp, idx)
 	local id = get_grp_id(grp, idx)
 	local cmd = string.format('echo in > /sys/class/gpio/gpio%d/direction', id)	
@@ -63,11 +63,11 @@ gpio.set_in = function (grp, idx)
 end
 
 
--- @brief ÉèÖÃgpioÎªÊä³ö
--- @param [in]  	grp[number]	×éºÅ
--- @param [in]		idx[number]	×éÄÚĞòºÅ
--- @return ÎŞ
--- @note ÏòÍâ²¿Êä³öĞÅºÅ, Ä¬ÈÏ0(µÍµçÆ½)
+-- @brief è®¾ç½®gpioä¸ºè¾“å‡º
+-- @param [in]  	grp[number]	ç»„å·
+-- @param [in]		idx[number]	ç»„å†…åºå·
+-- @return æ— 
+-- @note å‘å¤–éƒ¨è¾“å‡ºä¿¡å·, é»˜è®¤0(ä½ç”µå¹³)
 gpio.set_out = function (grp, idx)
 	local id = get_grp_id(grp, idx)
 	local cmd = string.format('echo out > /sys/class/gpio/gpio%d/direction', id)	
@@ -77,12 +77,12 @@ gpio.set_out = function (grp, idx)
 end
 
 
--- @brief ÉèÖÃgpioĞÅºÅÖµ
--- @param [in]  	grp[number]		×éºÅ
--- @param [in]		idx[number]		×éÄÚĞòºÅ
--- @param [in]		value[number]	ĞÅºÅÖµ[0, 1]; 0.µÍµçÆ½; 1.¸ßµçÆ½
--- @return ÎŞ
--- @note ÉèÖÃgpioÎªÊä³öÊ±, ÓĞĞ§
+-- @brief è®¾ç½®gpioä¿¡å·å€¼
+-- @param [in]  	grp[number]		ç»„å·
+-- @param [in]		idx[number]		ç»„å†…åºå·
+-- @param [in]		value[number]	ä¿¡å·å€¼[0, 1]; 0.ä½ç”µå¹³; 1.é«˜ç”µå¹³
+-- @return æ— 
+-- @note è®¾ç½®gpioä¸ºè¾“å‡ºæ—¶, æœ‰æ•ˆ
 gpio.set_value = function (grp, idx, value)
 	if 0 ~= value then
 		value = 1 -- 0, 1
@@ -96,10 +96,10 @@ gpio.set_value = function (grp, idx, value)
 end
 
 
--- @brief »ñÈ¡gpioĞÅºÅÖµ
--- @param [in]  	grp[number]		×éºÅ
--- @param [in]		idx[number]		×éÄÚĞòºÅ
--- @return [number] ĞÅºÅÖµ[0, 1]
+-- @brief è·å–gpioä¿¡å·å€¼
+-- @param [in]  	grp[number]		ç»„å·
+-- @param [in]		idx[number]		ç»„å†…åºå·
+-- @return [number] ä¿¡å·å€¼[0, 1]
 gpio.get_value = function (grp, idx)
 	local id = get_grp_id(grp, idx)
 	local cmd = string.format('cat /sys/class/gpio/gpio%d/value', id)	

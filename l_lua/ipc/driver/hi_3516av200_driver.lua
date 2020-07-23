@@ -1,14 +1,14 @@
-local l_sys = require("l_sys")
+ï»¿local l_sys = require("l_sys")
 local sh = l_sys.sh
 
 local hi_3516av200_driver = {}
 
--- ¼ÓÔØÇı¶¯
+-- åŠ è½½é©±åŠ¨
 hi_3516av200_driver.load = function()
 	
 end
 
--- Ğ¶ÔØÇı¶¯
+-- å¸è½½é©±åŠ¨
 hi_3516av200_driver.unload = function()
 	
 end

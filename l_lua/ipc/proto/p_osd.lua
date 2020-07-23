@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_image image»ù´¡²¿·ÖĞ­Òé
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_image imageåŸºç¡€éƒ¨åˆ†åè®®
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local cjson = require("cjson")
@@ -14,12 +14,12 @@ local iworker = require("ipc.iworker")
 local p_osd = {}
 
 
--- @brief ÉèÖÃOSD²¿·ÖÍ¨ÓÃ´¦Àí·½·¨
--- @param [in]		osd_key[string]	osd²¿·ÖÅäÖÃkeyÖµ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®OSDéƒ¨åˆ†é€šç”¨å¤„ç†æ–¹æ³•
+-- @param [in]		osd_key[string]	osdéƒ¨åˆ†é…ç½®keyå€¼
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 local set_osd_xxx = function (osd_key, req, res, cmd)
 	local param = req.body[cmd]
 	
@@ -60,11 +60,11 @@ local set_osd_xxx = function (osd_key, req, res, cmd)
 	end
 end
 
--- @brief ÉèÖÃOSDÊ±¼ä´Á
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®OSDæ—¶é—´æˆ³
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_osd.on_set_osd_timestamp = function (req, res, cmd)
 	set_osd_xxx('osd_timestamp', req, res, cmd)
 end

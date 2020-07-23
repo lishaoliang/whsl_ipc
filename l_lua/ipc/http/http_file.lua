@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- brief  http file HTTPÎÄ¼şÏÂÔØ
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- brief  http file HTTPæ–‡ä»¶ä¸‹è½½
+-- @author æç»è‰¯
 --]]
 local string = require("string")
 local table = require("table")
@@ -15,23 +15,33 @@ local http_mime = require("ipc.http.http_mime")
 local http_file = {}
 
 
--- httpÎÄ¼şÏÂÔØ¸ùÄ¿Â¼
+-- httpæ–‡ä»¶ä¸‹è½½æ ¹ç›®å½•
 local root_path = '/opt/l_lua/www'
-if 'hisi_linux' ~= l_sys.platform then
+if l_sys.simulator then
 	root_path = './www'
 end
 
 
-local pack_200 = function (body_len, mime)
+local pack_200 = function (body_len, mime, gz)
 	local t = {}
 	
 	table.insert(t, 'HTTP/1.1 200 OK\r\n')
 	table.insert(t, string.format('Server: %s\r\n', h_code.HTTP_SERVER))
-	table.insert(t, 'Connection: close\r\n')							-- ¶ÌÁ¬½Ó¹Ø±Õ
-	table.insert(t, string.format('Content-Type: %s\r\n', mime))		-- Êı¾İÀàĞÍ
-	table.insert(t, string.format('Content-Length: %d\r\n', body_len))	-- Êı¾İ³¤¶È
-	table.insert(t, 'Cache-Control: max-age=3600\r\n')					-- »º´æÊ±¼ä(Ãë)
-	table.insert(t, 'Access-Control-Allow-Origin: *\r\n')				-- Ğí¿É¿çÓòÇëÇó
+	table.insert(t, 'Connection: close\r\n')							-- çŸ­è¿æ¥å…³é—­
+	table.insert(t, string.format('Content-Type: %s\r\n', mime))		-- æ•°æ®ç±»å‹
+	table.insert(t, string.format('Content-Length: %d\r\n', body_len))	-- æ•°æ®é•¿åº¦
+
+	if gz then
+		table.insert(t, 'Content-Encoding: gzip\r\n')
+	end
+
+	if l_sys.simulator then
+		table.insert(t, 'Cache-Control: max-age=0\r\n')					-- ç¼“å­˜æ—¶é—´(ç§’)
+	else
+		table.insert(t, 'Cache-Control: max-age=3600\r\n')				-- ç¼“å­˜æ—¶é—´(ç§’)
+	end
+	
+	table.insert(t, 'Access-Control-Allow-Origin: *\r\n')				-- è®¸å¯è·¨åŸŸè¯·æ±‚
 	table.insert(t, '\r\n')
 	
 	return table.concat(t)
@@ -50,7 +60,7 @@ local get_mime = function (filename)
 		end
 	end
 	
-	return 'application/octet-stream' -- ¶ş½øÖÆÁ÷,Î´ÖªÀàĞÍ
+	return 'application/octet-stream' -- äºŒè¿›åˆ¶æµ,æœªçŸ¥ç±»å‹
 end
 
 local get_filter_path = function (url)
@@ -59,12 +69,13 @@ local get_filter_path = function (url)
 		return '', ''
 	end
 	
-	-- ·ÀÖ¹Ê¹ÓÃÏà¶ÔÂ·¾¶, ·Ç·¨ÏÂÔØÎÄ¼ş
-	path = string.gsub(path, '\\', '/')			-- ½«'\' Ìæ»»Îª '/'
-	path = string.gsub(path, '[.]+/', '/')		-- ½«'./','../' Ìæ»»Îª '/'
-	path = string.gsub(path, '[/]+/', '/')		-- ½«'//','///' Ìæ»»Îª '/'
+	-- é˜²æ­¢ä½¿ç”¨ç›¸å¯¹è·¯å¾„, éæ³•ä¸‹è½½æ–‡ä»¶
+	path = string.gsub(path, '~', '')			-- å°†'~' æ›¿æ¢ä¸º ''
+	path = string.gsub(path, '\\', '/')			-- å°†'\' æ›¿æ¢ä¸º '/'
+	path = string.gsub(path, '[.]+/', '/')		-- å°†'./','../' æ›¿æ¢ä¸º '/'
+	path = string.gsub(path, '[/]+/', '/')		-- å°†'//','///' æ›¿æ¢ä¸º '/'
 	
-	-- ÌáÈ¡ÎÄ¼şÃû
+	-- æå–æ–‡ä»¶å
 	local filename = string.match(path, '[^/]*$')	-- '/index.html'
 	if nil == filename or 0 == string.len(filename) then
 		return '', ''
@@ -73,12 +84,12 @@ local get_filter_path = function (url)
 	return root_path .. path, get_mime(filename)
 end
 
--- ¶ÁÈ¡ÎÄ¼ş
+-- è¯»å–æ–‡ä»¶
 local read_file = function (path)
 	local buf = nil
 	local size = 0
 	
-	local file = l_file.open(path, 'rb')	-- ¶ÁÈ¡¶ş½øÖÆ
+	local file = l_file.open(path, 'rb')	-- è¯»å–äºŒè¿›åˆ¶
 	if nil ~= file then
 		l_file.seek(file, 0, 'seek_end')
 		local filelen = l_file.tell(file)
@@ -95,17 +106,17 @@ local read_file = function (path)
 	return buf, size
 end
 
--- @brief HTTP¶ÌÁ¬½ÓÎÄ¼şÏÂÔØÇëÇó
--- @param [in]	req[table]	ÇëÇóµÄÏà¹ØÊı¾İ
--- @param [in]	url[string]	ÇëÇóµÄÂ·¾¶
--- @return [number]		´íÎóÂë
---			[string]	httpÍ·
---			[string/userdata(lightuserdata)]	httpÊı¾İÌå; ÎÄ±¾, ¶ş½øÖÆ
+-- @brief HTTPçŸ­è¿æ¥æ–‡ä»¶ä¸‹è½½è¯·æ±‚
+-- @param [in]	req[table]	è¯·æ±‚çš„ç›¸å…³æ•°æ®
+-- @param [in]	url[string]	è¯·æ±‚çš„è·¯å¾„
+-- @return [number]		é”™è¯¯ç 
+--			[string]	httpå¤´
+--			[string/userdata(lightuserdata)]	httpæ•°æ®ä½“; æ–‡æœ¬, äºŒè¿›åˆ¶
 http_file.request = function (req, url)	
 	local req_url = url
 	
-	-- µÚÒ»´Î³¢ÊÔ¶ÁÈ¡ÎÄ¼ş
-	-- µÚ¶ş´Î³¢ÊÔ¶ÁÈ¡'/not_found.html'ÎÄ¼ş
+	-- ç¬¬ä¸€æ¬¡å°è¯•è¯»å–æ–‡ä»¶
+	-- ç¬¬äºŒæ¬¡å°è¯•è¯»å–'/not_found.html'æ–‡ä»¶
 	local count = 2
 	while 0 < count do
 		local path, mime = get_filter_path(req_url)
@@ -115,10 +126,18 @@ http_file.request = function (req, url)
 			return h_code.HTTP_404, '', ''
 		end
 		
-		local buf, size = read_file(path)
+		-- å…ˆå°è¯•è¯»*.gzæ–‡ä»¶, å†å°è¯•è¯»åŸæ–‡ä»¶
+		local gz = true
+		local path_gz = path .. '.gz'
+		local buf, size = read_file(path_gz)
+		if nil == buf then
+			gz = false
+			buf, size = read_file(path)
+		end	
+		
 		if nil ~= buf then
-			local head = pack_200(size, mime)
-			--l_sys.free(buf)	-- ĞèÒªµÈµ½bufÊ¹ÓÃÍê±ÏºóÊÍ·Å
+			local head = pack_200(size, mime, gz)
+			--l_sys.free(buf)	-- éœ€è¦ç­‰åˆ°bufä½¿ç”¨å®Œæ¯•åé‡Šæ”¾
 			
 			return h_code.HTTP_200, head, buf
 		end

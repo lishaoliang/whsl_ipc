@@ -1,34 +1,34 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief ×¢Òâ: ·şÎñ¶Ë»Ø¸´Êı¾İ±ØĞëÌîĞ´'Content-Length'Í·Óò, ÒÔÌá¸ßä¯ÀÀÆ÷ÏìÓ¦ËÙ¶È
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief æ³¨æ„: æœåŠ¡ç«¯å›å¤æ•°æ®å¿…é¡»å¡«å†™'Content-Length'å¤´åŸŸ, ä»¥æé«˜æµè§ˆå™¨å“åº”é€Ÿåº¦
+-- @author æç»è‰¯
 --]]
 
 local h_code = {}
 
 h_code.HTTP_SERVER = 'L-Lua-5.3'
 
--- 200 Õı³£
+-- 200 æ­£å¸¸
 h_code.HTTP_200 = 200
 
 
--- 302 ÖØ¶¨Ïò; ĞÂµÄURL»áÔÚresponseÖĞµÄLocationÖĞ·µ»Ø, ä¯ÀÀÆ÷½«»á×Ô¶¯Ê¹ÓÃĞÂµÄURL·¢³öĞÂµÄRequest
+-- 302 é‡å®šå‘; æ–°çš„URLä¼šåœ¨responseä¸­çš„Locationä¸­è¿”å›, æµè§ˆå™¨å°†ä¼šè‡ªåŠ¨ä½¿ç”¨æ–°çš„URLå‘å‡ºæ–°çš„Request
 h_code.HTTP_302 = 302
 
 
--- ¿Í»§¶ËÇëÇóÓëÓï·¨´íÎó
+-- å®¢æˆ·ç«¯è¯·æ±‚ä¸è¯­æ³•é”™è¯¯
 h_code.HTTP_400 = 400
 h_code.HTTP_400_HEAD = 'HTTP/1.1 400 Bad Request\r\nServer: L-Lua-5.3\r\nContent-Length: 0\r\n\r\n'
 
--- ÎŞÊÚÈ¨
+-- æ— æˆæƒ
 h_code.HTTP_401 = 401
 h_code.HTTP_401_HEAD = 'HTTP/1.1 401 Unauthorized\r\nServer: L-Lua-5.3\r\nContent-Length: 0\r\n\r\n'
 
--- ·şÎñ¶Ë¾Ü¾øÌá¹©·şÎñ
+-- æœåŠ¡ç«¯æ‹’ç»æä¾›æœåŠ¡
 h_code.HTTP_403 = 403
 h_code.HTTP_403_HEAD = 'HTTP/1.1 403 Forbidden\r\nServer: L-Lua-5.3\r\nContent-Length: 0\r\n\r\n'
 
--- Î´ÕÒµ½Ò³Ãæ
+-- æœªæ‰¾åˆ°é¡µé¢
 h_code.HTTP_404 = 404
 h_code.HTTP_404_HEAD = 'HTTP/1.1 404 Not Found\r\nServer: L-Lua-5.3\r\nContent-Length: 32\r\n\r\n'
 h_code.HTTP_404_BODY = '<h1>Not Found</h1>\r\n<h2>404</h2>'

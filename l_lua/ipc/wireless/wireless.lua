@@ -1,13 +1,13 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    wireless.lua
--- @brief   wifiÍøÂç½Ó¿Ú·â×°
+-- @brief   wifiç½‘ç»œæ¥å£å°è£…
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local l_sys =  require("l_sys")
 local util = require("base.util")
@@ -19,15 +19,15 @@ local imsg = require("ipc.imsg")
 
 local l_wireless = nil
 if 'win' ~= l_sys.platform then
-	l_wireless = require("l_wireless")	-- Ä£ÄâÈí¼ş²»ÓÃ¼ÓÔØ
+	l_wireless = require("l_wireless")	-- æ¨¡æ‹Ÿè½¯ä»¶ä¸ç”¨åŠ è½½
 end
 
 local wireless = {}
 
--- ¼ì²éÊ±¼ä¼ä¸ô 10S~60S
-local time_interval = 30000 -- ¼ÆÊıµ¥Î»ºÁÃë[ms]
+-- æ£€æŸ¥æ—¶é—´é—´éš” 10S~60S
+local time_interval = 30000 -- è®¡æ•°å•ä½æ¯«ç§’[ms]
 
--- ÉÏÒ»´Î¼ì²éµÄÊ±¼äµã
+-- ä¸Šä¸€æ¬¡æ£€æŸ¥çš„æ—¶é—´ç‚¹
 local check_tc = 0
 
 local cfg = {
@@ -65,7 +65,7 @@ end
 
 
 wireless.setup = function (cf)
-	-- cf µÄ½á¹¹²Î¼û ipc.cfg.default_v ÖĞ wireless¶¨Òå
+	-- cf çš„ç»“æ„å‚è§ ipc.cfg.default_v ä¸­ wirelesså®šä¹‰
 	if 'ap' == cf.type then
 		wireless.set_ap()
 	else
@@ -164,7 +164,7 @@ end
 
 wireless.check_proc = function (tc)
 
-	-- ´ÓÅäÖÃÏûÏ¢ÖĞÈ¡Êı¾İ, Ò»Ö±È¡µ½×îºóÒ»¸öÅäÖÃÏûÏ¢
+	-- ä»é…ç½®æ¶ˆæ¯ä¸­å–æ•°æ®, ä¸€ç›´å–åˆ°æœ€åä¸€ä¸ªé…ç½®æ¶ˆæ¯
 	local json = ''
 	while true do
 		local ret, msg, lparam = imsg.get(imsg.update_wifi)
@@ -179,20 +179,20 @@ wireless.check_proc = function (tc)
 	if '' ~= json then
 		print('wireless.setup_json', json)
 		wireless.setup_json(json)
-		check_tc = time_interval -- ÓĞÅäÖÃ¸üĞÂ, Á¢¼´´¦Àí¼ì²é
+		check_tc = time_interval -- æœ‰é…ç½®æ›´æ–°, ç«‹å³å¤„ç†æ£€æŸ¥
 	end
 	
 	
 	if nil == l_wireless then
-		return -- Ä£ÄâÈí¼ş, ²»´¦Àíwifi
+		return -- æ¨¡æ‹Ÿè½¯ä»¶, ä¸å¤„ç†wifi
 	end
 
 	check_tc = check_tc + tc
 	if check_tc < time_interval then
-		return -- ²»ÔÚÊ±¼ä¼ä¸ô·¶Î§
+		return -- ä¸åœ¨æ—¶é—´é—´éš”èŒƒå›´
 	end
 	
-	-- ¼ÆÊı¹é0, ²¢Ö´ĞĞÒ»´Î¼ì²é
+	-- è®¡æ•°å½’0, å¹¶æ‰§è¡Œä¸€æ¬¡æ£€æŸ¥
 	check_tc = 0	
 	
 	local mode = l_wireless.mode_probe()
@@ -211,18 +211,18 @@ wireless.check_proc = function (tc)
 	end
 
 	if 'ap' ~= cfg.mode then
-		--ÏÔÊ¾wifiÁĞ±í  ÓÃÓÚ²âÊÔ
+		--æ˜¾ç¤ºwifiåˆ—è¡¨  ç”¨äºæµ‹è¯•
 		--sta_list_wifi()
 
-		-- sta Ä£Ê½, ¼ì²éÊÇ·ñÁ¬½Óµ½Ö¸¶¨µÄwifi
+		-- sta æ¨¡å¼, æ£€æŸ¥æ˜¯å¦è¿æ¥åˆ°æŒ‡å®šçš„wifi
 		local status, ssid = l_wireless.sta_get_linkstatus()
 		
 		if 0 == status then
-			-- Ã»ÓĞÁ¬½Ó,
-			-- wpa_supplicant ·şÎñ³ÌĞò»á×Ô¶¯Á¬½Ó  /opt/configfile/wpa_0_8.conf ÖĞ±£´æµÄwifi
+			-- æ²¡æœ‰è¿æ¥,
+			-- wpa_supplicant æœåŠ¡ç¨‹åºä¼šè‡ªåŠ¨è¿æ¥  /opt/configfile/wpa_0_8.conf ä¸­ä¿å­˜çš„wifi
 			print("----- 0 -------")  
 		elseif 1 == status then	
-			-- ÒÑ¾­Á¬½Ó µ«Ã»µÃµ½ssidĞÅÏ¢
+			-- å·²ç»è¿æ¥ ä½†æ²¡å¾—åˆ°ssidä¿¡æ¯
 			print("----- 1 -------")
 		else
 			print("----- 2 -------")
@@ -235,7 +235,7 @@ wireless.check_proc = function (tc)
 end
 
 
---ÓÃÓÚ²âÊÔ
+--ç”¨äºæµ‹è¯•
 wireless.test = function (mode)
 	local t_mode
 	local status, ssid
@@ -265,11 +265,11 @@ end
 
 --[[ test
 --wireless.set_ap()
-wireless.set_sta('HUAWEI-7NLNPF_5G', 'qwertyuiop1234567890') -- ¿ÉÄÜÎª´íÎóµÄssid,»òÃÜÂë
+wireless.set_sta('HUAWEI-7NLNPF_5G', 'qwertyuiop1234567890') -- å¯èƒ½ä¸ºé”™è¯¯çš„ssid,æˆ–å¯†ç 
 
 local count = 1000
 while 0 < count do
-	wireless.check_proc()	-- Ò»Ö±¼ì²éwifiÁ¬½Ó×´Ì¬,¼°ÊÇ·ñĞèÒª±ä¸ü
+	wireless.check_proc()	-- ä¸€ç›´æ£€æŸ¥wifiè¿æ¥çŠ¶æ€,åŠæ˜¯å¦éœ€è¦å˜æ›´
 	l_sys.sleep(1000)
 	
 	count = count -1

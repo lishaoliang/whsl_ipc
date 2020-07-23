@@ -1,17 +1,17 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/4/28
 --
 -- @file    upgrade.lua
--- @brief   Éı¼¶Á÷³Ì
---  \n Éı¼¶Á÷³Ì²»µÃÒÀÀµÎÄ¼şÏµÍ³
---  \n Éı¼¶ÎÄ¼ş: /nfsmem/upgrade/ipc_upgrade_file.lpk	*.lpkÎÄ¼ş
---  \n Éı¼¶±ê¼Ç: /nfsmem/upgrade/ipc_upgrade.txt		×Ö·û´®,º¬ÓĞ'1'¼´Îª¿ÉÉı¼¶
+-- @brief   å‡çº§æµç¨‹
+--  \n å‡çº§æµç¨‹ä¸å¾—ä¾èµ–æ–‡ä»¶ç³»ç»Ÿ
+--  \n å‡çº§æ–‡ä»¶: /nfsmem/upgrade/ipc_upgrade_file.lpk	*.lpkæ–‡ä»¶
+--  \n å‡çº§æ ‡è®°: /nfsmem/upgrade/ipc_upgrade.txt		å­—ç¬¦ä¸²,å«æœ‰'1'å³ä¸ºå¯å‡çº§
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/4/28 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/4/28 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local os = require("os")
@@ -24,14 +24,19 @@ local l_pack = require("l_pack")
 local util = require("base.util")
 local unix = require("base.unix")
 
+print('upgrade project=' .. l_sys.project)
+print('upgrade version=' .. l_sys.version)
+print('upgrade simulator=' .. tostring(l_sys.simulator))
 
-local ipc_upgrade_file = '/nfsmem/upgrade/ipc_upgrade_file.lpk'	-- Éı¼¶ÎÄ¼ş
-local ipc_upgrade = '/nfsmem/upgrade/ipc_upgrade.txt'			-- Éı¼¶±ê¼Ç
+
+local ipc_app_name = 'ipcamera'									-- ä¸»åº”ç”¨ç¨‹åºåç§°
+local ipc_upgrade_file = '/nfsmem/upgrade/ipc_upgrade_file.lpk'	-- å‡çº§æ–‡ä»¶
+local ipc_upgrade = '/nfsmem/upgrade/ipc_upgrade.txt'			-- å‡çº§æ ‡è®°
 local ipc_root = ''
 
 
-if 'hisi_linux' ~= l_sys.platform then
-	-- ·ÇÄ¿±êÆ½Ì¨, ÖØ¶¨Î»Ä¿Â¼
+if l_sys.simulator then
+	-- éç›®æ ‡å¹³å°, é‡å®šä½ç›®å½•
 	ipc_upgrade_file = './upgrade/ipc_upgrade_file.lpk'
 	ipc_upgrade = './upgrade/ipc_upgrade.txt'
 	ipc_root = './upgrade/root'
@@ -44,10 +49,10 @@ end
 
 
 local filter_file = function (path)
-	-- Ğ£ÑéÄ¿Â¼ºÏ·¨ĞÔ, ÒÔÃâ¸üĞÂµ½²»±ØÒªµÄÎÄ¼ş,Ä¿Â¼
-	-- Ö»¸üĞÂÎÄ¼ş: '/mm.sh'
-	-- Ö»¸üĞÂÄ¿Â¼: '/opt', '/komod'
-	-- ²»¸üĞÂÄ¿Â¼: '/opt/config' '/opt/configfile'
+	-- æ ¡éªŒç›®å½•åˆæ³•æ€§, ä»¥å…æ›´æ–°åˆ°ä¸å¿…è¦çš„æ–‡ä»¶,ç›®å½•
+	-- åªæ›´æ–°æ–‡ä»¶: '/mm.sh'
+	-- åªæ›´æ–°ç›®å½•: '/opt', '/komod'
+	-- ä¸æ›´æ–°ç›®å½•: '/opt/config' '/opt/configfile'
 	if nil == path then
 		return false, ''
 	end
@@ -59,7 +64,7 @@ local filter_file = function (path)
 	local dir_opt_cfg = '/opt/config'
 	local dir_opt_cfgfile = '/opt/configfile'
 	
-	if 'hisi_linux' ~= l_sys.platform then
+	if l_sys.simulator then
 		w_path = string.format('%s%s', ipc_root, path)
 		mm_file = string.format('%s%s', ipc_root, mm_file)
 		dir_opt = string.format('%s%s', ipc_root, dir_opt)
@@ -67,16 +72,16 @@ local filter_file = function (path)
 		dir_opt_cfg = string.format('%s%s', ipc_root, dir_opt_cfg)
 		dir_opt_cfgfile = string.format('%s%s', ipc_root, dir_opt_cfgfile)
 	else
-		-- °²È«ÎÊÌâ
+		-- å®‰å…¨é—®é¢˜
 	end
 	
-	-- ²»¿ÉÒÔ¸üĞÂµÄÄ¿Â¼
+	-- ä¸å¯ä»¥æ›´æ–°çš„ç›®å½•
 	if 1 == string.find(w_path, dir_opt_cfg) or
 		1 == string.find(w_path, dir_opt_cfgfile) then
 		return false, ''
 	end
 
-	-- Ğí¿É¸üĞÂµÄÄ¿Â¼¼°ÎÄ¼ş
+	-- è®¸å¯æ›´æ–°çš„ç›®å½•åŠæ–‡ä»¶
 	if mm_file == w_path then
 		return true, w_path
 	end
@@ -121,7 +126,7 @@ end
 
 local update_file = function (pkr, path)
 	
-	-- È·±£Ä¿Â¼´æÔÚ
+	-- ç¡®ä¿ç›®å½•å­˜åœ¨
 	mkdir(path)
 	
 	local file = l_file.open(path, 'wb')
@@ -168,7 +173,7 @@ local check_enc = function (enc)
 
 	local check = false
 	for k, v in pairs(obj) do
-		if v == l_sys.chip then
+		if v == l_sys.project then
 			check = true
 			break
 		end
@@ -198,11 +203,11 @@ local do_upgrade = function ()
 	local begin = l_pack.iter_begin(pkr)
 	while begin do
 		local path = l_pack.iter_path(pkr)
-	
-		-- ¹ıÂËÎÄ¼ş, Ö»¸üĞÂÄ³Ğ©Ä¿Â¼ÎÄ¼ş
+		
+		-- è¿‡æ»¤æ–‡ä»¶, åªæ›´æ–°æŸäº›ç›®å½•æ–‡ä»¶
 		local filter, filter_path = filter_file(path)
 		if filter then
-			update_file(pkr, filter_path)	-- ¸üĞÂÎÄ¼ş
+			update_file(pkr, filter_path)	-- æ›´æ–°æ–‡ä»¶
 		else
 			print('do_upgrade drop path:' .. path)
 		end
@@ -218,10 +223,10 @@ local do_upgrade = function ()
 end
 
 local do_killall = function ()
-	-- É±µô·ÇÉı¼¶³ÌĞò
-	unix.kill('llua', 'ipc.lua')		-- É±µôÖ÷³ÌĞò
+	-- æ€æ‰éå‡çº§ç¨‹åº
+	unix.kill(ipc_app_name)		-- æ€æ‰ä¸»ç¨‹åº
 	
-	-- É±µôÆäËû½ø³Ì
+	-- æ€æ‰å…¶ä»–è¿›ç¨‹
 	unix.killall('udhcpc')
 	unix.killall('wpa_supplicant')
 	unix.killall('dnsmasq')
@@ -231,9 +236,9 @@ local do_killall = function ()
 end
 
 
--- ´¦ÀíÒì³£ÍË³ö
+-- å¤„ç†å¼‚å¸¸é€€å‡º
 local on_exit = function()
-	-- ¹Ø±ÕÒµÎñ
+	-- å…³é—­ä¸šåŠ¡
 	
 	print('upgrade exit!.....')
 	return 0
@@ -242,10 +247,10 @@ end
 l_on_exit(on_exit)
 
 
--- Ö÷¼ì²éÉı¼¶Á÷³Ì
+-- ä¸»æ£€æŸ¥å‡çº§æµç¨‹
 local proc_main = function ()
 	
-	-- ¶ÁÈ¡ ipc_upgrade ÎÄ¼şÖĞµÄ±ê¼Ç
+	-- è¯»å– ipc_upgrade æ–‡ä»¶ä¸­çš„æ ‡è®°
 	local file = io.open(ipc_upgrade)
 	if nil ~= file then
 		local num = file:read('*n')
@@ -257,29 +262,32 @@ local proc_main = function ()
 			print('proc_main upgrade...')
 			do_killall()
 			
-			if do_check() then			-- ÔÙ´Î¼ì²éÎÄ¼ş°ü, ÒÔ·ÀÖ¹ÔÚ killall Ê±, Êı¾İ°ü±»¸ÄĞ´
+			if do_check() then			-- å†æ¬¡æ£€æŸ¥æ–‡ä»¶åŒ…, ä»¥é˜²æ­¢åœ¨ killall æ—¶, æ•°æ®åŒ…è¢«æ”¹å†™
+				
+				l_sys.sleep(6000)		-- ç­‰å¾…å‡ ç§’, ç¡®ä¿å®Œå…¨è¢«killæ‰äº†
+				
 				do_upgrade()
-			
-				unix.shell('sync')		-- Í¬²½ÎÄ¼şÏµÍ³
+				
+				unix.shell('sync')		-- åŒæ­¥æ–‡ä»¶ç³»ç»Ÿ
 				l_sys.sleep(100)
 				print('proc_main upgrade over.need reboot!...')
 			end
-
+			
 			b_reboot = true
 		else
 			print('proc_main check error!remove upgrade!')
 		end
 		
-		-- Õâ´Î´¦ÀíÖ®ºó, É¾³ıÉı¼¶ÎÄ¼ş
+		-- è¿™æ¬¡å¤„ç†ä¹‹å, åˆ é™¤å‡çº§æ–‡ä»¶
 		os.remove(ipc_upgrade)
 		os.remove(ipc_upgrade_file)
 		
-		unix.shell('sync')		-- Í¬²½ÎÄ¼şÏµÍ³
+		unix.shell('sync')		-- åŒæ­¥æ–‡ä»¶ç³»ç»Ÿ
 		l_sys.sleep(100)
 		
 		if b_reboot then
 			print('reboot now!...')
-			unix.shell('reboot')	-- ÖØÆô
+			unix.shell('reboot')	-- é‡å¯
 		end
 		
 		return not b_reboot
@@ -289,14 +297,14 @@ local proc_main = function ()
 end
 
 
--- ºóÌ¨ÊØ»¤: Èç¹ûipcÖ÷½ø³ÌÒâÍâ¹Òµô, ÔòÖØÆôÉè±¸
+-- åå°å®ˆæŠ¤: å¦‚æœipcä¸»è¿›ç¨‹æ„å¤–æŒ‚æ‰, åˆ™é‡å¯è®¾å¤‡
 local check_ipc = function ()
 	
-	local o = unix.ps('llua', 'ipc.lua')
+	local o = unix.ps(ipc_app_name)
 	if util.t_is_empty(o) then
 		print('check_ipc not found!...')
 		print('reboot now!...')
-		unix.shell('reboot')	-- ÖØÆô
+		unix.shell('reboot')	-- é‡å¯
 		return false
 	end
 	
@@ -307,25 +315,25 @@ end
 print('upgrade start ok...')
 
 
--- Ö÷Ñ­»·
+-- ä¸»å¾ªç¯
 local tc_collect = 0
 local count = 0
 while true do
 	if proc_main() then
 		count = count + 1000
-		if 180000 < count then		-- 3 * 60 * 1000, 3·ÖÖÓ
+		if 180000 < count then		-- 3 * 60 * 1000, 3åˆ†é’Ÿ
 			count = 0
 
-			-- ÄÚ´æÇåÀí
+			-- å†…å­˜æ¸…ç†
 			collectgarbage('collect')	
 			
-			-- ¶¨ÆÚ¼ì²éÖ÷½ø³ÌÊÇ·ñOK
+			-- å®šæœŸæ£€æŸ¥ä¸»è¿›ç¨‹æ˜¯å¦OK
 			if not check_ipc() then
 				break
 			end
 		end
 		
-		-- ¶¨ÆÚÖ´ĞĞluaÄÚ´æ»ØÊÕ
+		-- å®šæœŸæ‰§è¡Œluaå†…å­˜å›æ”¶
 		tc_collect = tc_collect + 1000
 		if 10000 < tc_collect then
 			tc_collect = 0

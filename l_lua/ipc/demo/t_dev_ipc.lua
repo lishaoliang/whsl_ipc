@@ -1,32 +1,32 @@
---[[
+ï»¿--[[
 -- @file	t_dev_ipc.lua
--- @brief	µ¥¶À²âÊÔ libl_dev_ipc.so ½Ó¿Ú
+-- @brief	å•ç‹¬æµ‹è¯• libl_dev_ipc.so æ¥å£
 --]]
 local l_sys = require("l_sys")
 local l_dev_ipc = require("l_dev_ipc")
 
 
 
--- ´òÓ¡»ù´¡Æ½Ì¨ĞÅÏ¢
+-- æ‰“å°åŸºç¡€å¹³å°ä¿¡æ¯
 print('platform=' .. l_sys.platform)
 print('chip=' .. l_sys.chip)
 print('version=' .. l_sys.version)
 
 
--- ¼ÓÔØÇı¶¯
+-- åŠ è½½é©±åŠ¨
 local path_driver = 'ipc.driver.' .. l_sys.chip .. '_driver'
 local hi_driver = require(path_driver)
 hi_driver.load()
 
 
 
-l_dev_ipc.init()	-- º£Ë¼Ó²¼şÄ£¿é³õÊ¼»¯£ºmppÏµÍ³³õÊ¼»¯
-l_dev_ipc.start()	-- º£Ë¼Ó²¼şÄ£¿éÆô¶¯
+l_dev_ipc.init()	-- æµ·æ€ç¡¬ä»¶æ¨¡å—åˆå§‹åŒ–ï¼šmppç³»ç»Ÿåˆå§‹åŒ–
+l_dev_ipc.start()	-- æµ·æ€ç¡¬ä»¶æ¨¡å—å¯åŠ¨
 
 
--- ÈÎºÎÇé¿öÏÂµÄÍË³öº¯Êı
+-- ä»»ä½•æƒ…å†µä¸‹çš„é€€å‡ºå‡½æ•°
 local on_exit = function()
-	-- ¹Ø±ÕÒµÎñ
+	-- å…³é—­ä¸šåŠ¡
 	l_dev_ipc.stop()
 	l_dev_ipc.quit()
 	
@@ -39,12 +39,12 @@ l_on_exit(on_exit)
 
 
 
--- µÈ´ıÒ»¶¨Ê±¼ä, ÔÙÉúĞ§¸÷¸öÄ£¿é
+-- ç­‰å¾…ä¸€å®šæ—¶é—´, å†ç”Ÿæ•ˆå„ä¸ªæ¨¡å—
 l_sys.sleep(1000)
 
 
 
--- Ö´ĞĞÒ»´ÎluaÄÚ´æ»ØÊÕ
+-- æ‰§è¡Œä¸€æ¬¡luaå†…å­˜å›æ”¶
 collectgarbage('collect')
 
 local tc_collect = 0
@@ -52,7 +52,7 @@ local count = 1000
 while 0 < count do
 	--count = count - 1
 
-	-- ¶¨ÆÚÖ´ĞĞluaÄÚ´æ»ØÊÕ
+	-- å®šæœŸæ‰§è¡Œluaå†…å­˜å›æ”¶
 	tc_collect = tc_collect + 100
 	if 10000 < tc_collect then
 		tc_collect = 0

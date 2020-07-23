@@ -1,8 +1,10 @@
--- ²»ÒªÊÖ¶¯ĞŞ¸Ä±¾ÎÄ¼ş, ±àÒëÊ±ºò×Ô¶¯Éú³É
+ï»¿
+local l_sys = require("l_sys")
+
 local version = {
 	hw_ver = 'h1.0.6',
-	sw_ver = 'v1.0.6',
-	build_time = '2019-04-30 14:24:56 +08:00'
+	sw_ver = l_sys.sw_ver,
+	build_time = l_sys.build_time
 }
 
 return version

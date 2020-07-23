@@ -1,92 +1,92 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_tpool.lua
--- @brief   À©Õ¹¿ârequire("l_tpool"), Ìá¹©Ïß³Ì³ØÖ§³Ö
+-- @brief   æ‰©å±•åº“require("l_tpool"), æä¾›çº¿ç¨‹æ± æ”¯æŒ
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_tpool = {}
 
 
--- @brief l_tpool Ä£¿é³õÊ¼»¯
--- @param [in]	ht_size[number]		(¿ÉÑ¡)hash table ´óĞ¡(Ä¬ÈÏ4096, ×îĞ¡100)
---  \n ·ÇÏß³Ì°²È«
+-- @brief l_tpool æ¨¡å—åˆå§‹åŒ–
+-- @param [in]	ht_size[number]		(å¯é€‰)hash table å¤§å°(é»˜è®¤4096, æœ€å°100)
+--  \n éçº¿ç¨‹å®‰å…¨
 l_tpool.init = function (ht_size)
 
 end
 
--- @brief l_tpool Ä£¿éÍË³ö
---  \n ·ÇÏß³Ì°²È«
+-- @brief l_tpool æ¨¡å—é€€å‡º
+--  \n éçº¿ç¨‹å®‰å…¨
 l_tpool.quit = function ()
 
 end
 
 
--- @brief ´´½¨Ãû³ÆÎªnameµÄÏß³Ì
--- @param [in] name[string] Ïß³ÌÃû³Æ
--- @param [in] tc_sleep[number]	Ïß³ÌĞİÃßÊ±¼ä[ºÁÃë]; ×îĞ¡1ºÁÃë
--- @param [in] loader_path[string] ¼ÓÔØluaÈë¿ÚÎÄ¼ş
--- @param [in] param[string] ´«µİ¸øĞÂlua»·¾³µÄ²ÎÊı
--- @param [in] cb_loader[userdata] º¯Êılua_env_loader_cb, ÓÃÓÚÊ¹ÓÃ×Ô¶¨Òå¼ÓÔØº¯Êı
--- @return [boolean] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÃ»ÓĞÕÒµ½nameµÄÏß³Ì
--- @note ·ÇÏß³Ì°²È«
--- \n ±ØĞëÔÚÊ¹ÓÃÇ°, ½«ËùÓĞÏß³Ì´´½¨ºÃ
+-- @brief åˆ›å»ºåç§°ä¸ºnameçš„çº¿ç¨‹
+-- @param [in] name[string] çº¿ç¨‹åç§°
+-- @param [in] tc_sleep[number]	çº¿ç¨‹ä¼‘çœ æ—¶é—´[æ¯«ç§’]; æœ€å°1æ¯«ç§’
+-- @param [in] loader_path[string] åŠ è½½luaå…¥å£æ–‡ä»¶
+-- @param [in] param[string] ä¼ é€’ç»™æ–°luaç¯å¢ƒçš„å‚æ•°
+-- @param [in] cb_loader[userdata] å‡½æ•°lua_env_loader_cb, ç”¨äºä½¿ç”¨è‡ªå®šä¹‰åŠ è½½å‡½æ•°
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºæ²¡æœ‰æ‰¾åˆ°nameçš„çº¿ç¨‹
+-- @note éçº¿ç¨‹å®‰å…¨
+-- \n å¿…é¡»åœ¨ä½¿ç”¨å‰, å°†æ‰€æœ‰çº¿ç¨‹åˆ›å»ºå¥½
 l_tpool.create = function (name, tc_sleep, loader_path, param, cb_loader)
 	return true
 	--return false
 end
 
 
--- @brief ÏòÃû³ÆÎªnameµÄÏß³ÌpostÏûÏ¢
--- @param [in] name[string] Ïß³ÌÃû³Æ
--- @return [boolean] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÃ»ÓĞÕÒµ½nameµÄÏß³Ì
--- @note ·ÇÏß³Ì°²È«
+-- @brief å‘åç§°ä¸ºnameçš„çº¿ç¨‹postæ¶ˆæ¯
+-- @param [in] name[string] çº¿ç¨‹åç§°
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºæ²¡æœ‰æ‰¾åˆ°nameçš„çº¿ç¨‹
+-- @note éçº¿ç¨‹å®‰å…¨
 l_tpool.destroy = function (name)
 	return true
 	--return false
 end
 
 
--- @brief ÏòÃû³ÆÎªnameµÄÏß³ÌpostÏûÏ¢
--- @param [in] name[string] Ïß³ÌÃû³Æ
--- @param [in] msg[string]	ÏûÏ¢
--- @param [in] lparam[string] lparam²ÎÊı
--- @param [in] wparam[string] wparam²ÎÊı
--- @param [in] cobj[userdata] c¶ÔÏóÖ¸Õë
--- @return [boolean] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÃ»ÓĞÕÒµ½nameµÄÏß³Ì
+-- @brief å‘åç§°ä¸ºnameçš„çº¿ç¨‹postæ¶ˆæ¯
+-- @param [in] name[string] çº¿ç¨‹åç§°
+-- @param [in] msg[string]	æ¶ˆæ¯
+-- @param [in] lparam[string] lparamå‚æ•°
+-- @param [in] wparam[string] wparamå‚æ•°
+-- @param [in] cobj[userdata] cå¯¹è±¡æŒ‡é’ˆ
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºæ²¡æœ‰æ‰¾åˆ°nameçš„çº¿ç¨‹
 l_tpool.post = function (name, msg, lparam, wparam, cobj)
 	return true
 	-- return false
 end
 
 
--- @brief ´ÓÒ»×éÃû³ÆÖĞÕÒµ½, Ïà¶Ô¿ÕÏĞµÄÏß³Ì
--- @param [in] t[table] Ïß³ÌÃû³ÆÊı×é
--- @return [string] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÃ»ÓĞÕÒµ½nameµÄÏß³Ì
+-- @brief ä»ä¸€ç»„åç§°ä¸­æ‰¾åˆ°, ç›¸å¯¹ç©ºé—²çš„çº¿ç¨‹
+-- @param [in] t[table] çº¿ç¨‹åç§°æ•°ç»„
+-- @return [string] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºæ²¡æœ‰æ‰¾åˆ°nameçš„çº¿ç¨‹
 -- @note 
---  \n t = {'aaa', 'bbb', 'ccc', 'ddd'} µÄĞÎÊ½
+--  \n t = {'aaa', 'bbb', 'ccc', 'ddd'} çš„å½¢å¼
 l_tpool.find_idle = function (t)
 	return ''
 	-- return 'aaa'
 end
 
 
--- @brief ´´½¨Ãû³ÆÎªnameµÄÏß³Ì
--- @param [in] name[string] Ïß³ÌÃû³Æ
--- @param [in] tc_sleep[number]	Ïß³ÌĞİÃßÊ±¼ä[ºÁÃë]; ×îĞ¡1ºÁÃë
--- @param [in] loader_path[string] ¼ÓÔØluaÈë¿ÚÎÄ¼ş
--- @param [in] param[string] ´«µİ¸øĞÂlua»·¾³µÄ²ÎÊı
--- @param [in] cb_loader[userdata] º¯Êılua_env_loader_cb, ÓÃÓÚÊ¹ÓÃ×Ô¶¨Òå¼ÓÔØº¯Êı
--- @return [userdata] ÍêÈ«userdata
--- @note ´´½¨ÓÉLuaÍĞ¹Ü, ½ÓÊÜGC¹ÜÀíµÄÏß³Ì
---  \n ´Ëº¯ÊıÎŞĞè l_tpool.init, ²»½ÓÊÜl_tpoolÈ«¾ÖÄ£¿é¹ÜÀí
---  \n Ö»ÄÜÍ¨¹ı·µ»ØµÄuserdataÀ´·ÃÎÊÏß³Ì
+-- @brief åˆ›å»ºåç§°ä¸ºnameçš„çº¿ç¨‹
+-- @param [in] name[string] çº¿ç¨‹åç§°
+-- @param [in] tc_sleep[number]	çº¿ç¨‹ä¼‘çœ æ—¶é—´[æ¯«ç§’]; æœ€å°1æ¯«ç§’
+-- @param [in] loader_path[string] åŠ è½½luaå…¥å£æ–‡ä»¶
+-- @param [in] param[string] ä¼ é€’ç»™æ–°luaç¯å¢ƒçš„å‚æ•°
+-- @param [in] cb_loader[userdata] å‡½æ•°lua_env_loader_cb, ç”¨äºä½¿ç”¨è‡ªå®šä¹‰åŠ è½½å‡½æ•°
+-- @return [userdata] å®Œå…¨userdata
+-- @note åˆ›å»ºç”±Luaæ‰˜ç®¡, æ¥å—GCç®¡ç†çš„çº¿ç¨‹
+--  \n æ­¤å‡½æ•°æ— éœ€ l_tpool.init, ä¸æ¥å—l_tpoolå…¨å±€æ¨¡å—ç®¡ç†
+--  \n åªèƒ½é€šè¿‡è¿”å›çš„userdataæ¥è®¿é—®çº¿ç¨‹
 l_tpool.open_thread = function (name, tc_sleep, loader_path, param, cb_loader)
 	return l_tpool_thread
 end

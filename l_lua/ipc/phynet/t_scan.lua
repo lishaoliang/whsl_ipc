@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/04
 --
 -- @file    t_scan.lua
--- @brief   É¨Ãèwifi
+-- @brief   æ‰«æwifi
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/04 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/04 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local string = require("string")
@@ -25,15 +25,15 @@ local wpa_cli = require("ipc.phynet.wpa_cli")
 local wpa, ping = wpa_cli.ping()
 
 if not wpa then
-	wlan.env_sta()			-- Ã»ÓĞÆôÓÃwpa_supplicant, ÔòÏÈÉèÖÃsta»·¾³
+	wlan.env_sta()			-- æ²¡æœ‰å¯ç”¨wpa_supplicant, åˆ™å…ˆè®¾ç½®staç¯å¢ƒ
 else
-	wpa_cli.disconnect()	-- ÒÑ¾­ÆôÓÃwpa_supplicant, Ôò¶Ï¿ªÁ¬½Ó, ËÑË÷È«²¿wifi
+	wpa_cli.disconnect()	-- å·²ç»å¯ç”¨wpa_supplicant, åˆ™æ–­å¼€è¿æ¥, æœç´¢å…¨éƒ¨wifi
 end
 
--- ÔÙ´Îping 
+-- å†æ¬¡ping 
 wpa, ping = wpa_cli.ping()
 
--- Èç¹û³É¹¦, Ôò¿ÉÒÔ¿ªÊ¼ËÑË÷
+-- å¦‚æœæˆåŠŸ, åˆ™å¯ä»¥å¼€å§‹æœç´¢
 if ping then	
 	wpa_cli.scan()	
 	

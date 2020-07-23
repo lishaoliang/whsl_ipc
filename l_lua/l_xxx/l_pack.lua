@@ -1,66 +1,66 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/04/26
 --
 -- @file    l_pack.lua
--- @brief   À©Õ¹¿ârequire("l_pack"), ½â°ü
+-- @brief   æ‰©å±•åº“require("l_pack"), è§£åŒ…
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/26 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/26 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_pack = {}
 
 
--- @brief Ğ£Ñé°üÊÇ·ñOK
--- @param [in]	path_name[string]	°üÂ·¾¶Ãû
--- @param [in]	offset[number]		[¿ÉÑ¡,Ä¬ÈÏ0]ÎÄ¼şÆğÊ¼Æ«ÒÆ
--- @return [boolean] true.Í¨¹ıĞ£Ñé; false.Î´Í¨¹ıĞ£Ñé
+-- @brief æ ¡éªŒåŒ…æ˜¯å¦OK
+-- @param [in]	path_name[string]	åŒ…è·¯å¾„å
+-- @param [in]	offset[number]		[å¯é€‰,é»˜è®¤0]æ–‡ä»¶èµ·å§‹åç§»
+-- @return [boolean] true.é€šè¿‡æ ¡éªŒ; false.æœªé€šè¿‡æ ¡éªŒ
 l_pack.check = function (path_name, offset)
 	return true
 	-- return false
 end
 
 
--- @brief ´ò¿ªÒ»¸ö°ü¶ÔÏó(Ğ´Êı¾İ, Ê¹ÓÃ'rb'·½Ê½´ò¿ªÎÄ¼ş)
--- @param [in]	path_name[string]	°üÂ·¾¶Ãû
--- @param [in]	offset[number]		[¿ÉÑ¡,Ä¬ÈÏ0]ÎÄ¼şÆğÊ¼Æ«ÒÆ
--- @return [nil, l_pack] ¶ÁÈ¡°ü¶ÔÏólpkf_r
+-- @brief æ‰“å¼€ä¸€ä¸ªåŒ…å¯¹è±¡(å†™æ•°æ®, ä½¿ç”¨'rb'æ–¹å¼æ‰“å¼€æ–‡ä»¶)
+-- @param [in]	path_name[string]	åŒ…è·¯å¾„å
+-- @param [in]	offset[number]		[å¯é€‰,é»˜è®¤0]æ–‡ä»¶èµ·å§‹åç§»
+-- @return [nil, l_pack] è¯»å–åŒ…å¯¹è±¡lpkf_r
 l_pack.open = function (path_name, offset)
 	return lpkf_r
 	-- return nil
 end
 
 
--- @brief ¹Ø±Õ°ü¶ÔÏólpkf_r
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @return ÎŞ
+-- @brief å…³é—­åŒ…å¯¹è±¡lpkf_r
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @return æ— 
 l_pack.close = function (lpkf_r)
 	return
 end
 
 
--- @brief »ñÈ¡°ü¶ÔÏólpkf_rµÄÃØÔ¿ĞÅÏ¢
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @return [string]	ÃØÔ¿ĞÅÏ¢. ''ÎªÃ»ÓĞ
+-- @brief è·å–åŒ…å¯¹è±¡lpkf_rçš„ç§˜é’¥ä¿¡æ¯
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @return [string]	ç§˜é’¥ä¿¡æ¯. ''ä¸ºæ²¡æœ‰
 l_pack.enc = function (lpkf_r)
 	return ''
 end
 
 
--- @brief »ñÈ¡°ü¶ÔÏóÖĞÎÄ¼şÊıÄ¿
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @return [number] ÎÄ¼şÊıÄ¿
+-- @brief è·å–åŒ…å¯¹è±¡ä¸­æ–‡ä»¶æ•°ç›®
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @return [number] æ–‡ä»¶æ•°ç›®
 l_pack.size = function (lpkf_r)
 	return 0
 end
 
 
--- @brief »ñÈ¡°ü¶ÔÏóÖĞÎÄ¼ş¾ßÌåĞÅÏ¢
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @return [table] ÎÄ¼ş¾ßÌåĞÅÏ¢
---  \n ·µ»ØÖµÊ¾Àı:
+-- @brief è·å–åŒ…å¯¹è±¡ä¸­æ–‡ä»¶å…·ä½“ä¿¡æ¯
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @return [table] æ–‡ä»¶å…·ä½“ä¿¡æ¯
+--  \n è¿”å›å€¼ç¤ºä¾‹:
 --  \n {
 --  \n   {'path':'/opt/aaa.lua','filelen':1024},
 --  \n   {'path':'/opt/bbb.lua','filelen':547},
@@ -70,62 +70,62 @@ l_pack.files = function (lpkf_r)
 end
 
 
--- @brief ÔÚ°üÖĞËÑË÷Â·¾¶
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @param [in]	path[string]	Â·¾¶Ãû,ÀıÈç'/opt/aaa.lua'
--- @return [boolean] true.ËÑË÷µ½Êı¾İ; false.Î´ËÑË÷µ½Êı¾İ
--- @note µü´ú×Ó²Ù×÷
+-- @brief åœ¨åŒ…ä¸­æœç´¢è·¯å¾„
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @param [in]	path[string]	è·¯å¾„å,ä¾‹å¦‚'/opt/aaa.lua'
+-- @return [boolean] true.æœç´¢åˆ°æ•°æ®; false.æœªæœç´¢åˆ°æ•°æ®
+-- @note è¿­ä»£å­æ“ä½œ
 l_pack.iter_search = function (lpkf_r, path)
 	return true
 	--return false
 end
 
 
--- @brief ¶¨Î»µ½¿ªÊ¼
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @return [boolean] true.ÓĞÊı¾İ; false.ÎŞÊı¾İÁË
--- @note µü´ú×Ó²Ù×÷
+-- @brief å®šä½åˆ°å¼€å§‹
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @return [boolean] true.æœ‰æ•°æ®; false.æ— æ•°æ®äº†
+-- @note è¿­ä»£å­æ“ä½œ
 l_pack.iter_begin = function (lpkf_r)
 	return true
 	--return false
 end
 
 
--- @brief ÏÂÒ»¸ö
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @return [boolean] true.ÓĞÊı¾İ; false.ÎŞÊı¾İÁË
--- @note µü´ú×Ó²Ù×÷
+-- @brief ä¸‹ä¸€ä¸ª
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @return [boolean] true.æœ‰æ•°æ®; false.æ— æ•°æ®äº†
+-- @note è¿­ä»£å­æ“ä½œ
 l_pack.iter_next = function (lpkf_r)
 	return true
 	--return false
 end
 
 
--- @brief »ñÈ¡µ±Ç°(µü´ú×Ó)Â·¾¶
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @return [string] Â·¾¶
--- @note µü´ú×Ó²Ù×÷
+-- @brief è·å–å½“å‰(è¿­ä»£å­)è·¯å¾„
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @return [string] è·¯å¾„
+-- @note è¿­ä»£å­æ“ä½œ
 l_pack.iter_path = function (lpkf_r)
 	return '/opt/aaa.lua'
 end
 
 
--- @brief »ñÈ¡µ±Ç°(µü´ú×Ó)ÎÄ¼ş´óĞ¡
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @return [number] ÎÄ¼ş´óĞ¡
--- @note µü´ú×Ó²Ù×÷
+-- @brief è·å–å½“å‰(è¿­ä»£å­)æ–‡ä»¶å¤§å°
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @return [number] æ–‡ä»¶å¤§å°
+-- @note è¿­ä»£å­æ“ä½œ
 l_pack.iter_filelen = function (lpkf_r)
 	return 1024
 end
 
 
--- @brief ¶ÁÈ¡µ±Ç°(µü´ú×Ó)Êı¾İ
--- @param [in]	lpkf_r[l_pack]	°ü¶ÔÏólpkf_r
--- @param [in]	offset[number]	Æ«ÒÆÎ»ÖÃ
--- @param [in]	buf_max[number]	[¿ÉÑ¡,Ä¬ÈÏ32K]×î´ó»º´æ; range:[4K, 4M]
--- @return [nil, l_buf]	l_buf»º´æ¶ÔÏó
---  \n  size[number]	¶ÁÈ¡Êı¾İ´óĞ¡
--- @note µü´ú×Ó²Ù×÷
+-- @brief è¯»å–å½“å‰(è¿­ä»£å­)æ•°æ®
+-- @param [in]	lpkf_r[l_pack]	åŒ…å¯¹è±¡lpkf_r
+-- @param [in]	offset[number]	åç§»ä½ç½®
+-- @param [in]	buf_max[number]	[å¯é€‰,é»˜è®¤32K]æœ€å¤§ç¼“å­˜; range:[4K, 4M]
+-- @return [nil, l_buf]	l_bufç¼“å­˜å¯¹è±¡
+--  \n  size[number]	è¯»å–æ•°æ®å¤§å°
+-- @note è¿­ä»£å­æ“ä½œ
 l_pack.iter_read = function (lpkf_r, offset, buf_max)
 	return l_buf, 1024
 	-- return nil, 0

@@ -1,52 +1,52 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/4/20
 --
 -- @file    l_mcache.lua
--- @brief   ÄÚÖÃ¿ârequire("l_mcache"), Lua¸÷¸öÏß³ÌÖ®¼äµÄk, v¸ñÊ½¹²Ïí»º´æ
+-- @brief   å†…ç½®åº“require("l_mcache"), Luaå„ä¸ªçº¿ç¨‹ä¹‹é—´çš„k, væ ¼å¼å…±äº«ç¼“å­˜
 --  \n require("l_tpool")
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/14/20 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/14/20 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_mcache = {}
 
 
--- @brief »º´æÄ£¿é³õÊ¼»¯
--- @param [in]  	ht_size[number]	hash table ´óĞ¡(Ä¬ÈÏ4096, ×îĞ¡100)
+-- @brief ç¼“å­˜æ¨¡å—åˆå§‹åŒ–
+-- @param [in]  	ht_size[number]	hash table å¤§å°(é»˜è®¤4096, æœ€å°100)
 --l_mcache.init = function (ht_size)
 --	return
 --end
 
 
--- @brief »º´æÄ£¿é·´³õÊ¼»¯
+-- @brief ç¼“å­˜æ¨¡å—ååˆå§‹åŒ–
 --l_mcache.quit = function ()
 --	return
 --end
 
 
--- @brief Çå¿ÕËùÓĞk, v
+-- @brief æ¸…ç©ºæ‰€æœ‰k, v
 l_mcache.clear = function ()
 	return
 end
 
 
--- @brief ÉèÖÃk, v
--- @param [in]  	k[string]	¹Ø¼ü×Ö
--- @param [in]		v[~]		Öµ
+-- @brief è®¾ç½®k, v
+-- @param [in]  	k[string]	å…³é”®å­—
+-- @param [in]		v[~]		å€¼
 --  \n v = l_obj, boolean, number, string
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
---  \n Í¬k»áÌæ»»³ÉĞÂÖµ
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
+--  \n åŒkä¼šæ›¿æ¢æˆæ–°å€¼
 l_mcache.set = function (k, v)
 	return true
 end
 
 
--- @brief »ñÈ¡kµÄvÖµ
--- @param [in]  	k[string]	¹Ø¼ü×Ö
+-- @brief è·å–kçš„vå€¼
+-- @param [in]  	k[string]	å…³é”®å­—
 -- @return v	= nil, l_obj, boolean, number, string
 --  \n     type	= 'nil', 'l_obj', 'boolean', 'number', 'string'
 l_mcache.get = function (k)

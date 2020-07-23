@@ -1,18 +1,18 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/08
 --
 -- @file    phynet.lua
--- @brief   phynetÍø¿Ú¹ÜÀí
+-- @brief   phynetç½‘å£ç®¡ç†
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/08 0.1 ´´½¨ÎÄ¼ş
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/08 0.1 åˆ›å»ºæ–‡ä»¶
 -- @note
---	\n 169.254.0.0/16 ±¾»úË½ÓĞµØÖ·¶Î
---  \n 169.254.100.123	eth0ÎïÀíÍø¿ÚÄ¬ÈÏµØÖ·
---  \n 169.254.110.123	wlan0ÎŞÏßÍøÂçÄ¬ÈÏµØÖ·
--- @warning Ã»ÓĞ¾¯¸æ
+--	\n 169.254.0.0/16 æœ¬æœºç§æœ‰åœ°å€æ®µ
+--  \n 169.254.100.123	eth0ç‰©ç†ç½‘å£é»˜è®¤åœ°å€
+--  \n 169.254.110.123	wlan0æ— çº¿ç½‘ç»œé»˜è®¤åœ°å€
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local cjson  = require("cjson")
 local l_sys =  require("l_sys")
@@ -27,20 +27,21 @@ local write_wpa_cfg = require("ipc.phynet.write_wpa_cfg")
 local wpa_cli = require("ipc.phynet.wpa_cli")
 
 local cfg = require("ipc.cfg.cfg")
+local mcache = require("ipc.mcache")
 
 
 local phynet = {}
 
 
--- ÊÇ·ñ¿ØÖÆÍø¿¨
+-- æ˜¯å¦æ§åˆ¶ç½‘å¡
 local ctrl_eth0 = true
 local ctrl_wlan0 = true
 
--- wlan ÅäÖÃ
+-- wlan é…ç½®
 local cfg_wlan = {
 	mode_ap = true,
 	
-	update = false,	-- dhcp, ip, netmask, gatewayÊÇ·ñ±»¸üĞÂ
+	update = false,	-- dhcp, ip, netmask, gatewayæ˜¯å¦è¢«æ›´æ–°
 	dhcp = true,
 	ip = '',
 	netmask = '',
@@ -70,7 +71,7 @@ local set_wireless = function (lobj)
 		write_wpa_cfg(lobj['ssid'], lobj['passwd'])
 		wlan.env_sta()
 		
-		-- sta Ö®ºóÉèÖÃÒ»´Îip
+		-- sta ä¹‹åè®¾ç½®ä¸€æ¬¡ip
 		if cfg_wlan.update then
 			if cfg_wlan.dhcp then
 				wlan.set_sta_dhcp()
@@ -112,7 +113,7 @@ local set_wireless_ipv4 = function (lobj)
 end
 
 phynet.check_proc = function (tc)
-	-- lparam ½á¹¹ ²Î¼û ipc.cfg.default_v.lua
+	-- lparam ç»“æ„ å‚è§ ipc.cfg.default_v.lua
 
 	local b_update_broadcast = false
 	
@@ -121,7 +122,7 @@ phynet.check_proc = function (tc)
 	
 		if ret then
 			print('phynet.check_proc msg:', msg, lparam)
-			-- ÒÔÏÂº¯Êı±£»¤Ä£Ê½ÔËĞĞ, ÒÔÃâ¹Ò¶ÏÖ÷Ïß³Ì
+			-- ä»¥ä¸‹å‡½æ•°ä¿æŠ¤æ¨¡å¼è¿è¡Œ, ä»¥å…æŒ‚æ–­ä¸»çº¿ç¨‹
 			local ret, lobj = pcall(cjson.decode, lparam)
 			if ret and not util.t_is_empty(lobj) then
 				if 'ipv4' == msg then
@@ -144,25 +145,32 @@ phynet.check_proc = function (tc)
 		end
 	end
 	
-	-- ĞŞ¸ÄIPµØÖ·Ö®ºó, Í¨Öª¼ì²é¸üĞÂ¹ã²¥
+	-- ä¿®æ”¹IPåœ°å€ä¹‹å, é€šçŸ¥æ£€æŸ¥æ›´æ–°å¹¿æ’­
 	if b_update_broadcast then
 		iworker.post(iworker.lw_discover, 'broadcast_ser.update', '', '')
+		iworker.post(iworker.lw_phynet, 'arping', '', '')
 	end
 end
 
 
 phynet.setup = function ()
-	-- ÎïÀíÍøÂç
+	-- wifi ç½‘ç»œå®é™…æ˜¯å¦ç”Ÿæ•ˆ
+	ctrl_wlan0 = mcache.is_surport_wireless()	
+	
+	-- ç‰©ç†ç½‘ç»œ
 	local ipv4 = cjson.encode(cfg.get('ipv4'))
 	imsg.post(imsg.update_phynet, 'ipv4', ipv4, '')
 
-	-- wireless
-	local wireless = cjson.encode(cfg.get('wireless'))
-	imsg.post(imsg.update_phynet, 'wireless', wireless, '')
-
-	-- wireless_ipv4
-	local wireless_ipv4 = cjson.encode(cfg.get('wireless_ipv4'))
-	imsg.post(imsg.update_phynet, 'wireless_ipv4', wireless_ipv4, '')
+	if ctrl_wlan0 then
+		-- wireless
+		local wireless = cjson.encode(cfg.get('wireless'))
+		imsg.post(imsg.update_phynet, 'wireless', wireless, '')
+		
+		-- wireless_ipv4
+		local wireless_ipv4 = cjson.encode(cfg.get('wireless_ipv4'))
+		imsg.post(imsg.update_phynet, 'wireless_ipv4', wireless_ipv4, '')
+	end
+	
 end
 
 return phynet

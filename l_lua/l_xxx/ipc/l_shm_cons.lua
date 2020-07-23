@@ -1,41 +1,41 @@
---[[
--- Copyright(c) 2020, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2020, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2020/1/7
 --
 -- @file    l_shm_cons.lua
--- @brief   ÄÚÖÃ¿ârequire("l_shm_cons"), ¶à½ø³Ì¹²ÏíÄÚ´æ(Éú²úÕß)
+-- @brief   å†…ç½®åº“require("l_shm_cons"), å¤šè¿›ç¨‹å…±äº«å†…å­˜(ç”Ÿäº§è€…)
 --  \n require("l_tpool")
---  \n ±ØĞëÔÚl_tpool.initÖ®ºó, l_tpool.quitÖ®Ç°
---  \n ÔËĞĞ¹ı³ÌÖĞ, ²»¿É¶¯Ì¬ĞŞ¸Ä
+--  \n å¿…é¡»åœ¨l_tpool.initä¹‹å, l_tpool.quitä¹‹å‰
+--  \n è¿è¡Œè¿‡ç¨‹ä¸­, ä¸å¯åŠ¨æ€ä¿®æ”¹
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2020/1/5 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2020/1/5 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_shm_cons = {}
 
 
--- @brief (½ø³Ì¼ä)×î´ó¹²ÏíÄÚ´æ¸öÊı, ±àºÅ:[1,N]
--- @return [number] ×î´ó¹²ÏíÄÚ´æ¸öÊı
+-- @brief (è¿›ç¨‹é—´)æœ€å¤§å…±äº«å†…å­˜ä¸ªæ•°, ç¼–å·:[1,N]
+-- @return [number] æœ€å¤§å…±äº«å†…å­˜ä¸ªæ•°
 l_shm_cons.max = function ()
 	return 8
 end
 
 
--- @brief (½ø³Ì¼ä)´ò¿ª¹²ÏíÄÚ´æ
--- @param [in] index[number]	ÄÚ´æ±àºÅ:[1,N]
--- @param [in] path[string]	Â·¾¶/Ãû³Æ: ''
--- @return [boolean] ÊÇ·ñ³É¹¦
+-- @brief (è¿›ç¨‹é—´)æ‰“å¼€å…±äº«å†…å­˜
+-- @param [in] index[number]	å†…å­˜ç¼–å·:[1,N]
+-- @param [in] path[string]	è·¯å¾„/åç§°: ''
+-- @return [boolean] æ˜¯å¦æˆåŠŸ
 l_shm_cons.open = function (index, path)
 	return true
 	-- return false
 end
 
 
--- @brief (½ø³Ì¼ä)¹Ø±Õ¹²ÏíÄÚ´æ
--- @param [in] index[number]	ÄÚ´æ±àºÅ:[1,N]
--- @return [boolean] ÊÇ·ñ³É¹¦
+-- @brief (è¿›ç¨‹é—´)å…³é—­å…±äº«å†…å­˜
+-- @param [in] index[number]	å†…å­˜ç¼–å·:[1,N]
+-- @return [boolean] æ˜¯å¦æˆåŠŸ
 l_shm_cons.close = function (index)
 	return true
 	-- return false

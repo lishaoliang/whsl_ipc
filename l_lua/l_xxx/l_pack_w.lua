@@ -1,53 +1,53 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/04/26
 --
 -- @file    l_pack_w.lua
--- @brief   À©Õ¹¿ârequire("l_pack_w"), ´ò°ü
+-- @brief   æ‰©å±•åº“require("l_pack_w"), æ‰“åŒ…
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/26 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/26 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_pack_w = {}
 
 
--- @brief ´ò¿ªÒ»¸ö°ü¶ÔÏó(Ğ´Êı¾İ, Ê¹ÓÃ'wb'·½Ê½´ò¿ªÎÄ¼ş)
--- @param [in]	path_name[string]	°üÂ·¾¶Ãû
--- @param [in]	offset[number]		[¿ÉÑ¡,Ä¬ÈÏ0]ÎÄ¼şÆğÊ¼Æ«ÒÆ
--- @return [nil, l_pack_w] Ğ´Èë°ü¶ÔÏólpkf_w
+-- @brief æ‰“å¼€ä¸€ä¸ªåŒ…å¯¹è±¡(å†™æ•°æ®, ä½¿ç”¨'wb'æ–¹å¼æ‰“å¼€æ–‡ä»¶)
+-- @param [in]	path_name[string]	åŒ…è·¯å¾„å
+-- @param [in]	offset[number]		[å¯é€‰,é»˜è®¤0]æ–‡ä»¶èµ·å§‹åç§»
+-- @return [nil, l_pack_w] å†™å…¥åŒ…å¯¹è±¡lpkf_w
 l_pack_w.open = function (path_name, offset)
 	return lpkf_w
 	-- return nil
 end
 
 
--- @brief ¹Ø±ÕĞ´Èë°ü¶ÔÏólpkf_w
--- @param [in]	lpkf_w[l_pack_w]	Ğ´Èë°ü¶ÔÏólpkf_w
--- @return ÎŞ
--- @note ¹Ø±ÕÎÄ¼şÊ±, ½«Ë÷ÒıĞÅÏ¢,ÎÄ¼şÍ·µÈĞ´Èëµ½Ä¿±ê°üÖĞ
+-- @brief å…³é—­å†™å…¥åŒ…å¯¹è±¡lpkf_w
+-- @param [in]	lpkf_w[l_pack_w]	å†™å…¥åŒ…å¯¹è±¡lpkf_w
+-- @return æ— 
+-- @note å…³é—­æ–‡ä»¶æ—¶, å°†ç´¢å¼•ä¿¡æ¯,æ–‡ä»¶å¤´ç­‰å†™å…¥åˆ°ç›®æ ‡åŒ…ä¸­
 l_pack_w.close = function (lpkf_w)
 	return
 end
 
 
--- @brief ÉèÖÃÃØÔ¿ĞÅÏ¢
--- @param [in]	lpkf_w[l_pack_w]	Ğ´Èë°ü¶ÔÏólpkf_w
--- @param [in]	key[string]			ÃØÔ¿ĞÅÏ¢[1,1024]
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
--- @note ±ØĞëÔÚ openÖ®ºó, addÖ®Ç°ÉèÖÃ
+-- @brief è®¾ç½®ç§˜é’¥ä¿¡æ¯
+-- @param [in]	lpkf_w[l_pack_w]	å†™å…¥åŒ…å¯¹è±¡lpkf_w
+-- @param [in]	key[string]			ç§˜é’¥ä¿¡æ¯[1,1024]
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
+-- @note å¿…é¡»åœ¨ openä¹‹å, addä¹‹å‰è®¾ç½®
 l_pack_w.enc = function (lpkf_w, key)
 	return true
 end
 
 
 
--- @brief Ìí¼ÓÎÄ¼şµ½Ğ´Èë°ü¶ÔÏólpkf_w
--- @param [in]	lpkf_w[l_pack_w]	Ğ´Èë°ü¶ÔÏólpkf_w
--- @param [in]	key_path[string]	¹Ø¼ü×Ö: ÀıÈç'/opt/aaa.lua'
--- @param [in]	path_name[string]	´ıÌí¼ÓµÄÎÄ¼şÂ·¾¶Ãû
--- @return [number] 0.Ê§°Ü; ´óÓÚ0.Ìí¼ÓÎÄ¼şµÄ´óĞ¡
+-- @brief æ·»åŠ æ–‡ä»¶åˆ°å†™å…¥åŒ…å¯¹è±¡lpkf_w
+-- @param [in]	lpkf_w[l_pack_w]	å†™å…¥åŒ…å¯¹è±¡lpkf_w
+-- @param [in]	key_path[string]	å…³é”®å­—: ä¾‹å¦‚'/opt/aaa.lua'
+-- @param [in]	path_name[string]	å¾…æ·»åŠ çš„æ–‡ä»¶è·¯å¾„å
+-- @return [number] 0.å¤±è´¥; å¤§äº0.æ·»åŠ æ–‡ä»¶çš„å¤§å°
 l_pack_w.add = function (lpkf_w, key_path, path_name)
 	return 0
 end

@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief  Ä¬ÈÏÅäÖÃ´¦ÀíÄ£¿é
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief  é»˜è®¤é…ç½®å¤„ç†æ¨¡å—
+-- @author æç»è‰¯
 --]]
 local util = require("base.util")
 
@@ -13,8 +13,8 @@ default.default_r = require("ipc.cfg.default_r")
 default.keys = {}
 
 
--- @brief ³õÊ¼»¯
---  \n ³õÊ¼»¯keys 
+-- @brief åˆå§‹åŒ–
+--  \n åˆå§‹åŒ–keys 
 default.init = function ()
 	local t = {}
 	
@@ -35,28 +35,28 @@ end
 
 
 
--- brief »ñÈ¡¿É±äÅäÖÃÏîÄ¿
--- key [string]		  ÅäÖÃÃû³Æ
--- return [nil,table] ±»¿½±´µÄÊı¾İ, ¿ÉÒÔÈÎÒâÊ¹ÓÃ
+-- brief è·å–å¯å˜é…ç½®é¡¹ç›®
+-- key [string]		  é…ç½®åç§°
+-- return [nil,table] è¢«æ‹·è´çš„æ•°æ®, å¯ä»¥ä»»æ„ä½¿ç”¨
 default.get_v = function (key)
 	local value = default.default_v[key]
 	
 	if nil ~= value then
-		-- Ä¬ÈÏÅäÖÃµÄÊı¾İ²»µÃ±»Íâ²¿ÎÛÈ¾
+		-- é»˜è®¤é…ç½®çš„æ•°æ®ä¸å¾—è¢«å¤–éƒ¨æ±¡æŸ“
 		return util.t_copy(value)
 	end
 	
 	return nil
 end
 
--- brief »ñÈ¡Ö»¶ÁÏî
--- key [string]		  ÅäÖÃÃû³Æ
--- return [nil,table] ±»¿½±´µÄÊı¾İ, ¿ÉÒÔÈÎÒâÊ¹ÓÃ
+-- brief è·å–åªè¯»é¡¹
+-- key [string]		  é…ç½®åç§°
+-- return [nil,table] è¢«æ‹·è´çš„æ•°æ®, å¯ä»¥ä»»æ„ä½¿ç”¨
 default.get_r = function (key)
 	local value = default.default_r[key]
 	
 	if nil ~= value then
-		-- Ä¬ÈÏÅäÖÃµÄÊı¾İ²»µÃ±»Íâ²¿ÎÛÈ¾
+		-- é»˜è®¤é…ç½®çš„æ•°æ®ä¸å¾—è¢«å¤–éƒ¨æ±¡æŸ“
 		return util.t_copy(value)
 	end
 	

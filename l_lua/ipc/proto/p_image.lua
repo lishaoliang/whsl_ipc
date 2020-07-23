@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_image image»ù´¡²¿·ÖĞ­Òé
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_image imageåŸºç¡€éƒ¨åˆ†åè®®
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local cjson = require("cjson")
@@ -10,14 +10,13 @@ local cfg = require("ipc.cfg.cfg")
 local imsg = require("ipc.imsg")
 local iworker = require("ipc.iworker")
 
-local l_dev_ipc = require("l_dev_ipc")
-local l_dev_vi = require("l_dev_vi")
+local l_dev = require("l_dev")
 
 
 local p_image = {}
 
 
--- @brief µ±ÉèÖÃ ÊÖ¶¯'manual'°×Æ½ºâÊ±, ²»´ø[b, gb, gr, r]²ÎÊı±íÊ¾Ê¹ÓÃÊµÊ±°×Æ½ºâĞÅÏ¢
+-- @brief å½“è®¾ç½® æ‰‹åŠ¨'manual'ç™½å¹³è¡¡æ—¶, ä¸å¸¦[b, gb, gr, r]å‚æ•°è¡¨ç¤ºä½¿ç”¨å®æ—¶ç™½å¹³è¡¡ä¿¡æ¯
 local adjust_img_awb = function (chnn, param)
 	local E = {}
 	local awb = (param or E).awb
@@ -29,8 +28,8 @@ local adjust_img_awb = function (chnn, param)
 		local r = (param or E).r
 		
 		if not b or not gb or not gr or not r then
-			-- È±Ê§ÈÎºÎÒ»Ïî, ¶¼ÈÏÎªÊ¹ÓÃÊµÊ±°×Æ½ºâĞÅÏ¢			
-			local ret, now_b, now_gb, now_gr, now_r = l_dev_vi.get_awb(chnn)
+			-- ç¼ºå¤±ä»»ä½•ä¸€é¡¹, éƒ½è®¤ä¸ºä½¿ç”¨å®æ—¶ç™½å¹³è¡¡ä¿¡æ¯			
+			local ret, now_b, now_gb, now_gr, now_r = l_dev.get_awb(chnn)
 			if 0 == ret then
 				param['b'] = now_b
 				param['gb'] = now_gb
@@ -42,12 +41,12 @@ local adjust_img_awb = function (chnn, param)
 end
 
 
--- @brief ÉèÖÃÍ¼Ïñ²¿·ÖÍ¨ÓÃ´¦Àí·½·¨
--- @param [in]		img_key[string]	Í¼Ïñ²¿·ÖÅäÖÃkeyÖµ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®å›¾åƒéƒ¨åˆ†é€šç”¨å¤„ç†æ–¹æ³•
+-- @param [in]		img_key[string]	å›¾åƒéƒ¨åˆ†é…ç½®keyå€¼
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 local set_img_xxx = function (img_key, req, res, cmd)
 	local param = req.body[cmd]
 	
@@ -67,7 +66,7 @@ local set_img_xxx = function (img_key, req, res, cmd)
 		return
 	end
 	
-	-- ²ÎÊıµ÷Õû
+	-- å‚æ•°è°ƒæ•´
 	if 'img_awb' == img_key then
 		adjust_img_awb(chnn, param)
 	end
@@ -94,61 +93,61 @@ local set_img_xxx = function (img_key, req, res, cmd)
 end
 
 
--- @brief ÉèÖÃÍ¼Ïñ²ÎÊı
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®å›¾åƒå‚æ•°
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_image.on_set_image = function (req, res, cmd)
 	set_img_xxx('image', req, res, cmd)
 end
 
 
--- @brief ÉèÖÃÍ¼Ïñ¿í¶¯Ì¬
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®å›¾åƒå®½åŠ¨æ€
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_image.on_set_img_wd = function (req, res, cmd)
 	set_img_xxx('img_wd', req, res, cmd)
 end
 
 
--- @brief ÉèÖÃÍ¼Ïñ½µÔë
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®å›¾åƒé™å™ª
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_image.on_set_img_dnr = function (req, res, cmd)
 	set_img_xxx('img_dnr', req, res, cmd)
 end
 
 
--- @brief ÉèÖÃÍ¼ÏñĞı×ª
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®å›¾åƒæ—‹è½¬
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_image.on_set_img_rotate = function (req, res, cmd)
 	set_img_xxx('img_rotate', req, res, cmd)
 end
 
 
--- @brief ÉèÖÃÍ¼Ïñ°×Æ½ºâ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®å›¾åƒç™½å¹³è¡¡
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_image.on_set_img_awb = function (req, res, cmd)
 	set_img_xxx('img_awb', req, res, cmd)
 end
 
 
--- @brief »ñÈ¡Í¼ÏñÊµÊ±°×Æ½ºâĞÅÏ¢
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è·å–å›¾åƒå®æ—¶ç™½å¹³è¡¡ä¿¡æ¯
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_image.on_info_img_awb = function (req, res, cmd)
 	
 	local param = req.body[cmd]
@@ -169,7 +168,7 @@ p_image.on_info_img_awb = function (req, res, cmd)
 		return
 	end
 
-	local ret, b, gb, gr, r = l_dev_vi.get_awb(chnn)
+	local ret, b, gb, gr, r = l_dev.get_awb(chnn)
 	
 	if 0 == ret then		
 		res[cmd] = {
@@ -187,21 +186,21 @@ p_image.on_info_img_awb = function (req, res, cmd)
 	end
 end
 
--- @brief ÉèÖÃÍ¼Ïñ×óÓÒ¾µÏñ,·­×ª
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®å›¾åƒå·¦å³é•œåƒ,ç¿»è½¬
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_image.on_set_img_mirror_flip = function (req, res, cmd)
 	set_img_xxx('img_mirror_flip', req, res, cmd)
 end
 
 
--- @brief ÉèÖÃÍ¼ÏñÆØ¹â
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®å›¾åƒæ›å…‰
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_image.on_set_img_exposure = function (req, res, cmd)
 	set_img_xxx('img_exposure', req, res, cmd)
 end

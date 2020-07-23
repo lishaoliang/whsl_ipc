@@ -1,10 +1,10 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file  b_list.lua
--- @brief Ë«ÏòÁ´±í
--- @author ÀîÉÜÁ¼
+-- @brief åŒå‘é“¾è¡¨
+-- @author æç»è‰¯
 --]]
 
 local b_list  = {}
@@ -161,7 +161,7 @@ end
 return b_list
 
 
---[[ µü´úÊ¾Àı
+--[[ è¿­ä»£ç¤ºä¾‹
 local iter = b_list.begin(l)
 while nil ~= iter do	
 	local pnext = b_list.iter_add(iter)

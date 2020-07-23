@@ -1,18 +1,18 @@
---[[
--- Copyright (c) 2019 ÎäººË´Á¢Èí¼ş, All Rights Reserved
+ï»¿--[[
+-- Copyright (c) 2019 æ­¦æ±‰èˆœç«‹è½¯ä»¶, All Rights Reserved
 -- Created: 2019/11/15
 --
--- @brief	½«luaµÄtable×ª»»ÎªjsonÎÄ±¾
--- @author	ÀîÉÜÁ¼
+-- @brief	å°†luaçš„tableè½¬æ¢ä¸ºjsonæ–‡æœ¬
+-- @author	æç»è‰¯
 -- @see https://github.com/lishaoliang/l_sdk_doc
 --]]
 
 local cjson = require("cjson.safe")
 
 
--- @brief ½«luaµÄtable×ª»»ÎªjsonÎÄ±¾
--- @param [in]  	o[table]	luaµÄtable
--- @return [string]	json×Ö·û´®
+-- @brief å°†luaçš„tableè½¬æ¢ä¸ºjsonæ–‡æœ¬
+-- @param [in]  	o[table]	luaçš„table
+-- @return [string]	jsonå­—ç¬¦ä¸²
 local to_json = function (o)
 	local t = type(o)
 	

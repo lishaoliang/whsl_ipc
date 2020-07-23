@@ -1,20 +1,20 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/4/23
 --
 -- @file    upgrade.lua
--- @brief   Éı¼¶Ä£¿é
+-- @brief   å‡çº§æ¨¡å—
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/4/23 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/4/23 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local io = require("io")
 local os = require("os")
 local l_sys = require("l_sys")
-local l_net_a = require("l_net_a")
+--local l_net_a = require("l_net_a")
 local l_nsm_a = require("l_nsm_a")
 
 
@@ -28,12 +28,12 @@ local l_file = require("l_file")
 local upgrade = {}
 
 
-local ipc_upgrade_file = '/nfsmem/upgrade/ipc_upgrade_file.lpk'	-- Éı¼¶ÎÄ¼ş
-local ipc_upgrade = '/nfsmem/upgrade/ipc_upgrade.txt'			-- Éı¼¶±ê¼Ç
+local ipc_upgrade_file = '/nfsmem/upgrade/ipc_upgrade_file.lpk'	-- å‡çº§æ–‡ä»¶
+local ipc_upgrade = '/nfsmem/upgrade/ipc_upgrade.txt'			-- å‡çº§æ ‡è®°
 local ipc_root = ''
 
-if 'hisi_linux' ~= l_sys.platform then
-	-- ·ÇÄ¿±êÆ½Ì¨, ÖØ¶¨Î»Ä¿Â¼
+if l_sys.simulator then
+	-- éç›®æ ‡å¹³å°, é‡å®šä½ç›®å½•
 	ipc_upgrade_file = './upgrade/ipc_upgrade_file.lpk'
 	ipc_upgrade = './upgrade/ipc_upgrade.txt'
 	ipc_root = './upgrade/root'
@@ -67,11 +67,11 @@ local close_connect = function ()
 
 	print('upgrade close connect.', up_conn.pf_w_size)
 	
-	-- ¹Ø±ÕÁ¬½Ó
+	-- å…³é—­è¿æ¥
 	local id = up_conn.id;
 	l_nsm_a.close(up_nsm, id)
 	
-	-- ¹Ø±ÕÎÄ¼ş
+	-- å…³é—­æ–‡ä»¶
 	if nil ~= up_conn.pf then
 		l_file.close(up_conn.pf)
 	end
@@ -124,7 +124,7 @@ local on_cmd_upgrade_ok = function (json_obj)
 	
 	send(res_up_ok)
 	
-	-- Ğ£ÑéÊı¾İ°ü´óĞ¡ ¾ö¶¨ÊÇ·ñ¿ÉÒÔÉı¼¶
+	-- æ ¡éªŒæ•°æ®åŒ…å¤§å° å†³å®šæ˜¯å¦å¯ä»¥å‡çº§
 	local up = false
 	
 	local bits = util.t_item(json_obj, 'upgrade_ok', 'all_bits')
@@ -138,7 +138,7 @@ local on_cmd_upgrade_ok = function (json_obj)
 	end
 		
 	if up then
-		-- ¾ö¶¨Éı¼¶		
+		-- å†³å®šå‡çº§		
 		local file = io.open(ipc_upgrade, 'w')
 		assert(file)
 		
@@ -151,7 +151,7 @@ local on_cmd_upgrade_ok = function (json_obj)
 		os.remove(ipc_upgrade_file)
 	end
 	
-	close_connect()	-- ¹Ø±ÕÁ¬½Ó
+	close_connect()	-- å…³é—­è¿æ¥
 end
 
 
@@ -179,16 +179,16 @@ local open_connect = function (id)
 	local file = io.open(ipc_upgrade, 'r')
 	if file then
 		io.close(file)
-		return false			-- ÒÑ¾­×¼±¸ÒªÉı¼¶ÁË, ²»ÔÙ½ÓÊÕÁ¬½Ó
+		return false			-- å·²ç»å‡†å¤‡è¦å‡çº§äº†, ä¸å†æ¥æ”¶è¿æ¥
 	end
 	
-	up_conn.id = id				-- Ö»½ÓÊÜÒ»´ÎÁ¬½Ó	
+	up_conn.id = id				-- åªæ¥å—ä¸€æ¬¡è¿æ¥	
 	return true
 end
 
 
 local on_recv_txt = function ()
-	-- Ò»´Î½«ËùÓĞÎÄ±¾ĞÅÏ¢¶ÁÈ¡Íê±Ï
+	-- ä¸€æ¬¡å°†æ‰€æœ‰æ–‡æœ¬ä¿¡æ¯è¯»å–å®Œæ¯•
 	while true do
 		local ret, code, body, id, main, sub = l_nsm_a.recv(up_nsm)	
 		if ret then
@@ -203,9 +203,9 @@ local on_recv_txt = function ()
 				else
 					l_nsm_a.close(up_nsm, id)
 				end
-			elseif np_err.CONNECT == code then	-- ĞÂÁ¬½Ó½ÓÈë
+			elseif np_err.CONNECT == code then	-- æ–°è¿æ¥æ¥å…¥
 				if 0 == up_conn.id and open_connect(id) then
-					-- Ö»½ÓÊÜÒ»´ÎÁ¬½Ó
+					-- åªæ¥å—ä¸€æ¬¡è¿æ¥
 				else
 					l_nsm_a.close(up_nsm, id)
 				end
@@ -213,11 +213,11 @@ local on_recv_txt = function ()
 				if 0 ~= up_conn.id and id == up_conn.id then
 					close_connect()
 				else
-					l_nsm_a.close(up_nsm, id)	-- Á¬½Ó¶Ï¿ª
+					l_nsm_a.close(up_nsm, id)	-- è¿æ¥æ–­å¼€
 				end
 			end
 		else
-			break	-- ÍË³ö
+			break	-- é€€å‡º
 		end	
 	end
 end
@@ -235,8 +235,8 @@ local on_recv_md = function ()
 				end
 				
 				if ret then
-					up_conn.blk_count = up_conn.blk_count + 1		--Ğ´Èë³É¹¦, ¼ÆÊı+1
-					up_conn.pf_w_size = up_conn.pf_w_size + w_size	--Ğ´ÈëµÄÊı¾İÁ¿
+					up_conn.blk_count = up_conn.blk_count + 1		--å†™å…¥æˆåŠŸ, è®¡æ•°+1
+					up_conn.pf_w_size = up_conn.pf_w_size + w_size	--å†™å…¥çš„æ•°æ®é‡
 					
 					--print('upgrade write:', up_conn.blk_count, up_conn.pf_w_size)
 				else
@@ -245,7 +245,7 @@ local on_recv_md = function ()
 				end
 			else
 				print('net upgrade id error!', id, up_conn.id)
-				l_sys.free(buf)	-- ºÍµ±Ç°Á¬½Ó¶ÔÓ¦²»ÉÏ
+				l_sys.free(buf)	-- å’Œå½“å‰è¿æ¥å¯¹åº”ä¸ä¸Š
 			end
 		else
 			break
@@ -262,8 +262,8 @@ upgrade.on_recv = function ()
 end
 
 
-upgrade.init = function (nsm)
-	up_nsm = nsm
+upgrade.init = function ()
+	up_nsm = l_nsm_a.get('nsm_upgrade')
 end
 
 

@@ -1,14 +1,14 @@
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/29
 --
 -- @file    lw_nmps_listen.lua
 -- @brief	light weight net multiplex protocol listen
---  \n ÇáÁ¿¼¶Ïß³Ì, ´¦Àí80¶Ë¿Ú¼àÌı ¶àÂ·¸´ÓÃ
+--  \n è½»é‡çº§çº¿ç¨‹, å¤„ç†80ç«¯å£ç›‘å¬ å¤šè·¯å¤ç”¨
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/29 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/29 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local string = require("string")
@@ -17,14 +17,12 @@ local l_sys = require("l_sys")
 
 local l_ipc = require("l_ipc")
 
-local l_net_a = require("l_net_a")
 local l_nmps_a = require("l_nmps_a")
 local l_nsm_a = require("l_nsm_a")
 
 
 local util = require("base.util")
 local np_id = require("base.np_id")
-local inet = require("ipc.inet")
 
 local lt_name = ''
 
@@ -38,8 +36,8 @@ local port = 80
 local port_local = 8000
 local path_local = '/nfsmem/socket.ui'
 
-if 'hisi_linux' ~= l_sys.platform then
-	-- ·ÇÄ¿±êÆ½Ì¨
+if l_sys.simulator then
+	-- éç›®æ ‡å¹³å°
 	port = 3456
 	port_local = 3457
 end
@@ -49,10 +47,10 @@ local proc_socket = function (socket, main, sub, url_pre)
 	local b_used = false
 
 	if np_id.HTTP == main and nil ~= url_pre then
-		-- http ³¤Á¬½Ó
-		if 1 == string.find(url_pre, '/luanspp/') then		-- http_nspp Ğ­Òé
+		-- http é•¿è¿æ¥
+		if 1 == string.find(url_pre, '/luanspp/') then		-- http_nspp åè®®
 			main = np_id.NSPP_HTTP
-		elseif 1 == string.find(url_pre, '/luaflv/') then	-- http_flv Ğ­Òé
+		elseif 1 == string.find(url_pre, '/luaflv/') then	-- http_flv åè®®
 			main = np_id.HTTP_FLV
 		end
 	end
@@ -83,7 +81,7 @@ end
 
 local on_timer_listen = function (id, count, interval, tc, last_tc)
 	
-	-- ´¦Àí¼àÌı
+	-- å¤„ç†ç›‘å¬
 	while true do
 		local socket, main, sub, url_pre = l_nmps_a.get_socket()
 		if nil ~= socket then
@@ -102,15 +100,15 @@ init = function (param)
 	--print('init .....', param)
 	lt_name = param
 
-	-- »ñÈ¡ËùÓĞµÄ·şÎñ´¦Àí¶ÔÏó
-	servers.nsm_upgrade = inet.get_nsm(inet.nsm_upgrade)
+	-- è·å–æ‰€æœ‰çš„æœåŠ¡å¤„ç†å¯¹è±¡
+	servers.nsm_upgrade = l_nsm_a.get('nsm_upgrade')
 	assert(servers.nsm_upgrade)
 	
 	l_nmps_a.open('80', port)
 	l_nmps_a.open_unix('8000', port_local, path_local)
 	
-	-- Ìí¼Ó¶¨Ê±Æ÷
-	l_sys.add_timer(100, 10, on_timer_listen)		-- ¶¨Ê±ÏûÏ¢
+	-- æ·»åŠ å®šæ—¶å™¨
+	l_sys.add_timer(100, 10, on_timer_listen)		-- å®šæ—¶æ¶ˆæ¯
 	
 	return 0
 end
@@ -131,7 +129,7 @@ end
 on_cmd = function (msg, lparam, wparam, cobj)
 	--print('on_cmd.name:'..lt_name, msg, lparam, wparam)
 	
-	local cmd_low = string.lower(msg) -- ²»Çø·Ökey×Ö¶Î´óĞ¡Ğ´
+	local cmd_low = string.lower(msg) -- ä¸åŒºåˆ†keyå­—æ®µå¤§å°å†™
 	
 	return 0
 end

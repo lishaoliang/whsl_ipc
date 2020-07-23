@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    iworker.lua
--- @brief   IPCµÄ¹¤×÷Ïß³Ì
+-- @brief   IPCçš„å·¥ä½œçº¿ç¨‹
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local l_tpool = require("l_tpool")
 local util = require("base.util")
@@ -17,56 +17,59 @@ local iworker = {}
 
 
 -- @name   iworker.lw_dev_ipc
--- @export º£Ë¼Éè±¸º¯ÊıÏß³Ì
+-- @export æµ·æ€è®¾å¤‡å‡½æ•°çº¿ç¨‹
 iworker.lw_dev_ipc = 'lw_dev_ipc'
 
 
 -- @name   iworker.lw_discover
--- @export Éè±¸·¢ÏÖ
+-- @export è®¾å¤‡å‘ç°
 iworker.lw_discover = 'lw_discover'
 
 
 -- @name   iworker.lw_upgrade
--- @export Éè±¸Éı¼¶
+-- @export è®¾å¤‡å‡çº§
 iworker.lw_upgrade = 'lw_upgrade'
 
 
 -- @name   iworker.lw_nmps_listen
--- @export ¶Ë¿Ú¼àÌıÄ£¿é
+-- @export ç«¯å£ç›‘å¬æ¨¡å—
 iworker.lw_nmps_listen = 'lw_nmps_listen'
 
 
+-- @name   iworker.lw_phynet
+-- @export ç‰©ç†ç½‘å£æ£€æµ‹
+iworker.lw_phynet = 'lw_phynet'
 
-local lightweight = {'lightweight_1', 'lightweight_2'}
+local lightweight = {'lightweight_1'}
 
 
 
--- @brief iworker Ä£¿é³õÊ¼»¯
---  \n ·Ç¶àÏß³ÌÍêÈ«
---  \n ±ØĞëÈ«¾ÖÊ¹ÓÃ, ×¢ÒâÓÉÖ÷LuaÏß³Ìµ÷ÓÃ
+-- @brief iworker æ¨¡å—åˆå§‹åŒ–
+--  \n éå¤šçº¿ç¨‹å®Œå…¨
+--  \n å¿…é¡»å…¨å±€ä½¿ç”¨, æ³¨æ„ç”±ä¸»Luaçº¿ç¨‹è°ƒç”¨
 iworker.init = function ()
 
 end
 
 
--- @brief iworker Ä£¿éÍË³ö
---  \n ·Ç¶àÏß³ÌÍêÈ«
---  \n ±ØĞëÈ«¾ÖÊ¹ÓÃ, ×¢ÒâÓÉÖ÷LuaÏß³Ìµ÷ÓÃ
+-- @brief iworker æ¨¡å—é€€å‡º
+--  \n éå¤šçº¿ç¨‹å®Œå…¨
+--  \n å¿…é¡»å…¨å±€ä½¿ç”¨, æ³¨æ„ç”±ä¸»Luaçº¿ç¨‹è°ƒç”¨
 iworker.quit = function ()	
 
 end
 
 
--- @brief iworker Ä£¿é µÚ¶ş½×¶Î³õÊ¼»¯: ÓĞÒÀÀµµÄÏß³ÌÔÚ´ËÍê³É³õÊ¼»¯
---  \n ·Ç¶àÏß³ÌÍêÈ«
---  \n ±ØĞëÈ«¾ÖÊ¹ÓÃ, ×¢ÒâÓÉÖ÷LuaÏß³Ìµ÷ÓÃ
+-- @brief iworker æ¨¡å— ç¬¬äºŒé˜¶æ®µåˆå§‹åŒ–: æœ‰ä¾èµ–çš„çº¿ç¨‹åœ¨æ­¤å®Œæˆåˆå§‹åŒ–
+--  \n éå¤šçº¿ç¨‹å®Œå…¨
+--  \n å¿…é¡»å…¨å±€ä½¿ç”¨, æ³¨æ„ç”±ä¸»Luaçº¿ç¨‹è°ƒç”¨
 iworker.start = function ()
 	
-	-- ´´½¨×¨ÃÅ´¦Àíº£Ë¼µ×²ã½Ó¿Ú¹¤×÷Ïß³Ì
+	-- åˆ›å»ºä¸“é—¨å¤„ç†æµ·æ€åº•å±‚æ¥å£å·¥ä½œçº¿ç¨‹
 	local ret = l_tpool.create(iworker.lw_dev_ipc, 10, 'ipc.worker.lw_dev_ipc', 'lw_dev_ipc', nil)
 	assert(ret)
 
-	-- ´´½¨ÇáÁ¿¼¶Ïß³Ì
+	-- åˆ›å»ºè½»é‡çº§çº¿ç¨‹
 	for k, v in pairs(lightweight) do
 		if 'string' == type(v) then
 			print('lua iworker create thread name:', v)
@@ -75,62 +78,69 @@ iworker.start = function ()
 		end
 	end
 	
-	-- ´´½¨Éè±¸·¢ÏÖ
+	-- åˆ›å»ºè®¾å¤‡å‘ç°
 	local ret = l_tpool.create(iworker.lw_discover, 10, 'ipc.worker.lw_discover', 'lw_discover', nil)
 	assert(ret)
 	
-	-- ´´½¨Éı¼¶
+	-- åˆ›å»ºå‡çº§
 	ret = l_tpool.create(iworker.lw_upgrade, 10, 'ipc.worker.lw_upgrade', 'lw_upgrade', nil)
 	assert(ret)
 	
-	-- ´´½¨¼àÌıÄ£¿é
+	-- åˆ›å»ºç›‘å¬æ¨¡å—
 	ret = l_tpool.create(iworker.lw_nmps_listen, 10, 'ipc.worker.lw_nmps_listen', 'lw_nmps_listen', nil)
+	assert(ret)
+	
+	-- åˆ›å»ºç‰©ç†ç½‘å£æ¨¡å—
+	ret = l_tpool.create(iworker.lw_phynet, 10, 'ipc.worker.lw_phynet', 'lw_phynet', nil)
 	assert(ret)
 end
 
--- @brief iworker Ä£¿é stop
---  \n ·Ç¶àÏß³ÌÍêÈ«
---  \n ±ØĞëÈ«¾ÖÊ¹ÓÃ, ×¢ÒâÓÉÖ÷LuaÏß³Ìµ÷ÓÃ
+-- @brief iworker æ¨¡å— stop
+--  \n éå¤šçº¿ç¨‹å®Œå…¨
+--  \n å¿…é¡»å…¨å±€ä½¿ç”¨, æ³¨æ„ç”±ä¸»Luaçº¿ç¨‹è°ƒç”¨
 iworker.stop = function ()
-	-- Ïú»Ù¼àÌıÄ£¿é
+	-- é”€æ¯ç‰©ç†ç½‘å£æ¨¡å—
+	l_tpool.destroy(iworker.lw_phynet)
+	
+	-- é”€æ¯ç›‘å¬æ¨¡å—
 	l_tpool.destroy(iworker.lw_nmps_listen)	
 
-	-- Ïú»ÙÉè±¸Éı¼¶
+	-- é”€æ¯è®¾å¤‡å‡çº§
 	l_tpool.destroy(iworker.lw_upgrade)	
 	
-	-- Ïú»ÙÉè±¸·¢ÏÖ
+	-- é”€æ¯è®¾å¤‡å‘ç°
 	l_tpool.destroy(iworker.lw_discover)
 
-	-- Ïú»ÙÇáÁ¿¼¶Ïß³Ì
+	-- é”€æ¯è½»é‡çº§çº¿ç¨‹
 	for k, v in pairs(lightweight) do
 		if 'string' == type(v) then
 			l_tpool.destroy(v)
 		end
 	end
 
-	-- Ïú»Ù´¦Àíº£Ë¼µ×²ã½Ó¿Ú¹¤×÷Ïß³Ì
+	-- é”€æ¯å¤„ç†æµ·æ€åº•å±‚æ¥å£å·¥ä½œçº¿ç¨‹
 	l_tpool.destroy(iworker.lw_dev_ipc)
 end
 
 
--- @brief ÏòÃû³ÆÎªnameµÄÏß³ÌpostÏûÏ¢
--- @param [in] name[string] ÏûÏ¢¶ÓÁĞÃû³Æ
--- @param [in] msg[string]	ÏûÏ¢
--- @param [in] lparam[string] lparam²ÎÊı
--- @param [in] wparam[string] wparam²ÎÊı
--- @return [boolean] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÃ»ÓĞÕÒµ½nameµÄÏß³Ì
--- @note ¶àÏß³Ì°²È«
+-- @brief å‘åç§°ä¸ºnameçš„çº¿ç¨‹postæ¶ˆæ¯
+-- @param [in] name[string] æ¶ˆæ¯é˜Ÿåˆ—åç§°
+-- @param [in] msg[string]	æ¶ˆæ¯
+-- @param [in] lparam[string] lparamå‚æ•°
+-- @param [in] wparam[string] wparamå‚æ•°
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºæ²¡æœ‰æ‰¾åˆ°nameçš„çº¿ç¨‹
+-- @note å¤šçº¿ç¨‹å®‰å…¨
 iworker.post = function (name, msg, lparam, wparam)
 	return l_tpool.post(name, msg, lparam, wparam, nil)
 end
 
 
--- @brief ÏòlightweightÏß³ÌpostÏûÏ¢
--- @param [in] msg[string]	ÏûÏ¢
--- @param [in] lparam[string] lparam²ÎÊı
--- @param [in] wparam[string] wparam²ÎÊı
--- @return [boolean] ÊÇ·ñ³É¹¦; Ê§°ÜÔ­ÒòÎªÃ»ÓĞÕÒµ½nameµÄÏß³Ì
--- @note ¶àÏß³Ì°²È«
+-- @brief å‘lightweightçº¿ç¨‹postæ¶ˆæ¯
+-- @param [in] msg[string]	æ¶ˆæ¯
+-- @param [in] lparam[string] lparamå‚æ•°
+-- @param [in] wparam[string] wparamå‚æ•°
+-- @return [boolean] æ˜¯å¦æˆåŠŸ; å¤±è´¥åŸå› ä¸ºæ²¡æœ‰æ‰¾åˆ°nameçš„çº¿ç¨‹
+-- @note å¤šçº¿ç¨‹å®‰å…¨
 iworker.post_lightweight = function (msg, lparam, wparam)
 	local idle = l_tpool.find_idle(lightweight)
 	

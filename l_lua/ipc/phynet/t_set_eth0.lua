@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/08
 --
 -- @file    t_set_eth0.lua
--- @brief   ÉèÖÃstaÄ£Ê½
+-- @brief   è®¾ç½®staæ¨¡å¼
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/08 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/08 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local l_sys = require("l_sys")
@@ -16,9 +16,9 @@ local l_sys = require("l_sys")
 local eth0 = require("ipc.phynet.eth0")
 
 
--- ÒÔÏÂ dhcp ºÍ ¾²Ì¬ip Ñ¡ÔñÒ»Ïî
+-- ä»¥ä¸‹ dhcp å’Œ é™æ€ip é€‰æ‹©ä¸€é¡¹
 
--- ¾²Ì¬ip
+-- é™æ€ip
 eth0.set_ipv4('192.168.3.218', '255.255.255.0', '192.168.3.1')
 
 -- dhcp

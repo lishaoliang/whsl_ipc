@@ -1,4 +1,4 @@
-local l_sys = require("l_sys")
+ï»¿local l_sys = require("l_sys")
 local l_file = require("l_file")
 local l_net_x = require("l_net_x")
 local l_skdr_x = require("l_skdr_x")
@@ -69,7 +69,7 @@ while 0 < count do
 		elseif np_err.CONNECT == code then
 			print('l_ncm_x.on_recv new socket.', id)
 		else
-			-- Á¬½Ó¶Ï¿ª
+			-- è¿žæŽ¥æ–­å¼€
 			print('close:', id)
 			l_ncm_x.close(ncm_up, id)
 		end

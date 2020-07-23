@@ -1,10 +1,10 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file   nsm_ser.lua
--- @brief  nsm·şÎñ¶Ë¶ÔÓ¦µÄ´¦Àí²¿·Ö
--- @author ÀîÉÜÁ¼
+-- @brief  nsmæœåŠ¡ç«¯å¯¹åº”çš„å¤„ç†éƒ¨åˆ†
+-- @author æç»è‰¯
 --]]
 local string = require("string")
 local cjson = require("cjson")
@@ -39,16 +39,16 @@ end
 
 local parser_req = function(id, txt)
 	local req ={
-		id = id,			-- Á¬½Óid
-		cmd = '',			-- cmd,llssid,llauth ÕâÈıÏî±ØĞë±»ÌáÈ¡³öÀ´
-		llssid = '',		-- ¿Í»§¶Ë llssid
-		llauth = '',		-- ¿Í»§¶ËÊÚÈ¨Âë llauth
+		id = id,			-- è¿æ¥id
+		cmd = '',			-- cmd,llssid,llauth è¿™ä¸‰é¡¹å¿…é¡»è¢«æå–å‡ºæ¥
+		llssid = '',		-- å®¢æˆ·ç«¯ llssid
+		llauth = '',		-- å®¢æˆ·ç«¯æˆæƒç  llauth
 		
-		local_unix = false, -- ÊÇ·ñÎª±¾µØÇëÇó
-		body = {}			-- ÇëÇóµÄÊı¾İÌå, ×îºóµÄ½á¹û±ØĞëÎªtable
+		local_unix = false, -- æ˜¯å¦ä¸ºæœ¬åœ°è¯·æ±‚
+		body = {}			-- è¯·æ±‚çš„æ•°æ®ä½“, æœ€åçš„ç»“æœå¿…é¡»ä¸ºtable
 	}
 
-	-- txt Êı¾İ´ÓÍøÂç¶øÀ´, ²»¿ÉÍêÈ«ĞÅÈÎ
+	-- txt æ•°æ®ä»ç½‘ç»œè€Œæ¥, ä¸å¯å®Œå…¨ä¿¡ä»»
 	if 'string' == type(txt) and 0 < string.len(txt) then
 		local ret, obj = pcall(cjson.decode, txt)		
 		--print(ret, obj)
@@ -74,40 +74,40 @@ local parser_req = function(id, txt)
 end
 
 
--- @brief ½ÓÊÕµ½ÎÄ±¾Êı¾İ´¦Àí
--- @param [in]	id[number]			Á¬½Óid
--- @param [in]	protocol[number]	Ğ­ÒéÀàĞÍ
--- @param [in]	body[string]		ÎÄ±¾Êı¾İ
--- @return 0.±£´æÁ¬½Ó; 1.¶Ï¿ªÁ¬½Ó
+-- @brief æ¥æ”¶åˆ°æ–‡æœ¬æ•°æ®å¤„ç†
+-- @param [in]	id[number]			è¿æ¥id
+-- @param [in]	protocol[number]	åè®®ç±»å‹
+-- @param [in]	body[string]		æ–‡æœ¬æ•°æ®
+-- @return 0.ä¿å­˜è¿æ¥; 1.æ–­å¼€è¿æ¥
 local on_recv = function (id, protocol, body)
-	nsm_ser.b_res = false -- ÇëÇó¹ıÀ´, ±ê¼Ç±ØĞë»Ø¸´
+	nsm_ser.b_res = false -- è¯·æ±‚è¿‡æ¥, æ ‡è®°å¿…é¡»å›å¤
 	local ret = 1	
 
 	if np_id.NSPP == protocol then
 		
-		local req = parser_req(id, body)	-- ½âÎöÇëÇóÊı¾İ
+		local req = parser_req(id, body)	-- è§£æè¯·æ±‚æ•°æ®
 		req.local_unix = false
 		
 		local res = {}
 		
-		ret = json_request(req, res)	-- ÇëÇó´¦Àí
+		ret = json_request(req, res)	-- è¯·æ±‚å¤„ç†
 		
-		send(id, res)					-- »Ø¸´¶Ô¶Ë
+		send(id, res)					-- å›å¤å¯¹ç«¯
 	elseif np_id.NSPP_LOCAL == protocol then
-		local req = parser_req(id, body)	-- ½âÎöÇëÇóÊı¾İ
+		local req = parser_req(id, body)	-- è§£æè¯·æ±‚æ•°æ®
 		req.local_unix = true
 		
 		local res = {}
 		
-		ret = json_request(req, res)	-- ÇëÇó´¦Àí
+		ret = json_request(req, res)	-- è¯·æ±‚å¤„ç†
 		
-		send(id, res)					-- »Ø¸´¶Ô¶Ë
+		send(id, res)					-- å›å¤å¯¹ç«¯
 	elseif np_id.RTSP == protocol then
 		
 		local res = ''
 		ret, res = rtsp_ser.sdp_request(id, body)
 		
-		send(id, res)					-- »Ø¸´¶Ô¶Ë
+		send(id, res)					-- å›å¤å¯¹ç«¯
 	elseif np_id.NSPP_HTTP == protocol then
 		ret = nspp_http_ser.request(id, body)
 		nsm_ser.b_res = true
@@ -117,16 +117,16 @@ local on_recv = function (id, protocol, body)
 	end
 
 	if 0 == ret then
-		assert(true == nsm_ser.b_res)	-- ¼ì²éÃ¿ÌõÇëÇóÊÇ·ñÏìÓ¦
+		assert(true == nsm_ser.b_res)	-- æ£€æŸ¥æ¯æ¡è¯·æ±‚æ˜¯å¦å“åº”
 	end
 	
-	return ret -- ·µ»Ø0 ±íÊ¾±£³ÖÁ¬½Ó, ·Ç0±íÊ¾¶Ï¿ªÁ¬½Ó
+	return ret -- è¿”å›0 è¡¨ç¤ºä¿æŒè¿æ¥, é0è¡¨ç¤ºæ–­å¼€è¿æ¥
 end
 
 
--- @brief Á¬½Ó¶Ï¿ª´¦Àí
--- @param [in]	id[number]			Á¬½Óid
--- @param [in]	protocol[number]	Ğ­ÒéÀàĞÍ
+-- @brief è¿æ¥æ–­å¼€å¤„ç†
+-- @param [in]	id[number]			è¿æ¥id
+-- @param [in]	protocol[number]	åè®®ç±»å‹
 -- @return 0
 local on_disconnect = function (id, protocol)
 	if np_id.RTSP == protocol then
@@ -141,12 +141,12 @@ local on_disconnect = function (id, protocol)
 end
 
 
--- @brief ³õÊ¼»¯ÉèÖÃ
--- @return ÎŞ
+-- @brief åˆå§‹åŒ–è®¾ç½®
+-- @return æ— 
 nsm_ser.setup = function ()
 	
-	l_nsm.set_recv(on_recv)					-- ×¢²áÊı¾İ½ÓÊÕº¯Êı
-	l_nsm.set_disconnect(on_disconnect)		-- ×¢²áµ±Á¬½Ó¶Ï¿ªµÄ»Øµ÷´¦Àí
+	l_nsm.set_recv(on_recv)					-- æ³¨å†Œæ•°æ®æ¥æ”¶å‡½æ•°
+	l_nsm.set_disconnect(on_disconnect)		-- æ³¨å†Œå½“è¿æ¥æ–­å¼€çš„å›è°ƒå¤„ç†
 end
 
 return nsm_ser

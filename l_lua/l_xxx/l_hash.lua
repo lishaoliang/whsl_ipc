@@ -1,43 +1,43 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_hash.lua
--- @brief   ÄÚÖÃ¿â require("l_hash"), º¯ÊıËµÃ÷
+-- @brief   å†…ç½®åº“ require("l_hash"), å‡½æ•°è¯´æ˜
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local l_hash = {}
 
 
--- @brief »ñÈ¡×Ö·û´®µÄhashÖµ
--- @param [in] str[string] ×Ö·û´®
--- @return [string] hashÊıÖµ(uint32)
+-- @brief è·å–å­—ç¬¦ä¸²çš„hashå€¼
+-- @param [in] str[string] å­—ç¬¦ä¸²
+-- @return [string] hashæ•°å€¼(uint32)
 l_hash.dx = function (str)
 	return '123456'
 end
 
 
--- @brief »ñÈ¡×Ö·û´®µÄhashÖµ
--- @param [in] str[string] ×Ö·û´®
--- @return [string] hashÊıÖµ(uint32)
+-- @brief è·å–å­—ç¬¦ä¸²çš„hashå€¼
+-- @param [in] str[string] å­—ç¬¦ä¸²
+-- @return [string] hashæ•°å€¼(uint32)
 l_hash.rs = function (str)
 	return '123456'
 end
 
--- @brief »ñÈ¡×Ö·û´®µÄhashÖµ
--- @param [in] str[string] ×Ö·û´®
--- @return [string] hashÊıÖµ(uint32)
+-- @brief è·å–å­—ç¬¦ä¸²çš„hashå€¼
+-- @param [in] str[string] å­—ç¬¦ä¸²
+-- @return [string] hashæ•°å€¼(uint32)
 l_hash.js = function (str)
 	return '123456'
 end
 
--- @brief »ñÈ¡×Ö·û´®µÄhashÖµ
--- @param [in] str[string] ×Ö·û´®
--- @return [string] hashÊıÖµ(uint32)
+-- @brief è·å–å­—ç¬¦ä¸²çš„hashå€¼
+-- @param [in] str[string] å­—ç¬¦ä¸²
+-- @return [string] hashæ•°å€¼(uint32)
 l_hash.ap = function (str)
 	return '123456'
 end

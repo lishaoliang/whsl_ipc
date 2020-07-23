@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_com Í¨ÓÃÏìÓ¦´¦Àí
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_com é€šç”¨å“åº”å¤„ç†
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local np_err = require("base.np_err")
@@ -12,11 +12,11 @@ local iworker = require("ipc.iworker")
 local p_com = {}
 
 
--- @brief Í¨ÓÃ»ñÈ¡ÅäÖÃÏîÄ¿, ½ö»ñÈ¡ÅäÖÃÊı¾İ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief é€šç”¨è·å–é…ç½®é¡¹ç›®, ä»…è·å–é…ç½®æ•°æ®
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_com.on_get_cfg = function (req, res, cmd)
 
 	local v = cfg.get(cmd)
@@ -31,14 +31,14 @@ p_com.on_get_cfg = function (req, res, cmd)
 end
 
 
--- @brief Í¨ÓÃ»ñÈ¡ÅäÖÃÏîÄ¿, ½ö»ñÈ¡ÅäÖÃÊı¾İ
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief é€šç”¨è·å–é…ç½®é¡¹ç›®, ä»…è·å–é…ç½®æ•°æ®
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_com.on_get_default_cfg = function (req, res, cmd)
 
-	-- ÀıÈç ¡®default_name¡¯, Êµ¼ÊĞèÒªÈ¡ 'name'
+	-- ä¾‹å¦‚ â€˜default_nameâ€™, å®é™…éœ€è¦å– 'name'
 	local real_cmd = string.match(cmd, 'default_([%w_]+)')
 
 	local v = cfg.default(real_cmd)
@@ -52,11 +52,11 @@ p_com.on_get_default_cfg = function (req, res, cmd)
 	end
 end
 
--- @brief Í¨ÓÃ»ñÈ¡ÅäÖÃÏîÄ¿, ½ö»ñÈ¡ÅäÖÃÊı¾İ; °´Í¨µÀ/Á÷ĞòºÅ·½Ê½
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief é€šç”¨è·å–é…ç½®é¡¹ç›®, ä»…è·å–é…ç½®æ•°æ®; æŒ‰é€šé“/æµåºå·æ–¹å¼
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_com.on_get_cfg_chnn_idx = function (req, res, cmd)
 
 	local key = cmd
@@ -96,14 +96,14 @@ p_com.on_get_cfg_chnn_idx = function (req, res, cmd)
 end
 
 
--- @brief Í¨ÓÃ»ñÈ¡ÅäÖÃÏîÄ¿, ½ö»ñÈ¡Ä¬ÈÏÅäÖÃÊı¾İ; °´Í¨µÀ/Á÷ĞòºÅ·½Ê½
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief é€šç”¨è·å–é…ç½®é¡¹ç›®, ä»…è·å–é»˜è®¤é…ç½®æ•°æ®; æŒ‰é€šé“/æµåºå·æ–¹å¼
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_com.on_get_default_cfg_chnn_idx = function (req, res, cmd)
 	
-	-- ÀıÈç default_stream, Êµ¼ÊĞèÒªÈ¡ 'stream'
+	-- ä¾‹å¦‚ default_stream, å®é™…éœ€è¦å– 'stream'
 	local real_cmd = string.match(cmd, 'default_([%w_]+)')
 	
 	--
@@ -144,11 +144,11 @@ p_com.on_get_default_cfg_chnn_idx = function (req, res, cmd)
 end
 
 
--- @brief Í¨ÓÃ»ñÈ¡ÅäÖÃÏîÄ¿, ½ö»ñÈ¡ÅäÖÃÊı¾İ; °´Í¨µÀ·½Ê½
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief é€šç”¨è·å–é…ç½®é¡¹ç›®, ä»…è·å–é…ç½®æ•°æ®; æŒ‰é€šé“æ–¹å¼
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_com.on_get_cfg_chnn = function (req, res, cmd)
 	
 	local key = cmd
@@ -185,14 +185,14 @@ p_com.on_get_cfg_chnn = function (req, res, cmd)
 end
 
 
--- @brief Í¨ÓÃ»ñÈ¡ÅäÖÃÏîÄ¿, ½ö»ñÈ¡Ä¬ÈÏÅäÖÃÊı¾İ; °´Í¨µÀ·½Ê½
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief é€šç”¨è·å–é…ç½®é¡¹ç›®, ä»…è·å–é»˜è®¤é…ç½®æ•°æ®; æŒ‰é€šé“æ–¹å¼
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_com.on_get_default_cfg_chnn = function (req, res, cmd)
 
-	-- ÀıÈç default_image, Êµ¼ÊĞèÒªÈ¡ 'image'
+	-- ä¾‹å¦‚ default_image, å®é™…éœ€è¦å– 'image'
 	local real_cmd = string.match(cmd, 'default_([%w_]+)')
 
 	--

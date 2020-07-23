@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief  »ù´¡¹«¹²Ä£¿é
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief  åŸºç¡€å…¬å…±æ¨¡å—
+-- @author æç»è‰¯
 --]]
 local string = require("string")
 
@@ -11,7 +11,7 @@ local util = {}
 local socket_id = 1000
 
 
--- @brief »ñÈ¡ÏÂÒ»¸ösocket id (1000, 2147418112)
+-- @brief è·å–ä¸‹ä¸€ä¸ªsocket id (1000, 2147418112)
 util.next_socket_id = function ()
 	socket_id = socket_id + 1
 	if 2147418112 <= socket_id then -- (1000 0x7FFF0000)
@@ -21,27 +21,27 @@ util.next_socket_id = function ()
 	return socket_id
 end
 
--- @brief È¥³ı×Ö·û´®Ê×Î²¿Õ¸ñ
--- @param [in]		s[string]	×Ö·û´®
--- @return [string] È¥³ıÊ×Î²¿Õ¸ñµÄ×Ö·û´®
+-- @brief å»é™¤å­—ç¬¦ä¸²é¦–å°¾ç©ºæ ¼
+-- @param [in]		s[string]	å­—ç¬¦ä¸²
+-- @return [string] å»é™¤é¦–å°¾ç©ºæ ¼çš„å­—ç¬¦ä¸²
 util.trim = function(s)
 	return (string.gsub(s, '^%s*(.-)%s*$', '%1'))
 end
 
 
--- @brief È¥³ı×Ö·û´®Ê×Î²¿ØÖÆ×Ö·û'\n'
+-- @brief å»é™¤å­—ç¬¦ä¸²é¦–å°¾æ§åˆ¶å­—ç¬¦'\n'
 util.trim_c = function(s)
 	return (string.gsub(s, '^%c*(.-)%c*$', '%1'))
 end
 
 
--- @brief È¥³ı×Ö·û´®Ê×Î²:¿ØÖÆ×Ö·û'\n',¿Õ¸ñ
+-- @brief å»é™¤å­—ç¬¦ä¸²é¦–å°¾:æ§åˆ¶å­—ç¬¦'\n',ç©ºæ ¼
 util.trim_cs = function(s)
 	return (string.gsub(s, '^%c*%s*(.-)%c*%s*$', '%1'))
 end
 
--- ÅĞ¶¨tableÊÇ·ñÎªÊı×é
--- t [table,nil] table¶ÔÏó
+-- åˆ¤å®štableæ˜¯å¦ä¸ºæ•°ç»„
+-- t [table,nil] tableå¯¹è±¡
 -- return [boolean]
 util.t_is_array = function(t)
 	if 'table' ~= type(t) then 
@@ -62,8 +62,8 @@ util.t_is_array = function(t)
 	return true
 end
 
--- ÅĞ¶¨tableÊÇ·ñÎª¿Õ
--- t [table,{}] table¶ÔÏó
+-- åˆ¤å®štableæ˜¯å¦ä¸ºç©º
+-- t [table,{}] tableå¯¹è±¡
 -- return [boolean]
 util.t_is_empty = function(t)
 	if 'table' ~= type(t) then
@@ -77,8 +77,8 @@ util.t_is_empty = function(t)
 	return true
 end
 
--- brief ÅĞ¶¨table²»Îª¿Õ
--- t [table,nil,{}] table¶ÔÏó
+-- brief åˆ¤å®štableä¸ä¸ºç©º
+-- t [table,nil,{}] tableå¯¹è±¡
 -- return [boolean]
 util.t_is_not_empty = function(t)
 	if 'table' == type(t) then
@@ -91,9 +91,9 @@ util.t_is_not_empty = function(t)
 end
 
 
--- brief »ñÈ¡tableµÄ×ÓÏî
--- t [table] ±í
--- {...}	 key×Ö·û´®
+-- brief è·å–tableçš„å­é¡¹
+-- t [table] è¡¨
+-- {...}	 keyå­—ç¬¦ä¸²
 -- return nil, .
 util.t_item = function (t, ...)
 	local o = t
@@ -107,12 +107,12 @@ util.t_item = function (t, ...)
 end
 
 
--- brief ÇóÈ¡ dst, src µÄ²¢¼¯, ·ÅÖÃÔÚ dst ÖĞ
--- dst [table] Ä¿±ê±í
--- src [table] Ô­±í
+-- brief æ±‚å– dst, src çš„å¹¶é›†, æ”¾ç½®åœ¨ dst ä¸­
+-- dst [table] ç›®æ ‡è¡¨
+-- src [table] åŸè¡¨
 -- return [table] dst
--- note Ö»´¦Àí [number, string, boolean]
--- Èç¹ûÓĞÏàÍ¬key, Ôò src»á¸²¸Ç dstÖĞµÄÍ¬keyÖµ
+-- note åªå¤„ç† [number, string, boolean]
+-- å¦‚æœæœ‰ç›¸åŒkey, åˆ™ srcä¼šè¦†ç›– dstä¸­çš„åŒkeyå€¼
 util.t_union = function (dst, src)
 	if nil == dst then
 		return util.t_copy(src)
@@ -141,9 +141,9 @@ util.t_union = function (dst, src)
 end
 
 
--- brief ½«±ísrcÖĞµÄ[number, string, boolean]¸´ÖÆµ½¶ÔÓ¦µÄdstÖĞ
--- dst [table] Ä¿±ê±í
--- src [table] Ô­±í
+-- brief å°†è¡¨srcä¸­çš„[number, string, boolean]å¤åˆ¶åˆ°å¯¹åº”çš„dstä¸­
+-- dst [table] ç›®æ ‡è¡¨
+-- src [table] åŸè¡¨
 -- return [table] dst
 util.t_cp_by = function (dst, src)
 	
@@ -168,9 +168,9 @@ util.t_cp_by = function (dst, src)
 end
 
 
--- brief ¸´ÖÆÒ»¸ötable,Ö»¸´ÖÆ:number, string, boolean
--- src [table]	  Ô­Ê¼table
--- return [table] ±»¸´ÖÆµÄĞÂtable
+-- brief å¤åˆ¶ä¸€ä¸ªtable,åªå¤åˆ¶:number, string, boolean
+-- src [table]	  åŸå§‹table
+-- return [table] è¢«å¤åˆ¶çš„æ–°table
 util.t_copy = function(src)
 	if nil == src then
 		return nil

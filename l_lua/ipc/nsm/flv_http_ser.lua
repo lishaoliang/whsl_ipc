@@ -1,10 +1,10 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş, All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶, All Rights Reserved
 -- Created: 2019/12/11
 --
 -- @file  flv_http_ser.lua
--- @brief FLV-HTTP serverĞ­ÒéÁ÷³Ì
--- @author ÀîÉÜÁ¼
+-- @brief FLV-HTTP serveråè®®æµç¨‹
+-- @author æç»è‰¯
 -- @note 
 --
 -- eg. HTTP GET
@@ -41,7 +41,7 @@ local iworker = require("ipc.iworker")
 
 local flv_http_ser = {}
 
-local conns = {}	-- ´æ´¢µÄÁ¬½Ó
+local conns = {}	-- å­˜å‚¨çš„è¿æ¥
 
 local get_conn = function (id)
 	local k = tostring(id)
@@ -76,9 +76,9 @@ local pack_200 = function ()
 	
 	table.insert(t, 'HTTP/1.1 200 OK\r\n')
 	table.insert(t, string.format('Server: %s\r\n', h_code.HTTP_SERVER))
-	table.insert(t, 'Connection: close\r\n')				-- ¶ÌÁ¬½Ó¹Ø±Õ
-	table.insert(t, 'Content-Type: video/x-flv\r\n')		-- Êı¾İÀàĞÍ
-	table.insert(t, 'Access-Control-Allow-Origin: *\r\n')	-- Ğí¿É¿çÓòÇëÇó
+	table.insert(t, 'Connection: close\r\n')				-- çŸ­è¿æ¥å…³é—­
+	table.insert(t, 'Content-Type: video/x-flv\r\n')		-- æ•°æ®ç±»å‹
+	table.insert(t, 'Access-Control-Allow-Origin: *\r\n')	-- è®¸å¯è·¨åŸŸè¯·æ±‚
 	table.insert(t, '\r\n')
 	
 	return table.concat(t)
@@ -89,18 +89,18 @@ local send = function (id, msg)
 end
 
 
--- @brief nspp-httpĞ­ÒéÇëÇóÁ÷³Ì
--- @param [in]	id[number]	Á¬½Óid
--- @param [in]	txt[string]	ÇëÇóµÄhttpÎÄ±¾
--- @return [number]		´íÎóÂë
---			[string]	»Ø¸´¸ø¿Í»§¶ËµÄhttp-chunkedÊı¾İ
+-- @brief nspp-httpåè®®è¯·æ±‚æµç¨‹
+-- @param [in]	id[number]	è¿æ¥id
+-- @param [in]	txt[string]	è¯·æ±‚çš„httpæ–‡æœ¬
+-- @return [number]		é”™è¯¯ç 
+--			[string]	å›å¤ç»™å®¢æˆ·ç«¯çš„http-chunkedæ•°æ®
 flv_http_ser.request = function (id, txt)
 	local ret = 0
 	local ret_txt = ''
 	
 	local conn = get_conn(id)
 
-	-- ÇĞ¸îÇëÇóÍ·ºÍÇëÇóÌå
+	-- åˆ‡å‰²è¯·æ±‚å¤´å’Œè¯·æ±‚ä½“
 	local head, body = string.match(txt, '(.*)\r\n\r\n(.*)')	
 	local req = hnsm_parser(id, head)	
 	local path = string.lower(req.url)
@@ -108,7 +108,7 @@ flv_http_ser.request = function (id, txt)
 	local chnn = 0
 	local idx = 1
 
-	-- ´ÓÇëÇóÂ·¾¶ÖĞ, ½âÎö³öÍ¨µÀ/Á÷id
+	-- ä»è¯·æ±‚è·¯å¾„ä¸­, è§£æå‡ºé€šé“/æµid
 	if nil ~= path then
 		for line in string.gmatch(path, '([%w]+)') do
 			if nil ~= line then
@@ -127,12 +127,12 @@ flv_http_ser.request = function (id, txt)
 		end
 	end
 
-	-- Ö»Ö§³Ö0Í¨µÀ
+	-- åªæ”¯æŒ0é€šé“
 	if 0 ~= chnn then
 		chnn = 0
 	end
 	
-	-- Ö»Ö§³ÖÖ÷×ÓÂëÁ÷
+	-- åªæ”¯æŒä¸»å­ç æµ
 	if 0 ~= idx and 1 ~= idx then
 		idx = 1
 	end
@@ -159,9 +159,9 @@ flv_http_ser.request = function (id, txt)
 end
 
 
--- @brief rtspÁ¬½Ó¶Ï¿ª´¦Àí
--- @param [in]	id[number]	Á¬½Óid
--- @return ÎŞ
+-- @brief rtspè¿æ¥æ–­å¼€å¤„ç†
+-- @param [in]	id[number]	è¿æ¥id
+-- @return æ— 
 flv_http_ser.on_disconnect = function (id)
 	remove_conn(id)
 end

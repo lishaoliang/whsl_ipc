@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/15
 --
 -- @file    hnsm_pack.lua
--- @brief   ´ò°ühttp»Ø¸´Í·²¿
+-- @brief   æ‰“åŒ…httpå›å¤å¤´éƒ¨
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local table = require("table")
@@ -44,8 +44,8 @@ hnsm_pack.pack_200 = function (req, body_len)
 	
 	table.insert(t, 'HTTP/1.1 200 OK\r\n')
 	table.insert(t, string.format('Server: %s\r\n', h_code.HTTP_SERVER))
-	table.insert(t, 'Connection: close\r\n')				-- ¶ÌÁ¬½Ó¹Ø±Õ
-	table.insert(t, 'Content-Type: application/json\r\n')	-- Êı¾İÀàĞÍ
+	table.insert(t, 'Connection: close\r\n')				-- çŸ­è¿æ¥å…³é—­
+	table.insert(t, 'Content-Type: application/json\r\n')	-- æ•°æ®ç±»å‹
 
 	-- cookie
 	if '' == req['llssid'] then
@@ -56,8 +56,8 @@ hnsm_pack.pack_200 = function (req, body_len)
 		table.insert(t, string.format('Set-Cookie: llauth=%s\r\n', '123456'))
 	end
 
-	table.insert(t, string.format('Content-Length: %d\r\n', body_len))	-- Êı¾İ³¤¶È
-	table.insert(t, 'Access-Control-Allow-Origin: *\r\n')	-- Ğí¿É¿çÓòÇëÇó	
+	table.insert(t, string.format('Content-Length: %d\r\n', body_len))	-- æ•°æ®é•¿åº¦
+	table.insert(t, 'Access-Control-Allow-Origin: *\r\n')	-- è®¸å¯è·¨åŸŸè¯·æ±‚	
 	table.insert(t, '\r\n')
 	
 	return table.concat(t)
@@ -77,15 +77,15 @@ hnsm_pack.pack_401 = function (req, body_len)
 	
 	table.insert(t, 'HTTP/1.1 401 Unauthorized\r\n')
 	table.insert(t, string.format('Server: %s\r\n', h_code.HTTP_SERVER))
-	table.insert(t, 'Connection: close\r\n')				-- ¶ÌÁ¬½Ó¹Ø±Õ
-	table.insert(t, 'Content-Type: application/json\r\n')	-- Êı¾İÀàĞÍ
+	table.insert(t, 'Connection: close\r\n')				-- çŸ­è¿æ¥å…³é—­
+	table.insert(t, 'Content-Type: application/json\r\n')	-- æ•°æ®ç±»å‹
 
 	-- cookie
 	table.insert(t, string.format('Set-Cookie: llssid=%s\r\n', '123456'))
 	table.insert(t, string.format('Set-Cookie: llauth=%s\r\n', '123456'))
 
-	table.insert(t, string.format('Content-Length: %d\r\n', body_len))	-- Êı¾İ³¤¶È
-	table.insert(t, 'Access-Control-Allow-Origin: *\r\n')	-- Ğí¿É¿çÓòÇëÇó	
+	table.insert(t, string.format('Content-Length: %d\r\n', body_len))	-- æ•°æ®é•¿åº¦
+	table.insert(t, 'Access-Control-Allow-Origin: *\r\n')	-- è®¸å¯è·¨åŸŸè¯·æ±‚	
 	table.insert(t, '\r\n')
 	
 	return table.concat(t)

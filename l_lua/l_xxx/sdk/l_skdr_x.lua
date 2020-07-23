@@ -1,32 +1,32 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/4/20
 --
 -- @file    l_skdr_x.lua
--- @brief   ÄÚÖÃ¿ârequire("l_skdr_x"), ÍøÂçÒì²½ioÇı¶¯Ïß³Ì
+-- @brief   å†…ç½®åº“require("l_skdr_x"), ç½‘ç»œå¼‚æ­¥ioé©±åŠ¨çº¿ç¨‹
 --  \n require("l_skdr_x")
---  \n ±ØĞëÔÚl_net_x.initÖ®ºó, l_net_x.startÖ®Ç°Íê³ÉËùÏß³ÌµÄl_skdr_x.create¹¤×÷
---  \n ½ø³ÌÔËĞĞ¹ı³ÌÖĞ, ²»¿É¶¯Ì¬ĞŞ¸Ä
+--  \n å¿…é¡»åœ¨l_net_x.initä¹‹å, l_net_x.startä¹‹å‰å®Œæˆæ‰€çº¿ç¨‹çš„l_skdr_x.createå·¥ä½œ
+--  \n è¿›ç¨‹è¿è¡Œè¿‡ç¨‹ä¸­, ä¸å¯åŠ¨æ€ä¿®æ”¹
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/14/20 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/14/20 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_skdr_x = {}
 
 
--- @brief ´´½¨skdrÏß³Ì
--- @param [in]  	name[string]	Ãû³Æ
--- @return [nil, l_skdr_x] l_skdr_x¶ÔÏó
+-- @brief åˆ›å»ºskdrçº¿ç¨‹
+-- @param [in]  	name[string]	åç§°
+-- @return [nil, l_skdr_x] l_skdr_xå¯¹è±¡
 l_skdr_x.create = function (name)
 	return l_skdr_x
 end
 
 
--- @brief »ñÈ¡skdrÏß³Ì
--- @param [in]  	name[string]	Ãû³Æ
--- @return [nil, l_skdr_x] l_skdr_x¶ÔÏó
+-- @brief è·å–skdrçº¿ç¨‹
+-- @param [in]  	name[string]	åç§°
+-- @return [nil, l_skdr_x] l_skdr_xå¯¹è±¡
 l_skdr_x.get = function (name)
 	return l_skdr_x
 end

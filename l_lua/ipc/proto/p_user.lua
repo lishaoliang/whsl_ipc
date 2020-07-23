@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_user Ğ­Òé½âÎö
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_user åè®®è§£æ
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local np_err = require("base.np_err")
@@ -12,13 +12,13 @@ local iworker = require("ipc.iworker")
 local p_user = {}
 
 
--- @brief º¯ÊıÃèÊö
--- @param [in]  	xxx[string]	ÊäÈë²ÎÊı
--- @param [out]		xxx[table]	Êä³ö²ÎÊı
--- @param [in,out]	xxx[table]	ÊäÈëÊä³ö²ÎÊı
--- @param [in]		x_xx[function] Èç¹ûÓĞ»Øµ÷º¯Êı, ±ØĞë±êÃ÷ÔÚseeÖĞ±êÃ÷Ô­ĞÍ
--- @return [nil, table] [boolean] ¼¸¸ö·µ»ØÖµ¼¯ºÏ
--- @note ×¢ÒâÊÂÏî,²Î¼ûxxx
+-- @brief å‡½æ•°æè¿°
+-- @param [in]  	xxx[string]	è¾“å…¥å‚æ•°
+-- @param [out]		xxx[table]	è¾“å‡ºå‚æ•°
+-- @param [in,out]	xxx[table]	è¾“å…¥è¾“å‡ºå‚æ•°
+-- @param [in]		x_xx[function] å¦‚æœæœ‰å›è°ƒå‡½æ•°, å¿…é¡»æ ‡æ˜åœ¨seeä¸­æ ‡æ˜åŸå‹
+-- @return [nil, table] [boolean] å‡ ä¸ªè¿”å›å€¼é›†åˆ
+-- @note æ³¨æ„äº‹é¡¹,å‚è§xxx
 -- @see [string][table] = x_xx(string, string, table)
 p_user.on_user_add = function (req, res, cmd)
 	
@@ -28,13 +28,13 @@ p_user.on_user_add = function (req, res, cmd)
 end
 
 
--- @brief º¯ÊıÃèÊö
--- @param [in]  	xxx[string]	ÊäÈë²ÎÊı
--- @param [out]		xxx[table]	Êä³ö²ÎÊı
--- @param [in,out]	xxx[table]	ÊäÈëÊä³ö²ÎÊı
--- @param [in]		x_xx[function] Èç¹ûÓĞ»Øµ÷º¯Êı, ±ØĞë±êÃ÷ÔÚseeÖĞ±êÃ÷Ô­ĞÍ
--- @return [nil, table] [boolean] ¼¸¸ö·µ»ØÖµ¼¯ºÏ
--- @note ×¢ÒâÊÂÏî,²Î¼ûxxx
+-- @brief å‡½æ•°æè¿°
+-- @param [in]  	xxx[string]	è¾“å…¥å‚æ•°
+-- @param [out]		xxx[table]	è¾“å‡ºå‚æ•°
+-- @param [in,out]	xxx[table]	è¾“å…¥è¾“å‡ºå‚æ•°
+-- @param [in]		x_xx[function] å¦‚æœæœ‰å›è°ƒå‡½æ•°, å¿…é¡»æ ‡æ˜åœ¨seeä¸­æ ‡æ˜åŸå‹
+-- @return [nil, table] [boolean] å‡ ä¸ªè¿”å›å€¼é›†åˆ
+-- @note æ³¨æ„äº‹é¡¹,å‚è§xxx
 -- @see [string][table] = x_xx(string, string, table)
 p_user.on_user_remove = function (req, res, cmd)
 	
@@ -43,13 +43,13 @@ p_user.on_user_remove = function (req, res, cmd)
 	}
 end
 
--- @brief º¯ÊıÃèÊö
--- @param [in]  	xxx[string]	ÊäÈë²ÎÊı
--- @param [out]		xxx[table]	Êä³ö²ÎÊı
--- @param [in,out]	xxx[table]	ÊäÈëÊä³ö²ÎÊı
--- @param [in]		x_xx[function] Èç¹ûÓĞ»Øµ÷º¯Êı, ±ØĞë±êÃ÷ÔÚseeÖĞ±êÃ÷Ô­ĞÍ
--- @return [nil, table] [boolean] ¼¸¸ö·µ»ØÖµ¼¯ºÏ
--- @note ×¢ÒâÊÂÏî,²Î¼ûxxx
+-- @brief å‡½æ•°æè¿°
+-- @param [in]  	xxx[string]	è¾“å…¥å‚æ•°
+-- @param [out]		xxx[table]	è¾“å‡ºå‚æ•°
+-- @param [in,out]	xxx[table]	è¾“å…¥è¾“å‡ºå‚æ•°
+-- @param [in]		x_xx[function] å¦‚æœæœ‰å›è°ƒå‡½æ•°, å¿…é¡»æ ‡æ˜åœ¨seeä¸­æ ‡æ˜åŸå‹
+-- @return [nil, table] [boolean] å‡ ä¸ªè¿”å›å€¼é›†åˆ
+-- @note æ³¨æ„äº‹é¡¹,å‚è§xxx
 -- @see [string][table] = x_xx(string, string, table)
 p_user.on_user_modify = function (req, res, cmd)
 	
@@ -58,13 +58,13 @@ p_user.on_user_modify = function (req, res, cmd)
 	}
 end
 
--- @brief º¯ÊıÃèÊö
--- @param [in]  	xxx[string]	ÊäÈë²ÎÊı
--- @param [out]		xxx[table]	Êä³ö²ÎÊı
--- @param [in,out]	xxx[table]	ÊäÈëÊä³ö²ÎÊı
--- @param [in]		x_xx[function] Èç¹ûÓĞ»Øµ÷º¯Êı, ±ØĞë±êÃ÷ÔÚseeÖĞ±êÃ÷Ô­ĞÍ
--- @return [nil, table] [boolean] ¼¸¸ö·µ»ØÖµ¼¯ºÏ
--- @note ×¢ÒâÊÂÏî,²Î¼ûxxx
+-- @brief å‡½æ•°æè¿°
+-- @param [in]  	xxx[string]	è¾“å…¥å‚æ•°
+-- @param [out]		xxx[table]	è¾“å‡ºå‚æ•°
+-- @param [in,out]	xxx[table]	è¾“å…¥è¾“å‡ºå‚æ•°
+-- @param [in]		x_xx[function] å¦‚æœæœ‰å›è°ƒå‡½æ•°, å¿…é¡»æ ‡æ˜åœ¨seeä¸­æ ‡æ˜åŸå‹
+-- @return [nil, table] [boolean] å‡ ä¸ªè¿”å›å€¼é›†åˆ
+-- @note æ³¨æ„äº‹é¡¹,å‚è§xxx
 -- @see [string][table] = x_xx(string, string, table)
 p_user.on_user_all = function (req, res, cmd)
 	
@@ -73,13 +73,13 @@ p_user.on_user_all = function (req, res, cmd)
 	}
 end
 
--- @brief º¯ÊıÃèÊö
--- @param [in]  	xxx[string]	ÊäÈë²ÎÊı
--- @param [out]		xxx[table]	Êä³ö²ÎÊı
--- @param [in,out]	xxx[table]	ÊäÈëÊä³ö²ÎÊı
--- @param [in]		x_xx[function] Èç¹ûÓĞ»Øµ÷º¯Êı, ±ØĞë±êÃ÷ÔÚseeÖĞ±êÃ÷Ô­ĞÍ
--- @return [nil, table] [boolean] ¼¸¸ö·µ»ØÖµ¼¯ºÏ
--- @note ×¢ÒâÊÂÏî,²Î¼ûxxx
+-- @brief å‡½æ•°æè¿°
+-- @param [in]  	xxx[string]	è¾“å…¥å‚æ•°
+-- @param [out]		xxx[table]	è¾“å‡ºå‚æ•°
+-- @param [in,out]	xxx[table]	è¾“å…¥è¾“å‡ºå‚æ•°
+-- @param [in]		x_xx[function] å¦‚æœæœ‰å›è°ƒå‡½æ•°, å¿…é¡»æ ‡æ˜åœ¨seeä¸­æ ‡æ˜åŸå‹
+-- @return [nil, table] [boolean] å‡ ä¸ªè¿”å›å€¼é›†åˆ
+-- @note æ³¨æ„äº‹é¡¹,å‚è§xxx
 -- @see [string][table] = x_xx(string, string, table)
 p_user.on_user_modify_pwd = function (req, res, cmd)
 	
@@ -88,13 +88,13 @@ p_user.on_user_modify_pwd = function (req, res, cmd)
 	}
 end
 
--- @brief º¯ÊıÃèÊö
--- @param [in]  	xxx[string]	ÊäÈë²ÎÊı
--- @param [out]		xxx[table]	Êä³ö²ÎÊı
--- @param [in,out]	xxx[table]	ÊäÈëÊä³ö²ÎÊı
--- @param [in]		x_xx[function] Èç¹ûÓĞ»Øµ÷º¯Êı, ±ØĞë±êÃ÷ÔÚseeÖĞ±êÃ÷Ô­ĞÍ
--- @return [nil, table] [boolean] ¼¸¸ö·µ»ØÖµ¼¯ºÏ
--- @note ×¢ÒâÊÂÏî,²Î¼ûxxx
+-- @brief å‡½æ•°æè¿°
+-- @param [in]  	xxx[string]	è¾“å…¥å‚æ•°
+-- @param [out]		xxx[table]	è¾“å‡ºå‚æ•°
+-- @param [in,out]	xxx[table]	è¾“å…¥è¾“å‡ºå‚æ•°
+-- @param [in]		x_xx[function] å¦‚æœæœ‰å›è°ƒå‡½æ•°, å¿…é¡»æ ‡æ˜åœ¨seeä¸­æ ‡æ˜åŸå‹
+-- @return [nil, table] [boolean] å‡ ä¸ªè¿”å›å€¼é›†åˆ
+-- @note æ³¨æ„äº‹é¡¹,å‚è§xxx
 -- @see [string][table] = x_xx(string, string, table)
 p_user.on_user_info = function (req, res, cmd)
 	
@@ -104,13 +104,13 @@ p_user.on_user_info = function (req, res, cmd)
 end
 
 
--- @brief º¯ÊıÃèÊö
--- @param [in]  	xxx[string]	ÊäÈë²ÎÊı
--- @param [out]		xxx[table]	Êä³ö²ÎÊı
--- @param [in,out]	xxx[table]	ÊäÈëÊä³ö²ÎÊı
--- @param [in]		x_xx[function] Èç¹ûÓĞ»Øµ÷º¯Êı, ±ØĞë±êÃ÷ÔÚseeÖĞ±êÃ÷Ô­ĞÍ
--- @return [nil, table] [boolean] ¼¸¸ö·µ»ØÖµ¼¯ºÏ
--- @note ×¢ÒâÊÂÏî,²Î¼ûxxx
+-- @brief å‡½æ•°æè¿°
+-- @param [in]  	xxx[string]	è¾“å…¥å‚æ•°
+-- @param [out]		xxx[table]	è¾“å‡ºå‚æ•°
+-- @param [in,out]	xxx[table]	è¾“å…¥è¾“å‡ºå‚æ•°
+-- @param [in]		x_xx[function] å¦‚æœæœ‰å›è°ƒå‡½æ•°, å¿…é¡»æ ‡æ˜åœ¨seeä¸­æ ‡æ˜åŸå‹
+-- @return [nil, table] [boolean] å‡ ä¸ªè¿”å›å€¼é›†åˆ
+-- @note æ³¨æ„äº‹é¡¹,å‚è§xxx
 -- @see [string][table] = x_xx(string, string, table)
 p_user.on_user_online = function (req, res, cmd)
 	

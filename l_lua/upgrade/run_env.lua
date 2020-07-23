@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼þ All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/4/28
 --
 -- @file    run_env.lua
--- @brief   ÔËÐÐÊ±»·¾³
+-- @brief   è¿è¡Œæ—¶çŽ¯å¢ƒ
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ÐÞ¸ÄÀúÊ·
---  \n 2019/4/28 0.1 ´´½¨ÎÄ¼þ
--- @warning Ã»ÓÐ¾¯¸æ
+-- @author  æŽç»è‰¯
+-- @history ä¿®æ”¹åŽ†å²
+--  \n 2019/4/28 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local l_sys = require("l_sys")
 local unix = require("base.unix")
@@ -18,26 +18,38 @@ local unix = require("base.unix")
 print('run env start...')
 
 
--- ´´½¨ÄÚ´æÓ³ÏñÄ¿Â¼
+-- åˆ›å»ºå†…å­˜æ˜ åƒç›®å½•
 unix.shell('rm -rf /nfsmem')
 unix.shell('mkdir /nfsmem')
 unix.shell('mount -t tmpfs -o size=60M,mode=0777 tmpfs /nfsmem')
 
 
--- ´´½¨Éý¼¶Ä¿Â¼
+-- åˆ›å»ºå‡çº§ç›®å½•
 unix.shell('mkdir /nfsmem/upgrade')
 
--- ´´½¨Ö§³ÖÏîÄ¿Â¼
+
+-- æ‹·è´è„šæœ¬çŽ¯å¢ƒ
+unix.shell('mkdir /nfsmem/l_lua')
+unix.shell('cp -rf /opt/l_lua/base /nfsmem/l_lua/')
+unix.shell('cp -rf /opt/l_lua/upgrade /nfsmem/l_lua/')
+
+
+-- å°†å‡çº§è½¯ä»¶æ‰€éœ€è¦çš„æ–‡ä»¶ æ‹·è´åˆ°/nfsmem, å¦åˆ™ä¼šå¯¼è‡´å‡çº§åˆ°ä¸€åŠ, å‡çº§è½¯ä»¶æŒ‚æŽ‰
+unix.shell('cp -f /opt/mydaemon /nfsmem/')
+
+
+-- åˆ›å»ºæ”¯æŒé¡¹ç›®å½•
 unix.shell('mkdir /nfsmem/surport')
 
--- ¿½±´½Å±¾»·¾³, 
-unix.shell('cp -rf /opt/l_lua /nfsmem/')
 
 
--- ½«Éý¼¶Èí¼þËùÐèÒªµÄ*.so ¿½±´µ½/nfsmem, ·ñÔò»áµ¼ÖÂÉý¼¶µ½Ò»°ë, Éý¼¶Èí¼þ¹Òµô
-unix.shell('cp -f /opt/liblua-5.3.5.so /nfsmem/')
-unix.shell('cp -f /opt/libl_pack.so /nfsmem/')
-unix.shell('cp -f /opt/llua /nfsmem/')
+---------------------------------------------------------------------------
+-- å„ä¸ªé¡¹ç›®çš„æ”¯æŒé¡¹
+
+
+if 'hi_3520dv200_AHB7004T_LM_V3' == l_sys.chip then
+	unix.shell('echo "0" > /nfsmem/surport/surport_wireless')
+end
 
 
 print('run env over...')

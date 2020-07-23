@@ -1,10 +1,10 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 --
 -- @file    lightweight.lua
--- @brief   ÇáÁ¿¼¶¹¤×÷Ïß³ÌÈë¿Ú
+-- @brief   è½»é‡çº§å·¥ä½œçº¿ç¨‹å…¥å£
 -- @version 0.1
--- @author	ÀîÉÜÁ¼
+-- @author	æç»è‰¯
 --]]
 
 local lt_name = ''

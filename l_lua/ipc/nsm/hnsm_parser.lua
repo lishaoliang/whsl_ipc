@@ -1,18 +1,18 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/15
 --
 -- @file    hnsm_parser.lua
--- @brief   ½âÎöhttpÇëÇóÍ·²¿
+-- @brief   è§£æhttpè¯·æ±‚å¤´éƒ¨
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/15 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/15 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 
--- È¥³ı×Ö·û´®Ê×Î²¿ÕĞĞ
+-- å»é™¤å­—ç¬¦ä¸²é¦–å°¾ç©ºè¡Œ
 local trim = function (s)
 	return (string.gsub(s, '^%s*(.-)%s*$', '%1'))
 end
@@ -26,8 +26,8 @@ local parser_k_v = function (req, k, v)
 	end	
 end
 
--- brief ÔÚ req ÖĞ½âÎö ÎÒÃÇ¹ØĞÄµÄ llssid ºÍ llauth
--- ½ö¼ì²éµ½µÚÒ»´ÎÅöµ½µÄ, ÖØ¸´Åöµ½ k, v ¶ªÆú
+-- brief åœ¨ req ä¸­è§£æ æˆ‘ä»¬å…³å¿ƒçš„ llssid å’Œ llauth
+-- ä»…æ£€æŸ¥åˆ°ç¬¬ä¸€æ¬¡ç¢°åˆ°çš„, é‡å¤ç¢°åˆ° k, v ä¸¢å¼ƒ
 local parser_cookie = function (req)	
 	for k, v in string.gmatch(req.cookie, '(%w+)=(%w+)') do
 		local low_k = string.lower(k)	
@@ -41,18 +41,18 @@ end
 
 hnsm_parser = function (id, head)
 	local req = {
-		method = '',	-- ²»Çø·Ö´óĞ¡Ğ´
-		url = '',		-- ²»Çø·Ö´óĞ¡Ğ´
+		method = '',	-- ä¸åŒºåˆ†å¤§å°å†™
+		url = '',		-- ä¸åŒºåˆ†å¤§å°å†™
 		host = '',
 		cookie = '',
 		
 		id = id,
-		cmd = '',		-- ÇëÇóµÄ¶¯×÷¼¯ºÏ, ´ÓÇëÇóÍ·,body.cmdÓòÌáÈ¡
-		llssid = '',	-- ¿Í»§¶Ë llssid
-		llauth = '',	-- ¿Í»§¶ËÊÚÈ¨Âë llauth
+		cmd = '',		-- è¯·æ±‚çš„åŠ¨ä½œé›†åˆ, ä»è¯·æ±‚å¤´,body.cmdåŸŸæå–
+		llssid = '',	-- å®¢æˆ·ç«¯ llssid
+		llauth = '',	-- å®¢æˆ·ç«¯æˆæƒç  llauth
 		
-		local_unix = false, -- ÊÇ·ñÎª±¾µØÇëÇó
-		body = {}		-- ×îºóÈç¹ûÓĞ¸½¼Ó json Êı¾İ, Ôò´ÓÖĞ½âÎö
+		local_unix = false, -- æ˜¯å¦ä¸ºæœ¬åœ°è¯·æ±‚
+		body = {}		-- æœ€åå¦‚æœæœ‰é™„åŠ  json æ•°æ®, åˆ™ä»ä¸­è§£æ
 	}
 
 	if nil == head then
@@ -63,12 +63,12 @@ hnsm_parser = function (id, head)
 	--print(head)
 	--print('----------------------------')
 
-	-- ÌáÈ¡ÇëÇóÍ·ĞÅÏ¢
+	-- æå–è¯·æ±‚å¤´ä¿¡æ¯
 	local first = true
 	for line in string.gmatch(head, '[^\r\n]+[\r\n]*') do
 		--print(line)
 		if first then
-			local method, url, ver = string.match(line, '([^ ]+) +([^ ]+) +([^ ]+)') -- Æ¥ÅäÇëÇóÍ·
+			local method, url, ver = string.match(line, '([^ ]+) +([^ ]+) +([^ ]+)') -- åŒ¹é…è¯·æ±‚å¤´
 			--print(method, url, ver)
 			if nil ~= method and nil ~= url and nil ~= ver then
 				req.method = string.lower(method)
@@ -77,7 +77,7 @@ hnsm_parser = function (id, head)
 			
 			first = false
 		else
-			local k, v = string.match(line, '([^:]+):(.*)') -- Æ¥Åä²ÎÊı
+			local k, v = string.match(line, '([^:]+):(.*)') -- åŒ¹é…å‚æ•°
 			if nil ~= k and nil ~= v then
 				k = trim(k)
 				v = trim(v)
@@ -87,7 +87,7 @@ hnsm_parser = function (id, head)
 		end
 	end
 	
-	-- ½«ÎÒÃÇ¹ØĞÄµÄ cookie ½âÎöµ½ req.ck.llssid, req.ck.llauth
+	-- å°†æˆ‘ä»¬å…³å¿ƒçš„ cookie è§£æåˆ° req.ck.llssid, req.ck.llauth
 	parser_cookie(req)
 	
 	return req

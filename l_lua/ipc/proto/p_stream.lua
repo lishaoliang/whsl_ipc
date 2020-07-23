@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief p_stream ÂëÁ÷Ğ­Òé
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief p_stream ç æµåè®®
+-- @author  æç»è‰¯
 --]]
 local string = require("string")
 local cjson = require("cjson")
@@ -16,11 +16,11 @@ local iworker = require("ipc.iworker")
 local p_stream = {}
 
 
--- @brief ²âÊÔÑù°å
--- @param [in]  	req[table]	ÇëÇó
--- @param [out]		res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
--- @return ÎŞ·µ»ØÖµ
+-- @brief æµ‹è¯•æ ·æ¿
+-- @param [in]  	req[table]	è¯·æ±‚
+-- @param [out]		res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
+-- @return æ— è¿”å›å€¼
 p_stream.on_test = function (req, res, cmd)
 
 	res[cmd] = {
@@ -29,11 +29,11 @@ p_stream.on_test = function (req, res, cmd)
 end
 
 
--- @brief ¿ªÆôÂëÁ÷
--- @param [in]  	req[table]	ÇëÇó
--- @param [out]		res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
--- @return ÎŞ·µ»ØÖµ
+-- @brief å¼€å¯ç æµ
+-- @param [in]  	req[table]	è¯·æ±‚
+-- @param [out]		res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
+-- @return æ— è¿”å›å€¼
 p_stream.on_open_stream = function (req, res, cmd)
 	
 	local param = req.body[cmd]
@@ -79,11 +79,11 @@ p_stream.on_open_stream = function (req, res, cmd)
 end
 
 
--- @brief ¹Ø±ÕÂëÁ÷
--- @param [in]  	req[table]	ÇëÇó
--- @param [out]		res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	·ûºÏ×Ö·û¼¯[azAZ09_]¹æÔòµÄ µ¥¸öµ¥´Ê
--- @return ÎŞ·µ»ØÖµ
+-- @brief å…³é—­ç æµ
+-- @param [in]  	req[table]	è¯·æ±‚
+-- @param [out]		res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	ç¬¦åˆå­—ç¬¦é›†[azAZ09_]è§„åˆ™çš„ å•ä¸ªå•è¯
+-- @return æ— è¿”å›å€¼
 p_stream.on_close_stream = function (req, res, cmd)
 	
 	local param = req.body[cmd]
@@ -124,7 +124,7 @@ local get_wh = function (wh)
 		return
 	end
 	
-	local str_w, str_h = string.match(wh, '([%d]+)[^%d]+([%d]+)') -- Æ¥ÅäĞÎÈç '1920*1080'
+	local str_w, str_h = string.match(wh, '([%d]+)[^%d]+([%d]+)') -- åŒ¹é…å½¢å¦‚ '1920*1080'
 	
 	local w = tonumber(str_w)
 	local h = tonumber(str_h)
@@ -134,11 +134,11 @@ local get_wh = function (wh)
 	end
 end
 
--- @brief ÉèÖÃÁ÷²ÎÊı
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®æµå‚æ•°
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_stream.on_set_stream = function (req, res, cmd)
 	
 	local param = req.body[cmd]
@@ -185,11 +185,11 @@ p_stream.on_set_stream = function (req, res, cmd)
 end
 
 
--- @brief ÉèÖÃÍ¼Æ¬Á÷²ÎÊı
--- @param [in]		req[table]	ÇëÇó
--- @param [in,out]	res[table]	»Ø¸´¶ÔÏó
--- @param [in]		cmd[string]	ÃüÁî
--- @return ÎŞ
+-- @brief è®¾ç½®å›¾ç‰‡æµå‚æ•°
+-- @param [in]		req[table]	è¯·æ±‚
+-- @param [in,out]	res[table]	å›å¤å¯¹è±¡
+-- @param [in]		cmd[string]	å‘½ä»¤
+-- @return æ— 
 p_stream.on_set_stream_pic = function (req, res, cmd)
 	
 	local param = req.body[cmd]

@@ -1,8 +1,8 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief  ÅäÖÃÖ»¶ÁÏî
---		±ê×¼°æ±¾Îª hi_3519, ÆäËû°æ±¾ĞèÒªÔÚ´Ëµ÷Õû±àÂë²ÎÊı
--- @author  ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief  é…ç½®åªè¯»é¡¹
+--		æ ‡å‡†ç‰ˆæœ¬ä¸º hi_3519, å…¶ä»–ç‰ˆæœ¬éœ€è¦åœ¨æ­¤è°ƒæ•´ç¼–ç å‚æ•°
+-- @author  æç»è‰¯
 --]]
 
 local l_sys = require("l_sys")
@@ -10,7 +10,7 @@ local l_sys = require("l_sys")
 
 local default_r_hi_3516a = function (default_r)
 
-	-- stream pic, 0Í¨µÀ, Í¼Æ¬Á÷1 ¼ÇÎª: stream_pic_chnn0_idx64
+	-- stream pic, 0é€šé“, å›¾ç‰‡æµ1 è®°ä¸º: stream_pic_chnn0_idx64
 	default_r['stream_pic_chnn0_idx64'] = {
 		--fmt = 'jpeg',
 		--wh = '2592*1944',
@@ -32,7 +32,7 @@ end
 
 local default_r_hi_3519_imx385 = function (default_r)
 
-	-- stream pic, 0Í¨µÀ, Í¼Æ¬Á÷1 ¼ÇÎª: stream_pic_chnn0_idx64
+	-- stream pic, 0é€šé“, å›¾ç‰‡æµ1 è®°ä¸º: stream_pic_chnn0_idx64
 	default_r['stream_pic_chnn0_idx64'] = {
 		--fmt = 'jpeg',
 		--wh = '2592*1944',
@@ -49,7 +49,7 @@ local default_r_hi_3519_imx385 = function (default_r)
 		}
 	}
 	
-	-- stream, 0Í¨µÀ, Ö÷ÂëÁ÷ ¼ÇÎª: stream_chnn0_idx0
+	-- stream, 0é€šé“, ä¸»ç æµ è®°ä¸º: stream_chnn0_idx0
 	default_r['stream_chnn0_idx0'] = {
 		--fmt = 'h264',
 		--rc_mode = 'cbr',
@@ -78,7 +78,7 @@ local default_r_hi_3519_imx385 = function (default_r)
 		}
 	}
 	
-	-- stream, 0Í¨µÀ, ×ÓÂëÁ÷ ¼ÇÎª: stream_chnn0_idx1
+	-- stream, 0é€šé“, å­ç æµ è®°ä¸º: stream_chnn0_idx1
 	default_r['stream_chnn0_idx1'] = {
 		--fmt = 'h264',
 		--rc_mode = 'cbr',
@@ -112,7 +112,7 @@ end
 local default_r_adjust = function (default_r)
 	local chip = l_sys.chip
 
-	-- ÒÀ¾İ²úÆ·chip, µ÷Õû²¿·Ö²ÎÊı
+	-- ä¾æ®äº§å“chip, è°ƒæ•´éƒ¨åˆ†å‚æ•°
 	if 'hi_3516a' == chip then
 		default_r_hi_3516a(default_r)
 	elseif 'hi_3519_imx385' == chip then

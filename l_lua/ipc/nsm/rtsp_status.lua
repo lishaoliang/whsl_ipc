@@ -1,10 +1,10 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/11/29
 --
 -- @file    rtsp_status.lua
--- @brief   rtsp³£ÓÃ×´Ì¬
--- @author	ÀîÉÜÁ¼
+-- @brief   rtspå¸¸ç”¨çŠ¶æ€
+-- @author	æç»è‰¯
 --]]
 
 

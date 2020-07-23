@@ -1,14 +1,14 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/4/23
 --
 -- @file    lw_upgrade.lua
--- @brief   ÇáÁ¿¼¶Éı¼¶Ïß³Ì
+-- @brief   è½»é‡çº§å‡çº§çº¿ç¨‹
 -- @version 0.1
--- @author	ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/4/23 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @author	æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/4/23 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local cjson = require("cjson")
@@ -17,7 +17,6 @@ local l_sys = require("l_sys")
 local util = require("base.util")
 local np_id = require("base.np_id")
 
-local inet = require("ipc.inet")
 local upgrade = require("ipc.upgrade.upgrade")
 
 
@@ -26,7 +25,7 @@ local lt_name = ''
 
 local on_timer_recv = function (id, count, interval, tc, last_tc)
 	
-	-- upgrade¶¨Ê±µ÷ÓÃ
+	-- upgradeå®šæ—¶è°ƒç”¨
 	upgrade.on_recv()
 	
 	return 0
@@ -37,14 +36,12 @@ init = function (param)
 	--print('init .....', param)
 	lt_name = param
 
-	local nsm_upgrade = inet.get_nsm(inet.nsm_upgrade)
-	assert(nsm_upgrade)
 	
-	upgrade.init(nsm_upgrade)
+	upgrade.init()
 	
-	-- Ìí¼Ó¶¨Ê±Æ÷
-	l_sys.add_timer(100, 10, on_timer_recv)		-- ¶¨Ê±È¡ÏûÏ¢
-		
+	-- æ·»åŠ å®šæ—¶å™¨
+	l_sys.add_timer(100, 10, on_timer_recv)		-- å®šæ—¶å–æ¶ˆæ¯
+	
 	return 0
 end
 
@@ -61,7 +58,7 @@ end
 on_cmd = function (msg, lparam, wparam, cobj)
 	--print('on_cmd.name:'..lt_name, msg, lparam, wparam)
 	
-	local cmd_low = string.lower(msg) -- ²»Çø·Ökey×Ö¶Î´óĞ¡Ğ´
+	local cmd_low = string.lower(msg) -- ä¸åŒºåˆ†keyå­—æ®µå¤§å°å†™
 	
 	return 0
 end

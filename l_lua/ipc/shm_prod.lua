@@ -1,17 +1,16 @@
---[[
--- Copyright(c) 2010, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2010, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2020/1/7
 --
 -- @file    shm_prod.lua
--- @brief	¶à½ø³Ì¹²ÏíÄÚ´æ(Éú²úÕß)
+-- @brief	å¤šè¿›ç¨‹å…±äº«å†…å­˜(ç”Ÿäº§è€…)
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
---   ±¾Ä£¿éÒÀÀµ l_tpool.init()
---   ÔÚ l_tpool.quit() Ö®ºó, ÎŞ·¨Ê¹ÓÃ
+-- @author  æç»è‰¯
+--   æœ¬æ¨¡å—ä¾èµ– l_tpool.init()
+--   åœ¨ l_tpool.quit() ä¹‹å, æ— æ³•ä½¿ç”¨
 --]]
 local l_tpool = require("l_tpool")
 local l_shm_prod = require("l_shm_prod")
-local l_dev_ipc = require("l_dev_ipc")
 
 
 local shm_prod = {}
@@ -19,7 +18,7 @@ local shm_prod = {}
 
 shm_prod.init = function ()
 	local path_video = '/nfsmem/video.shm'
-	local size_video = 6 * 1024 * 1024
+	local size_video = 4 * 1024 * 1024
 	local ret1 = l_shm_prod.open(1, path_video, size_video)
 	print('l_shm_prod.open', 1, path_video, size_video / 1024 .. 'K', ret1)
 end
@@ -30,7 +29,7 @@ shm_prod.quit = function ()
 end
 
 shm_prod.setup = function ()
-	l_dev_ipc.add_listener('my shm 1', l_shm_prod.get_receiver(1))
+
 end
 
 

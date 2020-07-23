@@ -1,30 +1,30 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file  G.lua
--- @brief È«¾Ö±äÁ¿¶¨Òå
--- @author  ÀîÉÜÁ¼
+-- @brief å…¨å±€å˜é‡å®šä¹‰
+-- @author  æç»è‰¯
 --]]
 
--- @global È«¾Ö±äÁ¿G
+-- @global å…¨å±€å˜é‡G
 G = {}
 
 -- @name   G.cfg
--- @export ÅäÖÃ²¿·ÖÄ£¿é
+-- @export é…ç½®éƒ¨åˆ†æ¨¡å—
 G.cfg = nil
 
 
 -- @name   G.user
--- @export ÓÃ»§È¨ÏŞÄ£¿é
+-- @export ç”¨æˆ·æƒé™æ¨¡å—
 G.user = nil
 
 
 -- @name   G.cfg
--- @export HTTP·şÎñ´¦ÀíÄ£¿é
+-- @export HTTPæœåŠ¡å¤„ç†æ¨¡å—
 G.http_ser = nil
 
 
 -- @name   G.nsm_ser
--- @export nsm·şÎñ´¦ÀíÄ£¿é
+-- @export nsmæœåŠ¡å¤„ç†æ¨¡å—
 G.nsm_ser = nil

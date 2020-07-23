@@ -1,7 +1,7 @@
---[[
--- Copyright(c) 2018-2025, ÎäººË´Á¢Èí¼ş All Rights Reserved
--- @brief  ÅäÖÃÏà¹ØÈë¿Ú
--- @author ÀîÉÜÁ¼
+ï»¿--[[
+-- Copyright(c) 2018-2025, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
+-- @brief  é…ç½®ç›¸å…³å…¥å£
+-- @author æç»è‰¯
 --]]
 local string = require("string")
 local cjson = require("cjson")
@@ -15,21 +15,21 @@ local default = require("ipc.cfg.default")
 local cfg = {}
 
 
--- brief ÅäÖÃÎÄ¼ş°æ±¾
--- note  Ã¿´ÎĞŞ¸ÄÅäÖÃÏîÄ¿, ±ØĞëĞŞ¸ÄÅäÖÃ°æ±¾[³¤¶È <= 15]
+-- brief é…ç½®æ–‡ä»¶ç‰ˆæœ¬
+-- note  æ¯æ¬¡ä¿®æ”¹é…ç½®é¡¹ç›®, å¿…é¡»ä¿®æ”¹é…ç½®ç‰ˆæœ¬[é•¿åº¦ <= 15]
 cfg.version = 'v1.0.8'
 
 
--- brief »ñÈ¡µ±Ç°keyµÄ¿É±äÅäÖÃÖµ
--- key [string]		  ÅäÖÃÃû³Æ
--- return [nil,table] ±»¿½±´µÄÊı¾İ, ¿ÉÒÔÈÎÒâÊ¹ÓÃ
+-- brief è·å–å½“å‰keyçš„å¯å˜é…ç½®å€¼
+-- key [string]		  é…ç½®åç§°
+-- return [nil,table] è¢«æ‹·è´çš„æ•°æ®, å¯ä»¥ä»»æ„ä½¿ç”¨
 local get_cur_cfg_v = function (key)
-	-- »ñÈ¡Ä¬ÈÏÖµ
+	-- è·å–é»˜è®¤å€¼
 	local def_v = default.get_v(key)
 	
 	if nil ~= def_v then
 		
-		-- ´ÓÅäÖÃÎÄ¼ş¶ÁÈ¡Êı¾İ, Èç¹ûÈ¡µ½Êı¾İ, Ôò¸üĞÂÊı¾İ
+		-- ä»é…ç½®æ–‡ä»¶è¯»å–æ•°æ®, å¦‚æœå–åˆ°æ•°æ®, åˆ™æ›´æ–°æ•°æ®
 		local str = l_cfg.get(key)
 		if 0 < string.len(str) then
 			local ret, f_v = pcall(cjson.decode, str)		
@@ -39,41 +39,41 @@ local get_cur_cfg_v = function (key)
 		end
 	end
 	
-	-- ×îÖÕ·µ»Ø = Ä¬ÈÏÖµ µş¼Ó ĞŞ¸ÄÖµ
+	-- æœ€ç»ˆè¿”å› = é»˜è®¤å€¼ å åŠ  ä¿®æ”¹å€¼
 	return def_v
 end
 
--- brief »ñÈ¡ÅäÖÃ
--- key [string]		  ÅäÖÃÃû³Æ
--- return [nil,table] ±»¿½±´µÄÊı¾İ, ¿ÉÒÔÈÎÒâÊ¹ÓÃ
+-- brief è·å–é…ç½®
+-- key [string]		  é…ç½®åç§°
+-- return [nil,table] è¢«æ‹·è´çš„æ•°æ®, å¯ä»¥ä»»æ„ä½¿ç”¨
 cfg.get = function (key)
 	
 	local def_v = get_cur_cfg_v(key)	
 	local def_r = default.get_r(key)	
 	
-	local u = util.t_union(def_v, def_r)	-- µ±Ç°Öµ Óë Ö»¶ÁÖµ²¢¼¯
+	local u = util.t_union(def_v, def_r)	-- å½“å‰å€¼ ä¸ åªè¯»å€¼å¹¶é›†
 	return u
 end
 
--- brief »ñÈ¡Ä¬ÈÏÅäÖÃ
--- key [string]		  ÅäÖÃÃû³Æ
--- return [nil,table] ±»¿½±´µÄÊı¾İ, ¿ÉÒÔÈÎÒâÊ¹ÓÃ
+-- brief è·å–é»˜è®¤é…ç½®
+-- key [string]		  é…ç½®åç§°
+-- return [nil,table] è¢«æ‹·è´çš„æ•°æ®, å¯ä»¥ä»»æ„ä½¿ç”¨
 cfg.default = function (key)
 	local def_v = default.get_v(key)
 	local def_r = default.get_r(key)
 	
-	local u = util.t_union(def_v, def_r)	-- Ä¬ÈÏÖµ Óë Ö»¶ÁÖµ²¢¼¯	
+	local u = util.t_union(def_v, def_r)	-- é»˜è®¤å€¼ ä¸ åªè¯»å€¼å¹¶é›†	
 	return u
 end
 
 
--- brief Ğ£ÑéÅäÖÃ²ÎÊıĞÅÏ¢
--- param [table]	ÅäÖÃÃû³Æ
--- r [table]	ÅäÖÃÖµ
--- return [boolean]	true.Í¨¹ıĞ£Ñé; false.²ÎÊı´íÎó
+-- brief æ ¡éªŒé…ç½®å‚æ•°ä¿¡æ¯
+-- param [table]	é…ç½®åç§°
+-- r [table]	é…ç½®å€¼
+-- return [boolean]	true.é€šè¿‡æ ¡éªŒ; false.å‚æ•°é”™è¯¯
 local check_param = function (param, r)
-	-- ¹æÔò. r.range ÓòÖĞ±êÃ÷¸÷¸ö²ÎÊı·¶Î§
-	-- Î´ÔÚ r.range ÖĞÔ¼¶¨µÄ·¶Î§, ÔòÊ¹ÓÃĞ­ÒéÔ¼¶¨Öµ
+	-- è§„åˆ™. r.range åŸŸä¸­æ ‡æ˜å„ä¸ªå‚æ•°èŒƒå›´
+	-- æœªåœ¨ r.range ä¸­çº¦å®šçš„èŒƒå›´, åˆ™ä½¿ç”¨åè®®çº¦å®šå€¼
 	local n_min = 0		-- number.min
 	local n_max = 100	-- number.max
 	
@@ -81,7 +81,7 @@ local check_param = function (param, r)
 	local s_l_max = 128	-- string len .max
 
 	if not util.t_is_not_empty(param) then
-		return false	-- ±ØĞëÊÇ table, ÇÒÓĞÊı¾İ
+		return false	-- å¿…é¡»æ˜¯ table, ä¸”æœ‰æ•°æ®
 	end
 	
 	local range = util.t_item(r, 'range')
@@ -92,7 +92,7 @@ local check_param = function (param, r)
 			if 'number' == t then
 				local n_keys = util.t_item(range, k)
 				if util.t_is_array(n_keys) then
-					-- Ô¼¶¨ÊıÖµÈ¡Öµ
+					-- çº¦å®šæ•°å€¼å–å€¼
 					local b_in_keys = false
 					for m, n in ipairs(n_keys) do
 						if n == v then
@@ -102,10 +102,10 @@ local check_param = function (param, r)
 					end
 					
 					if not b_in_keys then
-						return false	-- ²»ÔÚ¸ø¶¨µÄ·¶Î§
+						return false	-- ä¸åœ¨ç»™å®šçš„èŒƒå›´
 					end
 				else
-					-- Ô¼¶¨ÊıÖµÈ¡Öµ·¶Î§
+					-- çº¦å®šæ•°å€¼å–å€¼èŒƒå›´
 					local min = util.t_item(range, k, 'min') or n_min
 					local max = util.t_item(range, k, 'max') or n_max
 				
@@ -116,7 +116,7 @@ local check_param = function (param, r)
 			elseif 'string' == t then
 				local s_keys = util.t_item(range, k)				
 				if util.t_is_array(s_keys) then
-					-- Ô¼¶¨×Ö·û´®È¡Öµ·¶Î§
+					-- çº¦å®šå­—ç¬¦ä¸²å–å€¼èŒƒå›´
 					local b_in_keys = false
 					for m, n in ipairs(s_keys) do
 						if n == v then
@@ -126,17 +126,17 @@ local check_param = function (param, r)
 					end
 					
 					if not b_in_keys then
-						return false	-- ²»ÔÚ¸ø¶¨µÄ·¶Î§
+						return false	-- ä¸åœ¨ç»™å®šçš„èŒƒå›´
 					end
 				else
-					-- ·ñÔò, Ô¼¶¨ÎªÏŞ¶¨³¤¶È·¶Î§
+					-- å¦åˆ™, çº¦å®šä¸ºé™å®šé•¿åº¦èŒƒå›´
 					local len = string.len(v)
 					if len < s_l_min or s_l_max < len then
 						return false
 					end
 				end
 			else
-				-- ÆäËû²»¼ì²é
+				-- å…¶ä»–ä¸æ£€æŸ¥
 			end
 		end
 	end
@@ -146,82 +146,82 @@ end
 
 
 local set_cfg = function (key, value, save)
-	-- »ñÈ¡µ±Ç°Öµ
+	-- è·å–å½“å‰å€¼
 	local v = get_cur_cfg_v(key)
 	if nil == v then
 		return false, '{}', np_err.NOTFOUND
 	end
 	
-	-- ¸üĞÂµ±Ç°Öµ
+	-- æ›´æ–°å½“å‰å€¼
 	util.t_cp_by(v, value)
 
-	-- »ñÈ¡Ö»¶ÁÖµ
+	-- è·å–åªè¯»å€¼
 	local r = default.get_r(key)
 
-	-- Í³Ò»²ÎÊı¼ì²é
+	-- ç»Ÿä¸€å‚æ•°æ£€æŸ¥
 	if not check_param(v, r) then
 		return false, '{}', np_err.PARAM
 	end
 	
-	-- ÉèÖÃ
+	-- è®¾ç½®
 	local code = np_err.SAVE
 	local json = cjson.encode(v)
 	local ret = l_cfg.set(key, json)
 		
 	--print('cfg.set:', ret, json)
 	if ret and save then
-		l_cfg.save() --±£´æÎÄ¼ş
+		l_cfg.save() --ä¿å­˜æ–‡ä»¶
 		code = np_err.OK
 	end
 	
 	return ret, json, code
 end
 
--- brief ÉèÖÃÊı¾İ
--- key [string]		ÅäÖÃÃû³Æ
--- value [table]	ÅäÖÃÖµ
--- return ret[boolean]	ÊÇ·ñÉèÖÃ³É¹¦
---		v[string]		±»ÉèÖÃµÄjson×Ö·û´®
---		code[number]	´íÎóÂë
+-- brief è®¾ç½®æ•°æ®
+-- key [string]		é…ç½®åç§°
+-- value [table]	é…ç½®å€¼
+-- return ret[boolean]	æ˜¯å¦è®¾ç½®æˆåŠŸ
+--		v[string]		è¢«è®¾ç½®çš„jsonå­—ç¬¦ä¸²
+--		code[number]	é”™è¯¯ç 
 cfg.set = function (key, value)
 	local ret, json, code = set_cfg(key, value, true)
 	
 	return ret, json, code
 end
 
--- @brief »ñÈ¡¹ØÓÚ Í¨µÀ, Á÷ĞòºÅ¹ØÁªµÄÕæÊµÅäÖÃkey
+-- @brief è·å–å…³äº é€šé“, æµåºå·å…³è”çš„çœŸå®é…ç½®key
 cfg.key_chnn_idx = function (key, chnn, idx)
 	local txt = string.format('%s_chnn%d_idx%d', key, chnn, idx)
 	return txt
 end
 
 
--- @brief »ñÈ¡¹ØÓÚ Í¨µÀÕæÊµÅäÖÃkey
+-- @brief è·å–å…³äº é€šé“çœŸå®é…ç½®key
 cfg.key_chnn = function (key, chnn)
 	local txt = string.format('%s_chnn%d', key, chnn)
 	return txt
 end
 
 
--- @brief »ñÈ¡¹ØÓÚ ÓÃ»§ÓĞ¹ØµÄÕæÊµÅäÖÃkey
+-- @brief è·å–å…³äº ç”¨æˆ·æœ‰å…³çš„çœŸå®é…ç½®key
 cfg.key_user_index = function (index)
 	local txt = string.format('user_name%d', index)
 	return txt
 end
 
--- @brief »ñÈ¡µ±Ç°ËùÓĞµÄkeyÖµ
+-- @brief è·å–å½“å‰æ‰€æœ‰çš„keyå€¼
 cfg.keys = function ()
 	return util.t_copy(default.keys)
 end
 
 
--- brief ÅäÖÃ³õÊ¼»¯
+-- brief é…ç½®åˆå§‹åŒ–
 cfg.init = function ()
 	
-	-- ³õÊ¼»¯CÅäÖÃÄ£¿é
+	-- åˆå§‹åŒ–Cé…ç½®æ¨¡å—
 	l_cfg.init(cfg.version)
 
-	-- ¼ì²éÅäÖÃÎÄ¼şÊÇ·ñ´æÔÚÒì³£, ´æÔÚÒì³£ÔòĞŞ¸´ÖÁµ±Ç°°æ±¾
+	-- æ£€æŸ¥é…ç½®æ–‡ä»¶æ˜¯å¦å­˜åœ¨å¼‚å¸¸, å­˜åœ¨å¼‚å¸¸åˆ™ä¿®å¤è‡³å½“å‰ç‰ˆæœ¬
 	if not l_cfg.is_ok() then
 		print('lua cfg is not ok, repair!')
 		
@@ -237,7 +237,7 @@ cfg.init = function ()
 			end	
 		end
 		
-		-- ±£´æÎÄ¼ş
+		-- ä¿å­˜æ–‡ä»¶
 		l_cfg.save()
 	end
 
@@ -250,19 +250,19 @@ cfg.init = function ()
 end
 
 
--- brief ÅäÖÃÍË³ö
+-- brief é…ç½®é€€å‡º
 cfg.quit = function ()
 	l_cfg.quit()
 end
 
--- brief ¸´Î»ÅäÖÃ
+-- brief å¤ä½é…ç½®
 cfg.reset = function()
-	l_cfg.reset()	-- ¸´Î»ÄÚ´æ
-	l_cfg.save()	-- ±£´æÎÄ¼ş
+	l_cfg.reset()	-- å¤ä½å†…å­˜
+	l_cfg.save()	-- ä¿å­˜æ–‡ä»¶
 end
 
 
--- ³õÊ¼»¯µ±Ç°Ä¬ÈÏÖµ
+-- åˆå§‹åŒ–å½“å‰é»˜è®¤å€¼
 default.init()
 
 

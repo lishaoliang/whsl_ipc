@@ -1,52 +1,52 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2019, All Rights Reserved
 -- Created: 2019/4/20
 --
 -- @file    l_nmps_a.lua
--- @brief   ÄÚÖÃ¿ârequire("l_nmps_a"), ¼àÌı¶Ë¿Ú¶àÂ·¸´ÓÃ
+-- @brief   å†…ç½®åº“require("l_nmps_a"), ç›‘å¬ç«¯å£å¤šè·¯å¤ç”¨
 --  \n require("l_net_a")
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/14/20 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/14/20 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_nmps_a = {}
 
 
--- @brief ´ò¿ª¼àÌı¶Ë¿Ú
--- @param [in]  	name[string]	Ãû³Æ < 64
--- @param [in]  	port[number]	¼àÌı¶Ë¿Ú
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
+-- @brief æ‰“å¼€ç›‘å¬ç«¯å£
+-- @param [in]  	name[string]	åç§° < 64
+-- @param [in]  	port[number]	ç›‘å¬ç«¯å£
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
 l_nmps_a.open = function (name, port)
 	return true
 end
 
--- @brief ´ò¿ª¼àÌı¶Ë¿Ú,
--- @param [in]  	name[string]	Ãû³Æ < 64
--- @param [in]  	port[number]	¼àÌı¶Ë¿Ú
--- @param [in]		path[string]	unix±¾µØsocketÂ·¾¶; ÀıÈç"/tmp/xxx.xxx"
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
--- @note unixÏÂÊ¹ÓÃ±¾µØsocket
---  \n windowsÏÂÊ¹ÓÃport´´½¨Ò»°ãsocket
+-- @brief æ‰“å¼€ç›‘å¬ç«¯å£,
+-- @param [in]  	name[string]	åç§° < 64
+-- @param [in]  	port[number]	ç›‘å¬ç«¯å£
+-- @param [in]		path[string]	unixæœ¬åœ°socketè·¯å¾„; ä¾‹å¦‚"/tmp/xxx.xxx"
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
+-- @note unixä¸‹ä½¿ç”¨æœ¬åœ°socket
+--  \n windowsä¸‹ä½¿ç”¨portåˆ›å»ºä¸€èˆ¬socket
 l_nmps_a.open_unix = function (name, port, path)
 	return true
 end
 
 
--- @brief ¹Ø±Õ¼àÌı¶Ë¿Ú
--- @param [in]  	name[string]	Ãû³Æ < 64
--- @return [boolean] true.³É¹¦; false.Ê§°Ü
+-- @brief å…³é—­ç›‘å¬ç«¯å£
+-- @param [in]  	name[string]	åç§° < 64
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥
 l_nmps_a.close = function (name)
 	return true
 end
 
 
--- @brief »ñÈ¡¼àÌıµÃµ½µÄsocket
--- @return  [nil,l_socket] l_obj¶ÔÏó: l_socket
---  \n 		20 [number]		Ö÷Ğ­Òé
---  \n 		0 [number]		×ÓĞ­Òé
---  \n 		x [string]		Èç¹ûÊÇÎÄ±¾Ğ­Òé, ÔòÎªÇëÇóµÄURLÇ°Ò»²¿·Ö(×î¶àÔ¼64×Ö½Ú)
+-- @brief è·å–ç›‘å¬å¾—åˆ°çš„socket
+-- @return  [nil,l_socket] l_objå¯¹è±¡: l_socket
+--  \n 		20 [number]		ä¸»åè®®
+--  \n 		0 [number]		å­åè®®
+--  \n 		x [string]		å¦‚æœæ˜¯æ–‡æœ¬åè®®, åˆ™ä¸ºè¯·æ±‚çš„URLå‰ä¸€éƒ¨åˆ†(æœ€å¤šçº¦64å­—èŠ‚)
 l_nmps_a.get_socket = function ()
 	return l_socket, 20, 0, 'xxx'
 	-- return nil, 0, 0, ''

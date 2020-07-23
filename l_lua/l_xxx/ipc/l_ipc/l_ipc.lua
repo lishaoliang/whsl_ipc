@@ -1,34 +1,34 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_ipc.lua
--- @brief   ÄÚÖÃ¿â"l_ipc", IPCÖ÷¿ò¼ÜÒµÎñ
+-- @brief   å†…ç½®åº“"l_ipc", IPCä¸»æ¡†æ¶ä¸šåŠ¡
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_ipc = {}
 
 
--- @brief ³õÊ¼»¯
--- @return [number] ·µ»Ø´íÎóÂë
+-- @brief åˆå§‹åŒ–
+-- @return [number] è¿”å›é”™è¯¯ç 
 l_ipc.init = function ()
 	return 0
 	-- return 1
 end
 
 
--- @brief ·´³õÊ¼»¯
+-- @brief ååˆå§‹åŒ–
 l_ipc.quit = function ()
 	
 end
 
 
 -- @brief start
--- @return [number] ·µ»Ø´íÎóÂë
+-- @return [number] è¿”å›é”™è¯¯ç 
 l_ipc.start = function ()
 	return 0
 	-- return 
@@ -40,21 +40,21 @@ l_ipc.stop = function ()
 end
 
 
--- @brief »ñÈ¡·ÅÖÃÃ½ÌåÁ÷½Ó¿Ú
--- @return LUA_TLIGHTUSERDATA ÇáÁ¿¼¶Ö¸Õë
--- @note ptrº¯ÊıµÄCÓïÑÔÔ­ĞÍ
+-- @brief è·å–æ”¾ç½®åª’ä½“æµæ¥å£
+-- @return LUA_TLIGHTUSERDATA è½»é‡çº§æŒ‡é’ˆ
+-- @note ptrå‡½æ•°çš„Cè¯­è¨€åŸå‹
 -- \n typedef int(*ldev_stream_cb)(int chnn, ldev_stream_id_e id, l_md_fmt_e fmt, ldev_stream_t* p_stream);
 l_ipc.get_push_stream = function ()
 	return ptr -- LUA_TLIGHTUSERDATA
 end
 
 
--- @brief ÏòÄ£¿é·ÅÈësocket
--- @param [in]	l_socket[l_socket]	l_socket¶ÔÏó
--- @param [in]	id[number]			socketµÄid±àºÅ
--- @param [in]	proto_main[number]	Ö÷Ğ­Òé
--- @param [in]	proto_sub[number]	×ÓĞ­Òé
--- @return [boolean] true.³É¹¦; false.Ê§°Ü, Ê§°ÜÊ±µ÷ÓÃÕßĞèÒª×ÔĞĞ´¦Àíl_socket
+-- @brief å‘æ¨¡å—æ”¾å…¥socket
+-- @param [in]	l_socket[l_socket]	l_socketå¯¹è±¡
+-- @param [in]	id[number]			socketçš„idç¼–å·
+-- @param [in]	proto_main[number]	ä¸»åè®®
+-- @param [in]	proto_sub[number]	å­åè®®
+-- @return [boolean] true.æˆåŠŸ; false.å¤±è´¥, å¤±è´¥æ—¶è°ƒç”¨è€…éœ€è¦è‡ªè¡Œå¤„ç†l_socket
 l_ipc.push = function (l_socket, id, proto_main, proto_sub)
 	return true
 	-- return false

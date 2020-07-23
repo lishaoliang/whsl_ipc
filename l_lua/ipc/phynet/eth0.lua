@@ -1,18 +1,18 @@
---[[
--- Copyright(c) 2019, ÎäººË´Á¢Èí¼ş All Rights Reserved
+ï»¿--[[
+-- Copyright(c) 2019, æ­¦æ±‰èˆœç«‹è½¯ä»¶ All Rights Reserved
 -- Created: 2019/04/08
 --
 -- @file    eth0.lua
--- @brief   eth0Íø¿Ú¹ÜÀí
+-- @brief   eth0ç½‘å£ç®¡ç†
 -- @version 0.1
--- @author  ÀîÉÜÁ¼
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2019/04/08 0.1 ´´½¨ÎÄ¼ş
+-- @author  æç»è‰¯
+-- @history ä¿®æ”¹å†å²
+--  \n 2019/04/08 0.1 åˆ›å»ºæ–‡ä»¶
 -- @note
---	\n 169.254.0.0/16 ±¾»úË½ÓĞµØÖ·¶Î
---  \n 169.254.100.123	eth0ÎïÀíÍø¿ÚÄ¬ÈÏµØÖ·
---  \n 169.254.110.123	wlan0ÎŞÏßÍøÂçÄ¬ÈÏµØÖ·
--- @warning Ã»ÓĞ¾¯¸æ
+--	\n 169.254.0.0/16 æœ¬æœºç§æœ‰åœ°å€æ®µ
+--  \n 169.254.100.123	eth0ç‰©ç†ç½‘å£é»˜è®¤åœ°å€
+--  \n 169.254.110.123	wlan0æ— çº¿ç½‘ç»œé»˜è®¤åœ°å€
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 local string = require("string")
 local l_sys = require("l_sys")
@@ -38,7 +38,7 @@ end
 
 
 eth0.reset = function ()
-	-- ÖØÖÃÎïÀíÍø¿Ú, ²»¹Ø±Õ
+	-- é‡ç½®ç‰©ç†ç½‘å£, ä¸å…³é—­
 	-- ip addr flush dev eth0
 
 	unix.kill('udhcpc', 'eth0')

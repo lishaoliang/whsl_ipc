@@ -1,94 +1,94 @@
---[[
+ï»¿--[[
 -- Copyright(c) 2018-2025, All Rights Reserved
 -- Created: 2018/12/21
 --
 -- @file    l_sdk.lua
--- @brief   ×÷Îª¶¯Ì¬¿âÀ©Õ¹"l_sdk", º¯ÊıËµÃ÷
+-- @brief   ä½œä¸ºåŠ¨æ€åº“æ‰©å±•"l_sdk", å‡½æ•°è¯´æ˜
 -- @version 0.1
--- @history ĞŞ¸ÄÀúÊ·
---  \n 2018/12/21 0.1 ´´½¨ÎÄ¼ş
--- @warning Ã»ÓĞ¾¯¸æ
+-- @history ä¿®æ”¹å†å²
+--  \n 2018/12/21 0.1 åˆ›å»ºæ–‡ä»¶
+-- @warning æ²¡æœ‰è­¦å‘Š
 --]]
 
 local l_sdk = {}
 
 
 
--- @brief ³õÊ¼»¯sdk
--- @param [in] cfg[string]	json×Ö·û´® 
--- @return [number] 0.³É¹¦; ·Ç0.´íÎóÂë
+-- @brief åˆå§‹åŒ–sdk
+-- @param [in] cfg[string]	jsonå­—ç¬¦ä¸² 
+-- @return [number] 0.æˆåŠŸ; é0.é”™è¯¯ç 
 l_sdk.init = function (cfg)
 	return 0
 end
 
 
--- @brief ÍË³ösdk
+-- @brief é€€å‡ºsdk
 l_sdk.quit = function ()
 	
 end
 
 
--- @brief µÇÂ¼Éè±¸
--- @param [in] param[string]	json×Ö·û´® 
--- @return [number] err			´íÎóÂë
--- @return [number] id			err=0Ê±, ÓĞĞ§µÄµÇÂ¼id
+-- @brief ç™»å½•è®¾å¤‡
+-- @param [in] param[string]	jsonå­—ç¬¦ä¸² 
+-- @return [number] err			é”™è¯¯ç 
+-- @return [number] id			err=0æ—¶, æœ‰æ•ˆçš„ç™»å½•id
 l_sdk.login = function (param)
 	return err, id
 end
 
 
--- @brief µÇ³öÉè±¸
--- @param [in] id[number]	µÇÂ¼id
--- @return [number] err ´íÎóÂë
+-- @brief ç™»å‡ºè®¾å¤‡
+-- @param [in] id[number]	ç™»å½•id
+-- @return [number] err é”™è¯¯ç 
 l_sdk.logout = function (id)
 	return err
 end
 
 
--- @brief ÇëÇóÊı¾İ
--- @param [in] id[number]	µÇÂ¼id
--- @param [in] str_req[string]	ÇëÇójson×Ö·û´®
--- @return err[number] ´íÎóÂë
--- @return str_res[string] err=0Ê±,´Ó·şÎñ¶Ë»Ø¸´µÄÊı¾İ
+-- @brief è¯·æ±‚æ•°æ®
+-- @param [in] id[number]	ç™»å½•id
+-- @param [in] str_req[string]	è¯·æ±‚jsonå­—ç¬¦ä¸²
+-- @return err[number] é”™è¯¯ç 
+-- @return str_res[string] err=0æ—¶,ä»æœåŠ¡ç«¯å›å¤çš„æ•°æ®
 l_sdk.request = function (id, str_req)
 	return err, str_res
 end
 
 
--- @brief ´ò¿ªÍøÂç·¢ÏÖ·şÎñ
--- @return err[number] ´íÎóÂë
+-- @brief æ‰“å¼€ç½‘ç»œå‘ç°æœåŠ¡
+-- @return err[number] é”™è¯¯ç 
 l_sdk.discover_open = function (param)
 	return 0
 end
 
 
--- @brief ¹Ø±ÕÍøÂç·¢ÏÖ·şÎñ
--- @return err[number] ´íÎóÂë
+-- @brief å…³é—­ç½‘ç»œå‘ç°æœåŠ¡
+-- @return err[number] é”™è¯¯ç 
 l_sdk.discover_close = function ()
 	return 0
 end
 
--- @brief ´ò¿ª/¹Ø±ÕËÑË÷
--- @param [in] b_open[boolean]	true: ´ò¿ªËÑË÷; false: ¹Ø±ÕËÑË÷
--- @return err[number] ´íÎóÂë
+-- @brief æ‰“å¼€/å…³é—­æœç´¢
+-- @param [in] b_open[boolean]	true: æ‰“å¼€æœç´¢; false: å…³é—­æœç´¢
+-- @return err[number] é”™è¯¯ç 
 l_sdk.discover_run = function (b_open)
 	return 0
 end
 
 
--- @brief »ñÈ¡¾ÖÓòÍøÂçÉè±¸
--- @return devs[string] Éè±¸µÄjsonÊı×é
--- @note Ç°ÌáÌõ¼şÎª: discover_open(), discover_run(true)
+-- @brief è·å–å±€åŸŸç½‘ç»œè®¾å¤‡
+-- @return devs[string] è®¾å¤‡çš„jsonæ•°ç»„
+-- @note å‰ææ¡ä»¶ä¸º: discover_open(), discover_run(true)
 l_sdk.discover_get_devs = function ()
 	return '{}'
 end
 
 
--- @brief ×é²¥ÇëÇó
--- @param [in] str_req[string]	ÇëÇóµÄjson×Ö·û´®
--- @return err[number] ´íÎóÂë
---  \ncm	str_res[string] err=0Ê±,´Ó·şÎñ¶Ë»Ø¸´µÄÊı¾İ
--- @note Ç°ÌáÌõ¼şÎª: discover_open()
+-- @brief ç»„æ’­è¯·æ±‚
+-- @param [in] str_req[string]	è¯·æ±‚çš„jsonå­—ç¬¦ä¸²
+-- @return err[number] é”™è¯¯ç 
+--  \ncm	str_res[string] err=0æ—¶,ä»æœåŠ¡ç«¯å›å¤çš„æ•°æ®
+-- @note å‰ææ¡ä»¶ä¸º: discover_open()
 l_sdk.discover_request = function (str_req)
 	return err, str_res
 end
