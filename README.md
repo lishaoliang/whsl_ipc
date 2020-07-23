@@ -61,14 +61,14 @@ sl ipc项目是基于海思hi35xx等系列芯片，针对工业相机等领域�
 
 ```
 cd ./l_lua
-.\llua.exe .\ipc\ipc.lua
+.\ipcamera.exe .\ipc\ipc.lua
 ```
 
 * 模拟器默认端口: 3456
 * 网页地址: http://127.0.0.1:3456
 
 ## 其他
-### 1. [GitHub仓库](https://github.com/lishaoliang/sl_ipc), [码云镜像](https://gitee.com/lishaoliang/sl_ipc)
+### 1. [GitHub仓库](https://github.com/lishaoliang/whsl_ipc), [码云镜像](https://gitee.com/lishaoliang/whsl_ipc)
 ### 2. [客户端SDK](https://github.com/lishaoliang/l_sdk_doc), [客户端SDK(码云镜像)](https://gitee.com/lishaoliang/l_sdk_doc)
 
 
