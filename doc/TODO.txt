@@ -1,0 +1,33 @@
+﻿--[[
+-- Copyright (c) 2020 武汉舜立软件, All Rights Reserved
+-- TODO备忘录
+-- '-' 已完成, '*' 待完成, '+' 正在处理 
+-- @author 李绍良
+--]]
+
+
+-- 长期任务
++ 调整软件架构, 目标: 明确Lua与C代码界限职责
+
+
+-- TODO
+* 整理ipc模块
+* HTTP状态码使用标准错误值,而不是返回200,使用其他值替代
+* 支持HTTP升级: https://www.ietf.org/rfc/rfc1867.txt
+* 支持HTTP提交: "application/x-www-form-urlencoded"数据格式
+* ONVIF-HTTP协议
+* GB28181协议
+* 栅格/矢量文字绘制输出
+* 支持TLS
+* 支持OAuth2认证(做规划,未来实现权限模块): https://tools.ietf.org/html/rfc6749
+
+* 海思V1-V4版本HIMPP封装
+* 海思TDE2的2D绘图原语
+* 海思OSD时间戳等
+* 海思IVE算子相关封装
+
+
+-- 已完成
+* 整理lneta模块
+* 支持WS-FLV协议
+

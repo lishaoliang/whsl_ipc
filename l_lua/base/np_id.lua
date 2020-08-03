@@ -16,6 +16,8 @@ np_id.HTTP = 2				-- HTTP协议
 np_id.RTSP = 3				-- RTSP协议
 np_id.WS = 4				-- websocket协议
 np_id.HTTP_FLV = 5			-- HTTP-FLV协议
+np_id.WS_FLV = 6			-- WS-FLV协议
+np_id.HTTP_UPLOAD = 7		-- HTTP上传
 
 
 np_id.NSPP = 20				-- nspp私有协议

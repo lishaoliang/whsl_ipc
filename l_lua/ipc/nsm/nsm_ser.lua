@@ -15,6 +15,8 @@ local json_request = require("ipc.nsm.json_request")
 local rtsp_ser = require("ipc.nsm.rtsp_ser")
 local nspp_http_ser = require("ipc.nsm.nspp_http_ser")
 local flv_http_ser = require("ipc.nsm.flv_http_ser")
+local flv_ws_ser = require("ipc.nsm.flv_ws_ser")
+local http_upload_ser = require("ipc.nsm.http_upload_ser")
 
 local nsm_ser = {
 	b_res = true
@@ -114,6 +116,12 @@ local on_recv = function (id, protocol, body)
 	elseif np_id.HTTP_FLV == protocol then
 		ret = flv_http_ser.request(id, body)
 		nsm_ser.b_res = true
+	elseif np_id.WS_FLV == protocol then
+		ret = flv_ws_ser.request(id, body)
+		nsm_ser.b_res = true
+	elseif np_id.HTTP_UPLOAD == protocol then
+		ret = http_upload_ser.on_recv(id, body)
+		nsm_ser.b_res = true
 	end
 
 	if 0 == ret then
@@ -135,6 +143,10 @@ local on_disconnect = function (id, protocol)
 		nspp_http_ser.on_disconnect(id)
 	elseif np_id.HTTP_FLV == protocol then
 		flv_http_ser.on_disconnect(id)
+	elseif np_id.WS_FLV == protocol then
+		flv_ws_ser.on_disconnect(id)
+	elseif np_id.HTTP_UPLOAD == protocol then
+		http_upload_ser.on_disconnect(id)
 	end
 	
 	return 0

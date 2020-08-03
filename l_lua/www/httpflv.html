@@ -1,8 +1,7 @@
 <!doctype html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <title>HTTP-FLV</title>
   <body>
 
@@ -10,17 +9,18 @@
       <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1 width="960" height="540"></canvas>
     </div>
 
-    <script type="text/javascript" src="mnp-1.0.0.min.js"></script>
+    <script type="text/javascript" src="/jslib/mnp-1.0.0.min.js"></script>
     <script type='text/javascript'>
-      //var Module = mnpjs
+      var Module = mnpjs
 
       mnpjs.postRun = function() {
         mnpjs.hello(1000)
+        //mnpjs.control("set_delay", "lowest", "");
 
-        var param = JSON.stringify({
-            protocol : 'HTTP-FLV',
-            url : 'http://' + window.location.hostname + ':' + window.location.port + '/luaflv/chnn0/idx0'
-          });
+        var param = {
+          protocol : 'HTTP-FLV',
+          url : 'http://' + window.location.hostname + ':' + window.location.port + '/luaflv/chnn0/idx0'
+        };
          
         mnpjs.open('123456', param, function(result){
             console.log('open ', result, param);

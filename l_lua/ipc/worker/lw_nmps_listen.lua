@@ -48,30 +48,22 @@ local proc_socket = function (socket, main, sub, url_pre)
 
 	if np_id.HTTP == main and nil ~= url_pre then
 		-- http 长连接
-		if 1 == string.find(url_pre, '/luanspp/') then		-- http_nspp 协议
+		if 1 == string.find(url_pre, '/luanspp/') then			-- HTTP-NSPP 协议
 			main = np_id.NSPP_HTTP
-		elseif 1 == string.find(url_pre, '/luaflv/') then	-- http_flv 协议
+		elseif 1 == string.find(url_pre, '/luaflv/') then		-- HTTP-FLV 协议
 			main = np_id.HTTP_FLV
+		elseif 1 == string.find(url_pre, '/luawsflv/') then		-- WS-FLV 协议
+			main = np_id.WS_FLV
+		elseif 1 == string.find(url_pre, '/luaupload/') then	-- HTTP-UPLOAD 协议
+			main = np_id.HTTP_UPLOAD
 		end
-	end
-	
+	end	
 	
 	if np_id.NSPP == main and np_id.UPGRADE == sub then
 		b_used = l_nsm_a.push(servers.nsm_upgrade, socket, util.next_socket_id(), main, sub)
-	elseif np_id.NSPP == main and np_id.MEDIA == sub then
+	else
 		b_used = l_ipc.push(socket, util.next_socket_id(), main, sub)
-	elseif np_id.NSPP_HTTP == main and np_id.MEDIA == sub then
-		b_used = l_ipc.push(socket, util.next_socket_id(), main, sub)
-	elseif np_id.NSPP_LOCAL == main and np_id.MEDIA == sub then
-		b_used = l_ipc.push(socket, util.next_socket_id(), main, sub)
-	elseif np_id.HTTP == main and np_id.MEDIA == sub then
-		b_used = l_ipc.push(socket, util.next_socket_id(), main, sub)
-	elseif np_id.HTTP_FLV == main and np_id.MEDIA == sub then
-		b_used = l_ipc.push(socket, util.next_socket_id(), main, sub)
-	elseif np_id.RTSP == main and np_id.MEDIA == sub then
-		b_used = l_ipc.push(socket, util.next_socket_id(), main, sub)
-	end
-	
+	end	
 	
 	if not b_used then
 		l_sys.free(socket)

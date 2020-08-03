@@ -3,7 +3,7 @@
 -- Created: 2019/12/11
 --
 -- @file  flv_http_ser.lua
--- @brief FLV-HTTP server协议流程
+-- @brief HTTP-FLV server协议流程
 -- @author 李绍良
 -- @note 
 --

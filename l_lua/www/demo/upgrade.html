@@ -4,15 +4,44 @@
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <title>upgrade</title>
+	<script src="/jslib/jquery-3.5.1.min.js"></script>
 </head>
 
 <body>
 	<div>
-		<form id="upgrade" action="/luaupload/upgrade" method="post" enctype="multipart/form-data">
-			<p><input type="file" name="upgrade"/></p>
+		<form id="formUpgrade" action="/luaupload/upgrade" method="post" enctype="multipart/form-data">
+			<p><input type="file" name="upgrade" id="fileUpgrade"/></p>
 			<p><input type="submit" value="提交"/></p>
 		</form>
 	</div>
+
+	<script>	
+$(document).ready(function(){
+
+	// 选择文件发送
+	$("#fileUpgrade").change(function(){
+		console.log("file onchange");
+		var file0 = event.target.files[0];
+		if(!!file0){
+			var formData = new FormData();
+			formData.append('upgrade', file0, 'ipc_upgrade_file.lpk');
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('post', '/luaupload/upgrade', true);
+			xhr.onload = function(){
+				console.log("xhr.onload")
+			};
+			
+			xhr.onerror = function(){
+				console.log("xhr.onerror")
+			};
+			
+			xhr.send(formData);
+		}
+	});
+
+});
+	</script>
 </body>
 
 </html>
