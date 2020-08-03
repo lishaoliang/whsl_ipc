@@ -96,8 +96,13 @@ init = function (param)
 	servers.nsm_upgrade = l_nsm_a.get('nsm_upgrade')
 	assert(servers.nsm_upgrade)
 	
+if l_sys.simulator then	
+	l_nmps_a.open('80', port)			-- 端口: 3456
+	l_nmps_a.open('8000', port_local)	-- 端口: 3457
+else
 	l_nmps_a.open('80', port)
 	l_nmps_a.open_unix('8000', port_local, path_local)
+end
 	
 	-- 添加定时器
 	l_sys.add_timer(100, 10, on_timer_listen)		-- 定时消息
