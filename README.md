@@ -6,7 +6,7 @@ whsl ipc项目是基于海思hi35xx等系列芯片，针对工业相机等领域
 * 如有差异，请以官方正式文档为准。
 
 ## 规划
-### [2018年规划](./images/whsl_ipc_2018.jpg)
+### [2018年规划](./doc/images/whsl_ipc_2018.jpg)
 
 
 ## 框架流程
@@ -60,7 +60,7 @@ cd ./l_lua
 ## 其他
 ### 1. [GitHub仓库](https://github.com/lishaoliang/whsl_ipc), [码云镜像](https://gitee.com/lishaoliang/whsl_ipc)
 ### 2. [客户端SDK](https://github.com/lishaoliang/l_sdk_doc), [客户端SDK(码云镜像)](https://gitee.com/lishaoliang/l_sdk_doc)
-### 3. [版本修改记录](./doc/版本修改记录.md)
+### 3. [版本修改记录](./doc/版本修改记录.txt)
 ### 4. [功能表](./doc/软件功能.xlsx)
 
 ## Apache License,Version 2.0
