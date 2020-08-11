@@ -13,7 +13,7 @@ whsl ipc项目是基于海思hi35xx等系列芯片，针对工业相机等领域
 ### [Arm环境文件结构](./doc/opt/opt.md)
 ### [Lua脚本文件结构](./doc/src_lua/src_lua.md)
 ### [项目模块组织](./doc/framework/fw_modules.md)
-### [软件启动流程]
+### [软件启动流程](./doc/framework/fw_startup.md)
 ### [模块交互流程]
 ### [socket流程]
 ### [音视频流程]
