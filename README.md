@@ -1,14 +1,27 @@
-# whsl ipc项目开发及二次开发指南
-
+# whsl ipc项目
 whsl ipc项目是基于海思hi35xx等系列芯片，针对工业相机等领域的音视频处理软件。
+
+## 声明
+* 本文档为非正式文档，仅供技术参考。
+* 如有差异，请以官方正式文档为准。
+
+## 规划
+### [2018年规划](./images/whsl_ipc_2018.jpg)
+
 
 ## 框架流程
 ### [Arm环境文件结构](./doc/opt/opt.md)
 ### [Lua脚本文件结构](./doc/src_lua/src_lua.md)
 ### [项目模块组织](./doc/framework/fw_modules.md)
+### [软件启动流程]
+### [socket流程]
+### [音视频流程]
 
 ## 网络协议
+[协议描述](https://github.com/lishaoliang/l_sdk_doc)
 
+
+## 流媒体
 * 保留路由: "/lua*"
 
 |   根路径   | 默认端口  |   类型  |   备注    |
@@ -32,8 +45,6 @@ whsl ipc项目是基于海思hi35xx等系列芯片，针对工业相机等领域
 ### [HTTP-FLV协议](./doc/net/http-flv/http_flv.md)
 ### [HTTP-NSPP私有协议](./doc/net/http-nspp/http_nspp.md)
 
-
-
 ## Demo模拟软件
 * Windows7, Windows10 命令行环境
 * 相对目录：./l_lua
@@ -49,7 +60,8 @@ cd ./l_lua
 ## 其他
 ### 1. [GitHub仓库](https://github.com/lishaoliang/whsl_ipc), [码云镜像](https://gitee.com/lishaoliang/whsl_ipc)
 ### 2. [客户端SDK](https://github.com/lishaoliang/l_sdk_doc), [客户端SDK(码云镜像)](https://gitee.com/lishaoliang/l_sdk_doc)
-
+### 3. [版本修改记录](./doc/版本修改记录.md)
+### 4. [功能表](./doc/软件功能.xlsx)
 
 ## Apache License,Version 2.0
 

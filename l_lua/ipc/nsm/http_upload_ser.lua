@@ -114,8 +114,8 @@ http_upload_ser.on_recv = function (id, txt)
 	if conn['first'] then
 		conn['first'] = false
 		
-		local head_txt = pack_200()
-		send(id, head_txt)
+		--local head_txt = pack_200()
+		--send(id, head_txt)
 	end	
 	
 	return 0
